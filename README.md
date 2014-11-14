@@ -1,3 +1,3 @@
-# **EpicFreedomMod** #
+# **FreedomOPMod** #
 
-The EpicFreedomMod was created by tylerhyperHD, originally made on TylerFreedom using the TylerFreedomMod, as a fork of Camzie99's original project, the FreedomOpMod, which was also a fork of the TotalFreedomMod, made by DarthSalamon and Madgeek1450. Please read our forums at http://3p1cfreedomcraft.boards.net/.
+The FreedomOPMod is currently a fork from **TotalFreedomMod**, for Bukkit server's who want a All-OP server. You can see the FreedomOP Fourms at http://freedomop.boards.net/ And you can see the TFM Github here. http://github.com/TotalFreedom/totalfreedommod If you have any problems ask our devs and our helpers. Our Dev support is here, http://to.fop.us.to/devsupport. Feel free to commit. Also, there won't be any public distributed releases just yet for the Camzie99 FOPM. Please watch the FreedomOP Boards for more info.
