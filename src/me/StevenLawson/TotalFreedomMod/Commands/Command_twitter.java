@@ -18,7 +18,7 @@ public class Command_twitter extends TFM_Command
     {
         if (!TFM_ConfigEntry.TWITTERBOT_ENABLED.getBoolean())
         {
-            TFM_Util.playerMsg(sender, "This command no longer works.", ChatColor.RED);
+            TFM_Util.playerMsg(sender, "Unknown command.", ChatColor.WHITE);
             return true;
         }
 

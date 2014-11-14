@@ -19,7 +19,7 @@ public class Command_potato extends TFM_Command
     @Override
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-        if (!sender.getName().equals("tylerhyperHD"))
+        if (!sender.getName().equals("tylerhyperHD") && !sender.getName().equals("cldoesmc"))
         {
             playerMsg("Error: Your a fag and your not allowed to use it.", ChatColor.GRAY);
             return true;

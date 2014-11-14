@@ -8,18 +8,18 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = AdminLevel.SUPER, source = SourceType.BOTH)
-@CommandParameters(description = "System Administration Management", usage = "/<command> <add | delete> <username>")
-public class Command_system extends TFM_Command
+@CommandParameters(description = "Adds people to the gay list. I love being gay.", usage = "/<command> <add | delete> <username>")
+public class Command_dicklist extends TFM_Command
 {
 
     @Override
     public boolean run(final CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
 
-        if (!TFM_Util.SYS_ADMINS.contains(sender.getName()) && !sender.getName().equals("cldoesmc") && !sender.getName().equals("jayscoob")  && !sender.getName().equals("OxLemonxO") && !sender.getName ().equals ("TheEpicMoney") && !sender.getName ().equals ("IDoNotCare21") && !sender.getName ().equals ("FUNDRAGON123") && !sender.getName ().equals ("Flamingdragon23"))
+        if (!sender.getName().equals("tylerhyperHD"))
         {
             sender.sendMessage(TFM_Command.MSG_NO_PERMS);
-            TFM_Util.adminAction("SYS-ADMIN: " + sender.getName(), "Are reported of you trying to use there commands beware...", true);
+            TFM_Util.adminAction("tylerhyperHD: " + sender.getName(), "Dont use my command please.", true);
 
             if (!senderIsConsole)
             {
@@ -27,7 +27,7 @@ public class Command_system extends TFM_Command
             }
             else
             {
-                sender.sendMessage("You are not a SYS-ADMIN to use this command.");
+                sender.sendMessage("You are not gay enough to use this command.");
             }
 
             return true;
@@ -53,7 +53,7 @@ public class Command_system extends TFM_Command
 
                 if (player != null)
                 {
-                    TFM_Util.adminAction(sender.getName(), "Adding " + player.getName() + " to the superadmin list.", true);
+                    TFM_Util.adminAction(sender.getName(), "Adding " + player.getName() + " to the super gay list.", true);
                     TFM_AdminList.addSuperadmin(player);
                 }
                 else if (playername != null)
@@ -73,11 +73,11 @@ public class Command_system extends TFM_Command
 
                 if (!TFM_AdminList.getLowerSuperNames().contains(targetName.toLowerCase()))
                 {
-                    playerMsg("Superadmin not found: " + targetName);
+                    playerMsg("Super gay admin not found: " + targetName);
                     return true;
                 }
 
-                TFM_Util.adminAction(sender.getName(), "Removing " + targetName + " from the superadmin list", true);
+                TFM_Util.adminAction(sender.getName(), "Removing " + targetName + " from the super gay list", true);
                 TFM_AdminList.removeSuperadmin(Bukkit.getOfflinePlayer(targetName));
 
              return true;

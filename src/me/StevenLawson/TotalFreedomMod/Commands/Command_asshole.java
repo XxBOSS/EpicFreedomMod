@@ -20,7 +20,6 @@ public class Command_asshole extends TFM_Command
     @Override
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-        sender.sendMessage("Smites are not for assholes anymore.");
         if (args.length < 1)
         {
             return false;
@@ -73,8 +72,6 @@ public class Command_asshole extends TFM_Command
         }
 
         //Kill:
-        player.setHealth(0.0);
-        player.setHealth(0.0);
         player.setHealth(0.0);
     }
     
