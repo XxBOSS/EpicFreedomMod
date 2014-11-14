@@ -19,15 +19,6 @@ public class Command_setl extends TFM_Command
         {
             TFM_WorldEditBridge.setLimit(player, limit);
         }
-        
-        String mode = args[0].toLowerCase();
-        if (mode.equalsIgnoreCase("silent"))
-        {
-          for (final Player player : server.getOnlinePlayers())
-            {
-              TFM_WorldEditBridge.setLimit(player, limit);
-            }
-        }
         return true;
     }
 }
