@@ -15,7 +15,7 @@ public class Command_clear extends TFM_Command
     @Override
     public boolean run(final CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-            final Player player = getPlayer(args[0]);
+            final Player player = getPlayer(args[1]);
             player.closeInventory();
             player.getInventory().clear();
             player.sendMessage("Your inventory has been cleared.");
