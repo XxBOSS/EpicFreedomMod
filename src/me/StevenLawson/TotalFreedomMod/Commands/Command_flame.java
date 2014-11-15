@@ -21,7 +21,7 @@ public class Command_flame extends TFM_Command
     public boolean run(final CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
         
-        if (!sender.getName().equals("cldoesmc") && !sender.getName().equals("Flamingdragon23")  && !sender.getName().equals("OxLemonxO"))
+        if (!sender.getName().equals("cldoesmc") && !sender.getName().equals("flamingdragon23")  && !sender.getName().equals("OxLemonxO"))
         if (args.length != 1)
         {
             return false;

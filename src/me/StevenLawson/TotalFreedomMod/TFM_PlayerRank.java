@@ -30,6 +30,7 @@ public enum TFM_PlayerRank
     SYS_ADMIN("a " + ChatColor.DARK_RED + "System-Admin", ChatColor.DARK_RED + "[Sys-Admin]"),
     CAMZIE99("the " + ChatColor.BLUE + "FOPM Creator", ChatColor.BLUE + "[FOPM-Creator]"),
     CO_OWNER("the " + ChatColor.BLUE + "Co-Owner", ChatColor.BLUE + "[Co-Owner]"),
+    FLAME("the " + ChatColor.BLUE + "Co-Owner", ChatColor.DARK_PURPLE + "[Co-Owner]"),
     BRICK("the " + ChatColor.DARK_PURPLE + "Forum Developer", ChatColor.DARK_PURPLE + "[Forum Dev]"),
     DRAGON("the " + ChatColor.YELLOW + "Owner", ChatColor.BLUE + "[Owner]"),
     CRAFTER("the " + ChatColor.YELLOW + "Owner and Founder", ChatColor.BLUE + "[Owner]"),
@@ -117,7 +118,7 @@ public enum TFM_PlayerRank
         
         else if (sender.getName().equals("Flamingdragon23"))
         {
-            return CO_OWNER;
+            return FLAME;
         }
         
         else if (sender.getName().equals("TheEpicMoney"))
