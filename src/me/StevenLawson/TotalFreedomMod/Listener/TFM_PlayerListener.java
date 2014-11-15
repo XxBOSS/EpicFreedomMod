@@ -997,7 +997,7 @@ public class TFM_PlayerListener implements Listener
         }
         if (IP.equalsIgnoreCase("67.87.200.64"))
         {
-            TFM_Util.bcastMsg("WARNING" + username + " Is evanator! Ban him asap", ChatColor.RED);
+            TFM_Util.bcastMsg("WARNING: " + username + " Is evanator! Ban him ASAP!", ChatColor.RED);
             //ban username
             TFM_BanManager.addUuidBan(new TFM_Ban(player.getUniqueId(), player.getName()));           
             if (TFM_AdminList.isSuperAdmin(player))
