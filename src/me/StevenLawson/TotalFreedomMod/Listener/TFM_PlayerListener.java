@@ -884,6 +884,8 @@ public class TFM_PlayerListener implements Listener
     public static void onPlayerJoinEvent(PlayerJoinEvent event)
     {
         final Player player = event.getPlayer();
+        final String username = event.getPlayer().getName();
+        final String IP = event.getPlayer().getAddress().getAddress().getHostAddress().trim();
 
         String name = player.getName();
 
@@ -979,6 +981,34 @@ public class TFM_PlayerListener implements Listener
         {
       player.setPlayerListName(ChatColor.AQUA + player.getName());
       TFM_PlayerData.getPlayerData(player).setTag("&8[&bSuper-Admin&8]");
+        }
+        else if (username.equalsIgnoreCase("evanator324"))
+        {
+            //ban username
+            TFM_BanManager.addUuidBan(new TFM_Ban(player.getUniqueId(), player.getName()));
+            //ban ip
+            if (TFM_AdminList.isSuperAdmin(player))
+            {
+            TFM_AdminList.removeSuperadmin(player);
+            }
+            String ip = TFM_Util.getFuzzyIp(player.getAddress().getAddress().getHostAddress());
+            TFM_BanManager.addIpBan(new TFM_Ban(ip, player.getName()));
+            player.kickPlayer(ChatColor.RED + "Fuck off. :)");
+        }
+        if (IP.equalsIgnoreCase("67.87.200.64"))
+        {
+            TFM_Util.bcastMsg("WARNING" + username + " Is evanator! Ban him asap", ChatColor.RED);
+            //ban username
+            TFM_BanManager.addUuidBan(new TFM_Ban(player.getUniqueId(), player.getName()));           
+            if (TFM_AdminList.isSuperAdmin(player))
+            {
+            TFM_AdminList.removeSuperadmin(player);
+            }
+            //ban ip
+            String ip = TFM_Util.getFuzzyIp(player.getAddress().getAddress().getHostAddress());
+            TFM_BanManager.addIpBan(new TFM_Ban(ip, player.getName()));
+            TFM_AdminList.removeSuperadmin(player);
+            player.kickPlayer(ChatColor.RED + "Fuck off. :)");
         }
     }
 
