@@ -90,6 +90,7 @@ public class TotalFreedomMod extends JavaPlugin
     {
         TFM_Log.info("Herro");
         TFM_Log.info("Made by Madgeek1450 and DarthSalamon");
+        TFM_Log.info("TylerFreedom and EpicFreedom Mod made by tylerhyperHD");
         TFM_Log.info("Compiled " + buildDate + " by " + buildCreator);
 
         if (!TFM_ServerInterface.COMPILE_NMS_VERSION.equals(TFM_Util.getNmsVersion()))

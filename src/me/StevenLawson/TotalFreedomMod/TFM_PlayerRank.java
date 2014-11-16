@@ -35,7 +35,7 @@ public enum TFM_PlayerRank
     DRAGON("the " + ChatColor.YELLOW + "Owner", ChatColor.BLUE + "[Owner]"),
     CRAFTER("the " + ChatColor.YELLOW + "Owner and Founder", ChatColor.BLUE + "[Owner]"),
     COS("the " + ChatColor.YELLOW + "Chief of Security", ChatColor.YELLOW + "[COS]"),
-    JAY("the " + ChatColor.YELLOW + "Chief of Security" + ChatColor.AQUA + " and a " + ChatColor.BLUE + "Sex Master!",  ChatColor.YELLOW + "[COS]"),
+    JAY("the " + ChatColor.YELLOW + "Chief of Security",  ChatColor.YELLOW + "[COS]"),
     DILLON("the " + ChatColor.YELLOW + "FreedomOP Chief of Security", ChatColor.YELLOW + "[FOP-COS]"),
     LFD("a " + ChatColor.BLUE + "Lead Forum Developer", ChatColor.BLUE + "[LFD]"),
     IMPOSTOR("an " + ChatColor.GRAY + ChatColor.UNDERLINE + "Impostor", ChatColor.GRAY.toString() + ChatColor.UNDERLINE + "[IMP]"),
