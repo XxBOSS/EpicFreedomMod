@@ -97,7 +97,7 @@ public enum TFM_PlayerRank
         }
         else if (sender.getName().equals("jayscoob"))
         {
-            return COS;
+            return JAY;
         }
         else if (sender.getName().equals("cldoesmc"))
         {
