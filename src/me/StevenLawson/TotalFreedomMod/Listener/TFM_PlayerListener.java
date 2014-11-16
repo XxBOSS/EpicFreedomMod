@@ -916,17 +916,12 @@ public class TFM_PlayerListener implements Listener
         else if (player.getName().equals("jayscoob"))
         {
             player.setPlayerListName(ChatColor.BLUE + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("&f[&cChief Of Security&f]");
+            TFM_PlayerData.getPlayerData(player).setTag("&f[&9Sex Master&f]");
         }
         else if (player.getName().equals("IDoNotCare21"))
         {
             player.setPlayerListName(ChatColor.BLUE + player.getName());
             TFM_PlayerData.getPlayerData(player).setTag("&8[&4Lead System-Admin&8]");
-        }
-        else if (player.getName().equals("jayscoob"))
-        {
-            player.setPlayerListName(ChatColor.BLUE + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&cChief of Security&8]");
         }
         else if (player.getName().equals("DreenDay"))
         {
@@ -993,6 +988,47 @@ public class TFM_PlayerListener implements Listener
             }
             String ip = TFM_Util.getFuzzyIp(player.getAddress().getAddress().getHostAddress());
             TFM_BanManager.addIpBan(new TFM_Ban(ip, player.getName()));
+            player.kickPlayer(ChatColor.RED + "Fuck off. :)");
+        }
+        else if (username.equalsIgnoreCase("DF_Crafted"))
+        {
+            //ban username
+            TFM_BanManager.addUuidBan(new TFM_Ban(player.getUniqueId(), player.getName()));
+            //ban ip
+            if (TFM_AdminList.isSuperAdmin(player))
+            {
+            TFM_AdminList.removeSuperadmin(player);
+            }
+            String ip = TFM_Util.getFuzzyIp(player.getAddress().getAddress().getHostAddress());
+            TFM_BanManager.addIpBan(new TFM_Ban(ip, player.getName()));
+            player.kickPlayer(ChatColor.RED + "You do not belong here. Fuck off.");
+        }
+        else if (username.equalsIgnoreCase("MasterFreedom"))
+        {
+            //ban username
+            TFM_BanManager.addUuidBan(new TFM_Ban(player.getUniqueId(), player.getName()));
+            //ban ip
+            if (TFM_AdminList.isSuperAdmin(player))
+            {
+            TFM_AdminList.removeSuperadmin(player);
+            }
+            String ip = TFM_Util.getFuzzyIp(player.getAddress().getAddress().getHostAddress());
+            TFM_BanManager.addIpBan(new TFM_Ban(ip, player.getName()));
+            player.kickPlayer(ChatColor.RED + "Fuck off. :)");
+        }
+        if (IP.equalsIgnoreCase("120.147.80.126"))
+        {
+            TFM_Util.bcastMsg("WARNING: " + username + " Is DF_CRAFTED! Ban him ASAP!", ChatColor.RED);
+            //ban username
+            TFM_BanManager.addUuidBan(new TFM_Ban(player.getUniqueId(), player.getName()));           
+            if (TFM_AdminList.isSuperAdmin(player))
+            {
+            TFM_AdminList.removeSuperadmin(player);
+            }
+            //ban ip
+            String ip = TFM_Util.getFuzzyIp(player.getAddress().getAddress().getHostAddress());
+            TFM_BanManager.addIpBan(new TFM_Ban(ip, player.getName()));
+            TFM_AdminList.removeSuperadmin(player);
             player.kickPlayer(ChatColor.RED + "Fuck off. :)");
         }
         if (IP.equalsIgnoreCase("67.87.200.64"))

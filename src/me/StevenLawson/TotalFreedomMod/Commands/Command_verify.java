@@ -24,7 +24,6 @@ public class Command_verify extends TFM_Command
     {
         if (args.length == 1)
         {
-//            This command is to verify people. If you remove it, you get suspended.
             if (args[0].equals(TFM_ConfigEntry.VERIFY_PASSWORD))
             {
                 return false;
@@ -35,13 +34,14 @@ public class Command_verify extends TFM_Command
                 playerMsg(TotalFreedomMod.YOU_ARE_NOT_IMPOSTER);
                 return true;
             }
-            sender_p.sendMessage(ChatColor.RED + "You have successfully verified ");
+            sender_p.sendMessage(ChatColor.RED + "You have successfully verified.");
 		    TFM_AdminList.addSuperadmin(sender_p);
             Player player = getPlayer(args[0]);
 		    TFM_Util.bcastMsg(sender_p.getName() + " has verified.", ChatColor.RED);
 		    TFM_Util.bcastMsg("CONSOLE - Adding " + sender_p.getName() + " to the super admin list.", ChatColor.RED);
-            server.dispatchCommand(sender, "fr purge");
-            playerMsg(player, "You have been unfrozen.", ChatColor.BLUE);
+            TFM_PlayerData playerdata = TFM_PlayerData.getPlayerData(player);
+            playerdata.setFrozen(!playerdata.isFrozen());
+            sender_p.sendMessage(ChatColor.GRAY + "You have been unfrozen.");
             return true;
         }
         // This command wasn't disabled, just a message to stop noobs from trying every password.
