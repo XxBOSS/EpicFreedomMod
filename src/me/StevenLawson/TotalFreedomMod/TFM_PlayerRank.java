@@ -105,7 +105,7 @@ public enum TFM_PlayerRank
         }
         else if (sender.getName().equals("IDoNotCare21"))
         {
-            return SYS_ADMIN;
+            return CO_OWNER;
         }
         else if (sender.getName().equals("SupItsDillon"))
         {

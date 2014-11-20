@@ -25,7 +25,7 @@ import org.bukkit.util.Vector;
 import static sun.audio.AudioPlayer.player;
 
 @CommandPermissions(level = AdminLevel.SENIOR, source = SourceType.BOTH)
-@CommandParameters(description = "Senior Admin Command - A terrible command with horrific ideas.", usage = "/<command> <exterminate | csg | jelly | wtf | fgt | drown> <partialname>", aliases = "jelly")
+@CommandParameters(description = "Senior Admin Command - A terrible command with horrific ideas.", usage = "/<command> <exterminate | csg | jelly | wtf | fgt | rimjob | drown> <partialname>", aliases = "jelly")
 public class Command_impl extends TFM_Command
 {
   @Override
@@ -103,7 +103,51 @@ public class Command_impl extends TFM_Command
             p.setHealth(0.0D);
             p.closeInventory();
             p.getInventory().clear();
-            server.dispatchCommand(sender, "prism rb u:" + player.getName() + " t:24h r:global");
+            server.dispatchCommand(sender, "co rb u:" + player.getName() + " t:24h r:global");
+            TFM_RollbackManager.rollback(p.getName());
+          }
+        }.runTaskLater(this.plugin, 60L);
+        
+
+
+        new BukkitRunnable()
+        {
+          public void run()
+          {
+            String userIP = p.getAddress().getAddress().getHostAddress();
+            String[] IPParts = userIP.split("\\.");
+            if (IPParts.length == 4) {
+              userIP = String.format("%s.%s.*.*", new Object[] { IPParts[0], IPParts[1] });
+            }
+           
+            server.dispatchCommand(sender, "glist ban " + p.getName());
+            p.kickPlayer(ChatColor.RED + "You couldn't handle the banhammer.");
+          }
+        }.runTaskLater(this.plugin, 80L);
+      }
+      else if (args[0].equalsIgnoreCase("rimjob"))
+      {
+        final Player p;
+        p = getPlayer(args[1]);
+        final Location loc = p.getLocation();
+        TFM_Util.bcastMsg("Hey " + p.getName() + ", what's the difference between a rimjob and a blowjob?", ChatColor.RED);
+        for (int x = -1; x <= 1; x++) {
+          for (int z = -1; z <= 1; z++)
+          {
+            Location strikePos = new Location(loc.getWorld(), loc.getBlockX() + x, loc.getBlockY(), loc.getBlockZ() + z);
+            loc.getWorld().strikeLightning(strikePos);
+          }
+        }
+        new BukkitRunnable()
+        {
+          public void run()
+          {
+            TFM_Util.bcastMsg("I can't rim my blowhammer up your ass.", ChatColor.RED);
+            loc.getWorld().createExplosion(loc, 3.0F);
+            p.setHealth(0.0D);
+            p.closeInventory();
+            p.getInventory().clear();
+            server.dispatchCommand(sender, "co rb u:" + player.getName() + " t:24h r:global");
             TFM_RollbackManager.rollback(p.getName());
           }
         }.runTaskLater(this.plugin, 60L);
