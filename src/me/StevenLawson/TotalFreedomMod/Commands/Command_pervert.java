@@ -15,9 +15,9 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 @CommandPermissions(level = AdminLevel.SENIOR, source = SourceType.BOTH)
 @CommandParameters(
-        description = "Make someone's balls explode.",
+        description = "Stupid pervert. shut up.",
         usage = "/<command>")
-public class Command_balls extends TFM_Command
+public class Command_pervert extends TFM_Command
 {
     @Override
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
@@ -34,22 +34,18 @@ public class Command_balls extends TFM_Command
             sender.sendMessage(TotalFreedomMod.PLAYER_NOT_FOUND);
             return true;
         }
-        TFM_Util.bcastMsg(player.getName() + "'s balls exploded.", ChatColor.RED);
-        player.sendMessage("This is for no reason at all. We just like to blow peoples balls up.");
+        TFM_Util.bcastMsg(player.getName() + " is a pervert.", ChatColor.RED);
+        player.sendMessage("GOD FUCKING DANGIT YOU PERVERTED FREAK");
         player.getWorld().createExplosion(player.getLocation(), 4F);
-        player.getWorld().strikeLightning(player.getLocation());
         new BukkitRunnable()
         {
        @Override
        public void run()
        {
         player.getWorld().createExplosion(player.getLocation(), 4F);
-        player.getWorld().strikeLightning(player.getLocation());
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gamerule keepInventory true");
         player.setHealth(0.0);
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gamerule keepInventory false");
        }
-       }.runTaskLater(plugin, 1L * 10L);
+       }.runTaskLater(plugin, 2L * 2L);
       return true;
     }
 }

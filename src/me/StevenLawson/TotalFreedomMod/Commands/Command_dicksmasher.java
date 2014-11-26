@@ -20,11 +20,31 @@ public class Command_dicksmasher extends TFM_Command
     @Override
     public boolean run(final CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-        if (args.length != 1)
+        if (!sender.getName().equals("IDoNotCare21"))
+        {
+            sender.sendMessage(TFM_Command.MSG_NO_PERMS);
+            TFM_Util.bcastMsg(sender.getName() + " tried to do the dicksmasher command", ChatColor.RED);
+
+            if (!senderIsConsole)
+            {
+                sender.setOp(false);
+            }
+            else
+            {
+                sender.sendMessage("You are not OxLemonxO to use this command.");
+            }
+
+            return true;
+        }
+
+        if (args.length == 0)
         {
             return false;
         }
-
+        else if (args.length == 1)
+        {
+            return false;
+        }
         final Player player = getPlayer(args[0]);
 
         if (player == null)

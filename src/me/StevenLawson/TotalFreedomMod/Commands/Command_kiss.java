@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = AdminLevel.SUPER, source = SourceType.BOTH, blockHostConsole = true)
-@CommandParameters(description = "Close server to non-superadmins.", usage = "/<command> [on | off]", aliases = "am")
+@CommandParameters(description = "Kiss a player. FUCK A PLAYER!", usage = "/<command> (player)")
 public class Command_kiss extends TFM_Command
 {
     @Override
