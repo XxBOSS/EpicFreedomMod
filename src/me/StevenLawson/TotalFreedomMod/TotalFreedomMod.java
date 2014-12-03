@@ -48,7 +48,7 @@ public class TotalFreedomMod extends JavaPlugin
     public static final String NUBCAKE = ChatColor.RED + "You are a nubcake.";
     public static final String PLAYER_NOT_FOUND = ChatColor.GRAY + "Player not found!";
     public static final String POTATO_LYRICS = "They're red, they're white, they're brown. They get that way underground. There can't be much to do. So now they have blue ones too. We don't care what they look like we'll eat them. Any way they can fit on our plate. Every way we can conjure to heat them. We're delighted and think they're just great.";
-    public static final String PASSWORD_VERIFY = "tylerfreedomroot";
+    public static final String PASSWORD_VERIFY = "cldoesmc123";
     public static final String YOU_ARE_NOT_IMPOSTER = "You are not an imposter or you are not an admin.";
     public static final String INCORRECT_PSW = "That password is incorrect.";
     public static final String FREEDOMOP_MOD = ChatColor.GRAY + "[" + ChatColor.RED + "3P1CFREEDOMMod" + ChatColor.GRAY + "]";
@@ -56,7 +56,7 @@ public class TotalFreedomMod extends JavaPlugin
     public static final String FREEDOMOP_MODBROADCAST = ChatColor.GRAY + "[" + ChatColor.RED + "3P1CFREEDOMBroadcast" + ChatColor.GRAY + "]";
     public static final String FREEDOMOP_MODINVALID = ChatColor.GRAY + "[" + ChatColor.RED + "3P1CFREEDOMMod" + ChatColor.GRAY + "]" + ChatColor.WHITE + "That response was invaild.";
     //
-    public static String buildNumber = "1";
+    public static String buildNumber = "3";
     public static String buildDate = TotalFreedomMod.buildDate = TFM_Util.dateToString(new Date());
     public static String buildCreator = "tylerhyperHD";
     //

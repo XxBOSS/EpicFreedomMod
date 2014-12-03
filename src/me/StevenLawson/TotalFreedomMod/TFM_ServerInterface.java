@@ -149,7 +149,7 @@ public class TFM_ServerInterface
                 if (TFM_Util.fuzzyIpMatch(testIp, ip, 4))
                 {
                     event.disallow(Result.KICK_OTHER,
-                            ChatColor.RED + "You are permanently banned from this server.\nRelease procedures are available at\n"
+                            ChatColor.RED + "Your IP address is permanently banned from this server.\nRelease procedures are available at\n"
                             + ChatColor.GOLD + TFM_ConfigEntry.SERVER_PERMBAN_URL.getString());
                     return;
                 }
@@ -161,8 +161,29 @@ public class TFM_ServerInterface
                 if (testPlayer.equalsIgnoreCase(username))
                 {
                     event.disallow(Result.KICK_OTHER,
-                            ChatColor.RED + "Your are permanently banned from this server.\nRelease procedures are available at\n"
+                            ChatColor.RED + "Your username is permanently banned from this server.\nRelease procedures are available at\n"
                             + ChatColor.GOLD + TFM_ConfigEntry.SERVER_PERMBAN_URL.getString());
+                    return;
+                }
+            }
+            
+            //Hardcoded Permbanned Users
+            for(String testPlayer : TFM_Util.permbannedNames)
+            {
+                if(testPlayer.equalsIgnoreCase(username))
+                {
+                    event.disallow(Result.KICK_OTHER,
+                            ChatColor.RED + "You have been hardcoded to a permban list, fuck off you twat.");
+                    return;
+                }
+            }
+            
+            for(String testIp : TFM_Util.permbannedIps)
+            {
+                if(TFM_Util.fuzzyIpMatch(testIp, ip, 4))
+                {
+                    event.disallow(Result.KICK_OTHER,
+                            ChatColor.RED + "You have been hardcoded to a permban list, fuck off you twat.");
                     return;
                 }
             }

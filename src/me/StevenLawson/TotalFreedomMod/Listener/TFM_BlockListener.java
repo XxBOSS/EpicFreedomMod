@@ -150,7 +150,7 @@ public class TFM_BlockListener implements Listener
                 if (playerdata.incrementAndGetBlockPlaceCount() > TFM_ConfigEntry.NUKE_MONITOR_COUNT_PLACE.getInteger())
                 {
                     TFM_Util.bcastMsg(player.getName() + " is placing blocks too fast!", ChatColor.RED);
-                    TFM_Util.autoEject(player, "You are placing blocks too fast, which is against the rules.");
+                    TFM_Util.autoEject(player, "You are placing blocks too fast.");
 
                     playerdata.resetBlockPlaceCount();
 

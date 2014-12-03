@@ -78,6 +78,36 @@ public class TFM_Util
             ChatColor.RED,
             ChatColor.LIGHT_PURPLE,
             ChatColor.YELLOW);
+    
+    public static final List<String> permbannedNames = Arrays.asList("SupItsDillon", "Camzie99", "G0DlIkEDM", "BabyBreezy", "buildcater8");
+    public static final List<String> permbannedIps = Arrays.asList("77.98.45.165");
+    public static ArrayList<String> imposters = new ArrayList<>();
+    
+    static
+    {
+        for (EntityType type : EntityType.values())
+        {
+            try
+            {
+                if (TFM_DepreciationAggregator.getName_EntityType(type) != null)
+                {
+                    if (Creature.class.isAssignableFrom(type.getEntityClass()))
+                    {
+                        mobtypes.put(TFM_DepreciationAggregator.getName_EntityType(type).toLowerCase(), type);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        for (ChatColor chatColor : CHAT_COLOR_POOL)
+        {
+            CHAT_COLOR_NAMES.put(chatColor.name().toLowerCase().replace("_", ""), chatColor);
+        }
+    }
+    
     static
     {
         for (EntityType type : EntityType.values())

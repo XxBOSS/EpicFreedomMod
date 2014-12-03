@@ -1,12 +1,12 @@
 package me.StevenLawson.TotalFreedomMod;
 
-import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import me.StevenLawson.TotalFreedomMod.Commands.TFM_CommandLoader;
+import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandMap;
@@ -178,8 +178,7 @@ public class TFM_CommandBlocker
         SUPER("s", 2),
         TELNET("t", 3),
         SENIOR("c", 4),
-        OWNER("w", 5),
-        NOBODY("n", 6);
+        NOBODY("n", 5);
         private final String token;
         private final int level;
 
@@ -326,7 +325,7 @@ public class TFM_CommandBlocker
                 }
                 else if (this.message == null || "_".equals(this.message))
                 {
-                    response = ChatColor.GRAY + "That command is blocked and is not allowed.";
+                    response = ChatColor.GRAY + "That command is blocked.";
                 }
                 else
                 {
