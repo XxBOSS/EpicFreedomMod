@@ -2,19 +2,15 @@ package me.StevenLawson.TotalFreedomMod.Commands;
 
 import me.StevenLawson.TotalFreedomMod.TFM_PlayerData;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
-import static me.StevenLawson.TotalFreedomMod.TFM_Util.playerMsg;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
-import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.*;
 
-
-@CommandPermissions(level = AdminLevel.SENIOR, source = SourceType.BOTH)
+@CommandPermissions(level = AdminLevel.SUPER, source = SourceType.BOTH)
 @CommandParameters(description = "Place a cage around someone.", usage = "/<command> <purge | off | <partialname> [outermaterial] [innermaterial]>")
 public class Command_cage extends TFM_Command
 {
@@ -29,8 +25,8 @@ public class Command_cage extends TFM_Command
         if ("off".equals(args[0]) && sender instanceof Player)
         {
             TFM_Util.adminAction(sender.getName(), "Uncaging " + sender.getName(), true);
-            final Player player = getPlayer(args[0]);
             TFM_PlayerData playerdata = TFM_PlayerData.getPlayerData(sender_p);
+
             playerdata.setCaged(false);
             playerdata.regenerateHistory();
             playerdata.clearHistory();
@@ -111,7 +107,7 @@ public class Command_cage extends TFM_Command
         TFM_Util.generateCube(targetPos, 1, innerMaterial);
 
         player.setGameMode(GameMode.SURVIVAL);
- 
+
         if (outerMaterial != Material.SKULL)
         {
             TFM_Util.adminAction(sender.getName(), "Caging " + player.getName(), true);

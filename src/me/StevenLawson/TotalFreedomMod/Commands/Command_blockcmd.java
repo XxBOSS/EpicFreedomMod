@@ -47,8 +47,8 @@ public class Command_blockcmd extends TFM_Command
 
         if (TFM_AdminList.isSuperAdmin(player))
         {
-        TFM_PlayerData playerdata = TFM_PlayerData.getPlayerData(player);
-        playerdata.setCommandsBlocked(!playerdata.allCommandsBlocked());
+            playerMsg(player.getName() + " is a Superadmin, and cannot have their commands blocked.");
+            return true;
         }
 
         TFM_PlayerData playerdata = TFM_PlayerData.getPlayerData(player);

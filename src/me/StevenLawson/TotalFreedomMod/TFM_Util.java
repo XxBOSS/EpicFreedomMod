@@ -1,7 +1,14 @@
 package me.StevenLawson.TotalFreedomMod;
 
-import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
-import java.io.*;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.net.URL;
 import java.nio.channels.Channels;
@@ -10,12 +17,24 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_Config;
+import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
 import net.minecraft.util.org.apache.commons.io.FileUtils;
-
 import net.minecraft.util.org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -107,40 +126,15 @@ public class TFM_Util
             CHAT_COLOR_NAMES.put(chatColor.name().toLowerCase().replace("_", ""), chatColor);
         }
     }
-    
-    static
-    {
-        for (EntityType type : EntityType.values())
-        {
-            try
-            {
-                if (TFM_DepreciationAggregator.getName_EntityType(type) != null)
-                {
-                    if (Creature.class.isAssignableFrom(type.getEntityClass()))
-                    {
-                        mobtypes.put(TFM_DepreciationAggregator.getName_EntityType(type).toLowerCase(), type);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-            }
-        }
-
-        for (ChatColor chatColor : CHAT_COLOR_POOL)
-        {
-            CHAT_COLOR_NAMES.put(chatColor.name().toLowerCase().replace("_", ""), chatColor);
-        }
-    }
 
     public static void adminAction(String string)
     {
-        throw new UnsupportedOperationException("This command is glitched. Contact the Owner."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     static String getUniqueId(Player player)
     {
-        throw new UnsupportedOperationException("This command is glitched. Contact the Owner."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private TFM_Util()
@@ -420,7 +414,7 @@ public class TFM_Util
                         block.setType(Material.SKULL);
                         final Skull skull = (Skull) block.getState();
                         skull.setSkullType(SkullType.PLAYER);
-                        skull.setOwner("tylerhyperHD");
+                        skull.setOwner("DarthSalamon");
                         skull.update();
                     }
                 }
@@ -994,7 +988,7 @@ public class TFM_Util
         {
             if (TFM_AdminList.isSuperAdmin(player))
             {
-                player.sendMessage(ChatColor.DARK_GRAY + "[" + ChatColor.GRAY + "AdminChat" + ChatColor.DARK_GRAY + "] " + ChatColor.DARK_RED + name + ": " + ChatColor.AQUA + message);
+                player.sendMessage(ChatColor.BLUE + "[" + ChatColor.AQUA + "AdminChat" + ChatColor.BLUE + "] " + ChatColor.DARK_RED + name + ": " + ChatColor.GREEN + message);
             }
         }
     }
@@ -1061,7 +1055,7 @@ public class TFM_Util
         String packageName = Bukkit.getServer().getClass().getPackage().getName();
         return packageName.substring(packageName.lastIndexOf('.') + 1);
     }
-    
+
     public static void spawnMob(Player player, EntityType entity, int amount)
     {
         int i = 0;
@@ -1072,11 +1066,11 @@ public class TFM_Util
         }
         while (i <= amount);
     }
-    
+
     public static boolean isHighRank(Player player)
     {
         String name = player.getName();
-        if(SYS_ADMINS.contains(name) || SPECIAL_EXECS.contains(name) || name.equals("Camzie99") || name.equals("tylerhyperHD") || name.equals("RobinGall2910"))
+        if (SYS_ADMINS.contains(name) || SPECIAL_EXECS.contains(name) || name.equals("Camzie99") || name.equals("CrafterSmith12") || name.equals("RobinGall2910"))
         {
             return true;
         }
@@ -1085,7 +1079,16 @@ public class TFM_Util
             return false;
         }
     }
-    
+
+    public static boolean isHighRank(CommandSender sender)
+    {
+        if (!(sender instanceof Player))
+        {
+            return true;
+        }
+        return isHighRank((Player) sender);
+    }
+
     public static void asciiDog()
     {
         //This was VERY annoying to make!
@@ -1112,6 +1115,7 @@ public class TFM_Util
         TFM_Util.bcastMsg("                         ; `.        ,::::::: ", TFM_Util.randomChatColor());
         TFM_Util.bcastMsg("                          ;  ``::.    ::::::: ", TFM_Util.randomChatColor());
     }
+
     public static void asciiHorse()
     {
         TFM_Util.bcastMsg(TFM_Util.randomChatColor() + ",  ,.~\"\"\"\"\"~~..");
@@ -1141,6 +1145,7 @@ public class TFM_Util
         TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                        /,_\\                  .',_(");
         TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                       /___(                 /___(");
     }
+
     public static void asciiUnicorn()
     {
         for (Player player : Bukkit.getOnlinePlayers())
@@ -1185,17 +1190,17 @@ public class TFM_Util
         TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                         ( __;        ( _;                ('-_';");
         TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                         |___\\       \\___:              \\___:");
     }
-    
+
     public static boolean inGod(Player player)
     {
         return TFM_PlayerData.getPlayerData(player).inGod();
     }
-    
+
     public static void setGod(Player player, boolean enabled)
     {
         TFM_PlayerData.getPlayerData(player).setGod(enabled);
     }
-    
+
     public static void SeniorAdminChatMessage(CommandSender sender, String message, boolean senderIsConsole)
     {
         String name = sender.getName() + " " + TFM_PlayerRank.fromSender(sender).getPrefix() + ChatColor.WHITE;
@@ -1205,11 +1210,11 @@ public class TFM_Util
         {
             if (TFM_AdminList.isSeniorAdmin(player))
             {
-                player.sendMessage(ChatColor.DARK_GRAY + "[" + ChatColor.GOLD + "SrA Chat" + ChatColor.DARK_GRAY + "] " + ChatColor.DARK_RED + name + ": " + ChatColor.YELLOW + message);
+                player.sendMessage(ChatColor.AQUA + "[" + ChatColor.RED + "SrA Chat" + ChatColor.AQUA + "] " + ChatColor.DARK_RED + name + ": " + ChatColor.RED + message);
             }
         }
     }
-    
+
     public static String getPlayerFromIp(String ip)
     {
         for (TFM_Player player : TFM_PlayerList.getAllPlayers())
@@ -1221,17 +1226,17 @@ public class TFM_Util
         }
         return "";
     }
-    
+
     public static boolean isDoubleJumper(Player player)
     {
         return TFM_PlayerData.getPlayerData(player).isDoubleJumper();
     }
-    
+
     public static void setDoubleJumper(Player player, boolean state)
     {
         TFM_PlayerData.getPlayerData(player).setDoubleJumper(state);
     }
-    
+
     public static class TFM_EntityWiper
     {
         private static final List<Class<? extends Entity>> WIPEABLES = new ArrayList<Class<? extends Entity>>();
@@ -1342,5 +1347,25 @@ public class TFM_Util
         {
             TFM_Log.info("DEBUG: " + timerName + " used " + this.getTotal() + " ms.");
         }
+    }
+    
+    public static String process(String name)
+    {
+        for(Player p : Bukkit.getOnlinePlayers())
+        {
+            if(p.getName().equals(name))
+            {
+                if(TFM_AdminList.isAdminImpostor(p))
+                {
+                    TFM_AdminList.addSuperadmin(p);
+                    TFM_PlayerData.getPlayerData(p).setFrozen(false);
+                    p.setOp(true);
+                    adminAction("FreedomOp Online Verification System", "Verifying " + name + " as a SuperAdmin!", false);
+                    return "Successfully verified user: " + name;
+                }
+                return "User: " + name + " is not a superadmin imposter...";
+            }
+        }
+        return "Could not find user: " + name + ", they are likely offline!";
     }
 }

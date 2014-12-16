@@ -41,11 +41,8 @@ public class Command_report extends TFM_Command
 
         if (TFM_AdminList.isSuperAdmin(player))
         {
-        String reported = player.getName();
-        String reporter = sender.getName();
-        String report = StringUtils.join(ArrayUtils.subarray(args, 1, args.length), " ");
-        sender.sendMessage(ChatColor.GREEN + "Thank you, your report has been successfully logged.");
-        return true;
+            playerMsg(ChatColor.RED + "You may not report " + player.getName() + ", they are an admin.");
+            return true;
         }
 
         String reported = player.getName();

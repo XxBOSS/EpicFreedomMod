@@ -5,19 +5,7 @@ import static me.StevenLawson.TotalFreedomMod.TFM_Util.DEVELOPERS;
 import static me.StevenLawson.TotalFreedomMod.TFM_Util.FOP_DEVELOPERS;
 import static me.StevenLawson.TotalFreedomMod.TFM_Util.SPECIAL_EXECS;
 import static me.StevenLawson.TotalFreedomMod.TFM_Util.SYS_ADMINS;
-import me.StevenLawson.TotalFreedomMod.TFM_PlayerData;
-import static me.StevenLawson.TotalFreedomMod.TotalFreedomMod.server;
-import net.minecraft.util.org.apache.commons.lang3.StringUtils;
 import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.player.PlayerLoginEvent;
-import org.bukkit.ChatColor;
-import java.util.Arrays;
-import java.util.List;
-import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -95,6 +83,7 @@ public enum TFM_PlayerRank
         {
             return IMPOSTOR;
         }
+
         else if (sender.getName().equals("jayscoob"))
         {
             return JAY;
@@ -144,21 +133,22 @@ public enum TFM_PlayerRank
         {
             return SYS_ADMIN;
         }
+
         else if (SPECIAL_EXECS.contains(sender.getName()))
         {
             return SPEC_EXEC;
         }
-        
+
         else if (FOP_DEVELOPERS.contains(sender.getName()))
         {
             return FOP_DEVELOPER;
         }
-        
+
         else if (DEVELOPERS.contains(sender.getName()))
         {
             return DEVELOPER;
         }
-  
+
         final TFM_Admin entry = TFM_AdminList.getEntry((Player) sender);
 
         final TFM_PlayerRank rank;

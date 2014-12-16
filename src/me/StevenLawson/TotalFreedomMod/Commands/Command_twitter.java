@@ -18,7 +18,7 @@ public class Command_twitter extends TFM_Command
     {
         if (!TFM_ConfigEntry.TWITTERBOT_ENABLED.getBoolean())
         {
-            TFM_Util.playerMsg(sender, "Unknown command.", ChatColor.WHITE);
+            TFM_Util.playerMsg(sender, "TwitterBot has been disabled in config.", ChatColor.RED);
             return true;
         }
 

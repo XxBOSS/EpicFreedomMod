@@ -10,7 +10,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-@CommandPermissions(level = AdminLevel.SENIOR, source = SourceType.ONLY_CONSOLE)
+@CommandPermissions(level = AdminLevel.SUPER, source = SourceType.BOTH)
 @CommandParameters(description = "Run any command on all users, username placeholder = ?.", usage = "/<command> [fluff] ? [fluff] ?")
 public class Command_wildcard extends TFM_Command
 {
@@ -28,13 +28,13 @@ public class Command_wildcard extends TFM_Command
 
         for (String block : blocked)
         {
-            if(baseCommand.toLowerCase().contains(block) && !TFM_Util.isHighRank(sender_p))
+            if (baseCommand.toLowerCase().contains(block) && !TFM_Util.isHighRank(sender))
             {
                 TFM_Util.playerMsg(sender, String.format("You cannot use %s in a WildCard!", block), ChatColor.RED);
                 return true;
             }
         }
-        
+
         if (TFM_CommandBlocker.isCommandBlocked(baseCommand, sender))
         {
             // CommandBlocker handles messages and broadcasts

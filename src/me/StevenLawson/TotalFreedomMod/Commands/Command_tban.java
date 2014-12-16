@@ -1,9 +1,7 @@
 package me.StevenLawson.TotalFreedomMod.Commands;
 
-import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_Ban;
 import me.StevenLawson.TotalFreedomMod.TFM_BanManager;
-import me.StevenLawson.TotalFreedomMod.TFM_ServerInterface;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
 import org.bukkit.ChatColor;
@@ -12,7 +10,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-@CommandPermissions(level = AdminLevel.SENIOR, source = SourceType.BOTH)
+@CommandPermissions(level = AdminLevel.SUPER, source = SourceType.BOTH)
 @CommandParameters(description = "Temporarily bans a player for five minutes.", usage = "/<command> <partialname>", aliases = "noob")
 public class Command_tban extends TFM_Command
 {
@@ -32,7 +30,6 @@ public class Command_tban extends TFM_Command
             return true;
         }
 
-
         // strike with lightning effect:
         final Location targetPos = player.getLocation();
         for (int x = -1; x <= 1; x++)
@@ -45,13 +42,10 @@ public class Command_tban extends TFM_Command
         }
 
         TFM_Util.adminAction(sender.getName(), "Tempbanning: " + player.getName() + " for 5 minutes.", true);
-
-        player.setOp(false);
-        
         TFM_BanManager.addUuidBan(
                 new TFM_Ban(TFM_Util.getUuid(player), player.getName(), sender.getName(), TFM_Util.parseDateOffset("5m"), ChatColor.RED + "You have been temporarily banned for 5 minutes."));
 
-        player.kickPlayer(ChatColor.RED + "You have been temporarily banned for five minutes. Please read the TylerFreedom rules.");
+        player.kickPlayer(ChatColor.RED + "You have been temporarily banned for five minutes. Please read totalfreedom.me for more info.");
 
         return true;
     }

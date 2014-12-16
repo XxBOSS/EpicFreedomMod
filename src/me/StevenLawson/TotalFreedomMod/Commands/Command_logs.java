@@ -20,26 +20,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-@CommandPermissions(level = AdminLevel.SENIOR, source = SourceType.BOTH)
+@CommandPermissions(level = AdminLevel.SUPER, source = SourceType.ONLY_IN_GAME)
 @CommandParameters(description = "Register your connection with the TFM logviewer.", usage = "/<command> [off]")
 public class Command_logs extends TFM_Command
 {
     @Override
     public boolean run(final CommandSender sender, final Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-      if (!sender.getName().equals("tylerhyperHD"))
-        {
-            sender.sendMessage(TotalFreedomMod.MSG_NO_PERMS);
-
-            if (!senderIsConsole)
-            {
-                sender.setOp(false);
-            }
-            else
-            {
-                sender.sendMessage("You dont have permission to remove logs!");
-            }
-        }
         LogsRegistrationMode mode = LogsRegistrationMode.UPDATE;
 
         if (args.length == 1)
@@ -51,6 +38,7 @@ public class Command_logs extends TFM_Command
 
         return true;
     }
+
     public static void updateLogsRegistration(final CommandSender sender, final Player target, final LogsRegistrationMode mode)
     {
         updateLogsRegistration(sender, target.getName(), target.getAddress().getAddress().getHostAddress().trim(), mode);

@@ -5,8 +5,6 @@ import me.StevenLawson.TotalFreedomMod.TFM_Ban;
 import me.StevenLawson.TotalFreedomMod.TFM_BanManager;
 import me.StevenLawson.TotalFreedomMod.TFM_PlayerList;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
-import me.StevenLawson.TotalFreedomMod.TFM_PermbanList;
-import me.StevenLawson.TotalFreedomMod.TFM_UuidResolver;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -17,9 +15,10 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 @CommandPermissions(level = AdminLevel.SENIOR, source = SourceType.BOTH)
-@CommandParameters(description = "For the bad admins", usage = "/<command> <playername>")
+@CommandParameters(description = "For the bad Superadmins", usage = "/<command> <playername>")
 public class Command_doom extends TFM_Command
 {
+
     @Override
     public boolean run(final CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
@@ -37,19 +36,14 @@ public class Command_doom extends TFM_Command
         }
 
         TFM_Util.adminAction(sender.getName(), "Casting oblivion over " + player.getName(), true);
-        TFM_Util.bcastMsg(player.getName() + " has been VERY naughty, naughty nubcake!", ChatColor.RED);
-        TFM_Util.bcastMsg(player.getName() + " will be completely fucked in the ass!", ChatColor.RED);
-        player.chat("OOOOOOOH YEAHHHHHHH!");
-        player.chat("OH CRAP MY BALLS MIGHT EXPLODE!");
-        player.chat("OH CRAP NOT THE DILDO!");
-        TFM_Util.bcastMsg(player.getName() + "'s balls got pounded too hard, and is about to die.", ChatColor.RED);
-        
+        TFM_Util.bcastMsg(player.getName() + " will be completely obliviated!", ChatColor.RED);
+
         final String ip = player.getAddress().getAddress().getHostAddress().trim();
 
         // remove from superadmin
         if (TFM_AdminList.isSuperAdmin(player))
         {
-            TFM_Util.adminAction(sender.getName(), "Destructing " + player.getName() + " with " + sender.getName() + "'s Hammer", true);
+            TFM_Util.adminAction(sender.getName(), "Removing " + player.getName() + " from the superadmin list.", true);
             TFM_AdminList.removeSuperadmin(player);
         }
 
@@ -67,7 +61,7 @@ public class Command_doom extends TFM_Command
 
         // ban uuid
         TFM_BanManager.addUuidBan(player);
-        
+
         // set gamemode to survival
         player.setGameMode(GameMode.SURVIVAL);
 
@@ -75,17 +69,12 @@ public class Command_doom extends TFM_Command
         player.closeInventory();
         player.getInventory().clear();
 
-        
-        // rolls the player back
-        server.dispatchCommand(sender, "co rb u:" + player.getName() + " t:24h r:global");
-        
         // ignite player
         player.setFireTicks(10000);
 
         // generate explosion
         player.getWorld().createExplosion(player.getLocation(), 4F);
-        player.chat("Well this is crap.");
-        
+
         // Shoot the player in the sky
         player.setVelocity(player.getVelocity().clone().add(new Vector(0, 20, 0)));
 
@@ -108,13 +97,13 @@ public class Command_doom extends TFM_Command
             public void run()
             {
                 // message
-                String ip = TFM_Util.getFuzzyIp(player.getAddress().getAddress().getHostAddress());
-                TFM_Util.bcastMsg(String.format("%s - Banning %s, IP: %s.", sender.getName(), player.getName(), ip), ChatColor.RED);
+                TFM_Util.adminAction(sender.getName(), "Banning " + player.getName() + ", IP: " + ip, true);
+
                 // generate explosion
                 player.getWorld().createExplosion(player.getLocation(), 4F);
 
                 // kick player
-                player.kickPlayer(ChatColor.RED + "FUCK OFF, and get your shit together!");
+                player.kickPlayer(ChatColor.RED + "FUCKOFF, and get your shit together!");
             }
         }.runTaskLater(plugin, 3L * 20L);
 

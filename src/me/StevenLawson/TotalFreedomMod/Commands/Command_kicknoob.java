@@ -20,7 +20,7 @@ public class Command_kicknoob extends TFM_Command
         {
             if (!TFM_AdminList.isSuperAdmin(player))
             {
-                player.kickPlayer(ChatColor.RED + "You were disconnected from the server. If you would like/n/to not get kicked, please buy a donator package.");
+                player.kickPlayer(ChatColor.RED + "Disconnected by admin.");
             }
         }
 

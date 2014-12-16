@@ -54,8 +54,13 @@ public class Command_orbit extends TFM_Command
                 return true;
             }
         }
-        
-        TFM_Util.bcastMsg(player.getName() + " tried to use the orbit command. What a nubcake.", ChatColor.RED);
+
+        player.setGameMode(GameMode.SURVIVAL);
+        playerdata.startOrbiting(strength);
+
+        player.setVelocity(new Vector(0, strength, 0));
+        TFM_Util.adminAction(sender.getName(), "Orbiting " + player.getName(), false);
+
         return true;
     }
 }

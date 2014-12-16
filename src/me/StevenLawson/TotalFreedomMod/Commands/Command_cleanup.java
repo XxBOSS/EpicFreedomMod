@@ -33,7 +33,7 @@ public class Command_cleanup extends TFM_Command
         }
         else
         {
-            TFM_Util.bcastMsg(ChatColor.RED + "Nightly Cleanup failed-this has been logged.");
+            TFM_Util.bcastMsg(ChatColor.RED + "Nightly Cleanup failed, please report this error at http://to.fop.us.to/devsupport");
         }
 
         return true;

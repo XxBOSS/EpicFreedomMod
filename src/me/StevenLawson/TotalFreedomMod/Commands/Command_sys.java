@@ -1,15 +1,12 @@
 package me.StevenLawson.TotalFreedomMod.Commands;
 
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
-import me.StevenLawson.TotalFreedomMod.TFM_PlayerData;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 
 @CommandPermissions(level = AdminLevel.SUPER, source = SourceType.BOTH)
 @CommandParameters(description = "System Administration Management", usage = "/<command> <saadd | sadelete> <username>")
@@ -20,7 +17,7 @@ public class Command_sys extends TFM_Command
     public boolean run(final CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
 
-        if (!TFM_Util.SYS_ADMINS.contains(sender.getName()) && !TFM_Util.SYSPPL.contains(sender.getName()) && !sender.getName().equals("CrafterSmith12"))
+        if (!TFM_Util.SYS_ADMINS.contains(sender.getName()) && !sender.getName().equals("Camzie99") && !sender.getName().equals("CrafterSmith12"))
         {
             sender.sendMessage(TotalFreedomMod.MSG_NO_PERMS);
             TFM_Util.adminAction("WARNING: " + sender.getName(), "Has attempted to use a system admin only command. System administration team has been alerted.", true);
@@ -59,31 +56,15 @@ public class Command_sys extends TFM_Command
                 {
                     TFM_Util.adminAction(sender.getName(), "Adding " + player.getName() + " to the superadmin list.", true);
                     TFM_AdminList.addSuperadmin(player);
-                    TFM_PlayerData playerdata = TFM_PlayerData.getPlayerData(player);
-                    playerdata.setFrozen(false);
-                    player.kickPlayer("Relog for your administrator privileges to turn on.");
-            playerdata.setFrozen(false);
                 }
                 else if (playername != null)
                 {
                     TFM_Util.adminAction(sender.getName(), "Adding " + playername + " to the superadmin list.", true);
                     TFM_AdminList.addSuperadmin(player);
-                    TFM_PlayerData playerdata = TFM_PlayerData.getPlayerData(player);
-                    playerdata.setFrozen(false);
-        new BukkitRunnable()
-        {
-            @Override
-            public void run()
-            {
-                Player player = null;
-                player.kickPlayer("Relog for your administrator privileges to turn on.");
-            }
-                         }.runTaskLater(plugin, 2L * 20L);
-                       return true;
                 }
                 return true;
             }
-            
+
             else if (args[0].equalsIgnoreCase("sadelete") || args[0].equalsIgnoreCase("del") || args[0].equalsIgnoreCase("remove"))
             {
 
@@ -100,10 +81,10 @@ public class Command_sys extends TFM_Command
                 TFM_Util.adminAction(sender.getName(), "Removing " + targetName + " from the superadmin list", true);
                 TFM_AdminList.removeSuperadmin(Bukkit.getOfflinePlayer(targetName));
 
-             return true;
+                return true;
             }
-        return true;
+            return true;
         }
-    return true;
+        return true;
     }
 }

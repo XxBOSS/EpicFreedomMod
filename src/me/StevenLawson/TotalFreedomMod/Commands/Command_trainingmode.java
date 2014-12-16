@@ -18,7 +18,7 @@ public class Command_trainingmode extends TFM_Command
         {
             return false;
         }
-        
+
         if (args[0].equalsIgnoreCase("off -s"))
         {
             TFM_ConfigEntry.TRAINING_SESSION.setBoolean(false);
@@ -45,7 +45,7 @@ public class Command_trainingmode extends TFM_Command
             {
                 if (!TFM_AdminList.isSuperAdmin(player))
                 {
-                    player.kickPlayer("TylerFreedom is now in a Training Session.");
+                    player.kickPlayer("FreedomOP is now in a Training Session.");
                 }
             }
             return true;

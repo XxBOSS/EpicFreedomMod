@@ -3,12 +3,41 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/tyler/ddFreedomMod/src/me/StevenLawson/TotalFreedomMod/Commands/Command_clear.java</file>
-            <file>file:/Users/tyler/ddFreedomMod/src/me/StevenLawson/TotalFreedomMod/TFM_AdminList.java</file>
-            <file>file:/Users/tyler/ddFreedomMod/src/me/StevenLawson/TotalFreedomMod/TFM_Util.java</file>
-            <file>file:/Users/tyler/ddFreedomMod/src/me/StevenLawson/TotalFreedomMod/TFM_ServerInterface.java</file>
-            <file>file:/Users/tyler/ddFreedomMod/src/me/StevenLawson/TotalFreedomMod/Commands/Command_verify.java</file>
-            <file>file:/Users/tyler/ddFreedomMod/src/me/StevenLawson/TotalFreedomMod/Bridge/TFM_WorldEditBridge.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_impl.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_clearchat.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_dicksmasher.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_k.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_lemon.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_fake.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_ragemode.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_clearall.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_manager.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_potato.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_kiss.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_busy.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/TFM_Util.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_fm.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_ender_1.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_blowjob.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_verify.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_handjob.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_lemonade.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_kandy.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_restart.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_hell.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_pervert.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_pex.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Listener/TFM_PlayerListener.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_v.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_kake.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_removelagg.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_fuck.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_cldoesmcadminmanage.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_dicklist.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_lemonhammer.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Listener/TFM_TelnetListener.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_love.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/Camzie99-freedomopmod-5d2873d31302/src/me/StevenLawson/TotalFreedomMod/Commands/Command_flame.java</file>
         </group>
     </open-files>
 </project-private>

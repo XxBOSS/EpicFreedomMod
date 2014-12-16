@@ -20,9 +20,9 @@ public class Command_admininfo extends TFM_Command
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
         TFM_Util.playerMsg(sender_p, "So you wish to apply for admin do you?", ChatColor.GREEN);
-        TFM_Util.playerMsg(sender_p, "Read more at", ChatColor.RED);
-        TFM_Util.playerMsg(sender_p, "http://3p1cfreedomcraft.boards.net/", ChatColor.RED);
-        TFM_Util.playerMsg(sender_p, "Remember, do not ask for ranks AT ALL.", ChatColor.RED);
+        TFM_Util.playerMsg(sender_p, "Sadly the applications are closed AGAIN", ChatColor.RED);
+        TFM_Util.playerMsg(sender_p, "Please read more at http://freedomop.boards.net/thread/2768/all-applications-on-hold", ChatColor.RED);
+        //TFM_Util.playerMsg(sender_p, "Don't beg to look at the application, it'll shorten the percentage on if it can get accepted.", ChatColor.GREEN);
         return true;
     }
 }

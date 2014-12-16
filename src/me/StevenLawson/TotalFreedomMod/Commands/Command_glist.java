@@ -81,7 +81,7 @@ public class Command_glist extends TFM_Command
                 if (target != null)
                 {
                     TFM_BanManager.addUuidBan(new TFM_Ban(TFM_Util.getUuid(target), target.getName()));
-                    target.kickPlayer("You have been banned by " + sender.getName() + "\n If you think you have been banned wrongly, appeal here: http://tylerfreedom.freeforums.net/");
+                    target.kickPlayer("You have been banned by " + sender.getName() + "\n If you think you have been banned wrongly, appeal here: http://www.freedomop.boards.net");
                 }
                 else
                 {
@@ -92,7 +92,7 @@ public class Command_glist extends TFM_Command
                 {
                     TFM_BanManager.addIpBan(new TFM_Ban(ip, username));
                     String[] ip_address_parts = ip.split("\\.");
-                    TFM_BanManager.addIpBan(new TFM_Ban(ip_address_parts[0] + ".*.*" + ip_address_parts[1] + ".*.*", username));
+                    TFM_BanManager.addIpBan(new TFM_Ban(ip_address_parts[0] + "." + ip_address_parts[1] + ".*.*", username));
                 }
             }
             else if (mode.equalsIgnoreCase("unban") || mode.equalsIgnoreCase("pardon"))
