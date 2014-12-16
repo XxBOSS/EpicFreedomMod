@@ -139,20 +139,12 @@ public class TFM_Config extends YamlConfiguration // BukkitLib @ https://github.
         final YamlConfiguration DEFAULT_CONFIG = new YamlConfiguration();
         try
         {
-            final InputStreamReader isr = new InputStreamReader(plugin.getResource(configFile.getName()));
-            DEFAULT_CONFIG.load(isr);
-            isr.close();
+            DEFAULT_CONFIG.load(plugin.getResource(configFile.getName()));
         }
-        catch (IOException ex)
+        catch (Throwable ex)
         {
             plugin.getLogger().severe("Could not load default configuration: " + configFile.getName());
-            plugin.getLogger().severe(ExceptionUtils.getStackTrace(ex));
-            return null;
-        }
-        catch (InvalidConfigurationException ex)
-        {
-            plugin.getLogger().severe("Could not load default configuration: " + configFile.getName());
-            plugin.getLogger().severe(ExceptionUtils.getStackTrace(ex));
+            plugin.getLogger().severe(org.apache.commons.lang.exception.ExceptionUtils.getStackTrace(ex));
             return null;
         }
         return DEFAULT_CONFIG;
