@@ -15,13 +15,15 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
 @CommandPermissions(level = AdminLevel.ALL, source = SourceType.BOTH)
-@CommandParameters(description = "Busy atm.", usage = "/<command> [on | off]")
+@CommandParameters(description = "Gives a player OP items.", usage = "/<command>")
 public class Command_opitems extends TFM_Command
 {
 
     @Override
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
+                    if (args.length == 0)
+                 {
          	        final Player player = getPlayer(args[0]);
                     PlayerInventory inv = player.getInventory();
                     ItemStack sword = new ItemStack(Material.DIAMOND_SWORD, 1);
@@ -61,6 +63,7 @@ public class Command_opitems extends TFM_Command
                     inv.setLeggings(leggings);
                     inv.setChestplate(chestplate);
                     player.sendMessage(ChatColor.RED + "Op items have been placed in your inventory.");
-        return true;
+                 }
+       return true;
 }
 }
