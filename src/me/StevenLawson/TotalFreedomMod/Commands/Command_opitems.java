@@ -18,11 +18,10 @@ import org.bukkit.inventory.PlayerInventory;
 @CommandParameters(description = "Gives a player OP items.", usage = "/<command>")
 public class Command_opitems extends TFM_Command
 {
-
     @Override
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-                    if (args.length == 0)
+           if (args.length == 0)
                  {
          	        final Player player = getPlayer(args[0]);
                     PlayerInventory inv = player.getInventory();
