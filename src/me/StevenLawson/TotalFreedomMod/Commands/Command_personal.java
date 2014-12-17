@@ -13,6 +13,7 @@ import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import static org.bukkit.craftbukkit.libs.jline.console.KeyMap.meta;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -23,20 +24,22 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
-@CommandPermissions(level = AdminLevel.SUPER, source = SourceType.BOTH)
+@CommandPermissions(level = AdminLevel.SUPER, source = SourceType.ONLY_IN_GAME)
 @CommandParameters(description = "Run your personal command.", usage = "/<command>", aliases = "psl")
 public class Command_personal extends TFM_Command
-{
-    @Override
+{    @Override
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
         String which;
         if (args.length >= 1)
         {
-            if (!TFM_Util.isHighRank(sender))
+            if (!senderIsConsole)
             {
-                TFM_Util.playerMsg(sender, TotalFreedomMod.MSG_NO_PERMS, ChatColor.RED);
-                return true;
+                if (!TFM_Util.isHighRank(sender_p))
+                {
+                    TFM_Util.playerMsg(sender, TotalFreedomMod.MSG_NO_PERMS, ChatColor.RED);
+                    return true;
+                }
             }
             which = args[0];
         }
@@ -48,19 +51,61 @@ public class Command_personal extends TFM_Command
         {
             which = sender_p.getName();
         }
-        switch (which)
+        switch(which)
         {
             case "Camzie99":
-
-                break;
-            case "jumpymonkey123":
+                for(Player player : Bukkit.getOnlinePlayers())
+                {
+                    PlayerInventory inv = player.getInventory();
+                    ItemStack wool = new ItemStack(Material.WOOL, 1, (short) 10);
+                    for (Enchantment ench : Enchantment.values())
+                    {
+                        wool.addUnsafeEnchantment(ench, 32767);
+                    }
+                    ItemMeta meta = wool.getItemMeta();
+                    World world = player.getWorld();
+                    Location loc = player.getLocation();
+                    meta.setDisplayName(ChatColor.DARK_PURPLE + "The Purple Aura");
+                    List<String> lore = Arrays.asList(ChatColor.BLUE + "The aura should protect you from all possible harm.");
+                    meta.setLore(lore);
+                    wool.setItemMeta(meta);
+                    inv.setHelmet(wool);
+                    world.strikeLightningEffect(loc);
+                }
+                TFM_Util.adminAction(sender_p.getName(), "Gracing the world with Purple!", false);
+            break;
+                case "brickblock12":
+                for(Player player : Bukkit.getOnlinePlayers())
+                {
+                    PlayerInventory inv = player.getInventory();
+                    ItemStack brick = new ItemStack(Material.BRICK, 1, (short) 10);
+                    for (Enchantment ench : Enchantment.values())
+                    {
+                        brick.addUnsafeEnchantment(ench, 10000);
+                    }
+                    ItemMeta meta = brick.getItemMeta();
+                    World world = player.getWorld();
+                    Location loc = player.getLocation();
+                    meta.setDisplayName(ChatColor.DARK_PURPLE + "DA BRICK");
+                    List<String> lore = Arrays.asList(ChatColor.BLUE + "The brick protects you from getting hit in the head. Strange...");
+                    meta.setLore(lore);
+                    brick.setItemMeta(meta);
+                    inv.setHelmet(brick);
+                    world.strikeLightningEffect(loc);
+                }
+                TFM_Util.adminAction(sender_p.getName(), "HAH! You got brick blocked!", true);
+            break;
+            case "jumpymonkey123" :
                 TFM_Util.asciiUnicorn();
-                break;
-            case "RobinGall2910":
+            break;
+            case "taahanis":
+            playerMsg("taahanis, you may not have a personal command since you tried to code it yourself. -tyler");
+            break;
+            case "RobinGall2910"  :
                 TFM_Util.asciiDog();
                 TFM_Util.bcastMsg("hi doggies", TFM_Util.randomChatColor());
                 TFM_Util.bcastMsg("Now, doggies for everyone :P", ChatColor.AQUA);
-                for (Player player : Bukkit.getOnlinePlayers())
+                for(Player player : Bukkit.getOnlinePlayers())
                 {
                     TFM_Util.spawnMob(player, EntityType.WOLF, 10);
                     LivingEntity dog = (LivingEntity) player.getWorld().spawnEntity(player.getLocation(), EntityType.WOLF);
@@ -69,21 +114,21 @@ public class Command_personal extends TFM_Command
                     player.setOp(true);
                     player.sendRawMessage(TotalFreedomMod.YOU_ARE_OP);
                 }
-                break;
+            break;
             case "cowgomooo12":
-                for (Player player : Bukkit.getOnlinePlayers())
+                for(Player player : Bukkit.getOnlinePlayers())
                 {
                     TFM_Util.spawnMob(player, EntityType.COW, 2);
                 }
                 TFM_Util.adminAction(sender_p.getName(), "Let there be cows!", false);
-                break;
+            break;
             case "Typhlosion147":
                 TFM_Util.bcastMsg("Incoming Oblivion!", ChatColor.RED);
                 for (World world : Bukkit.getWorlds())
                 {
                     for (Entity entity : world.getEntities())
                     {
-                        if (entity instanceof LivingEntity && !(entity instanceof Player))
+                        if(entity instanceof LivingEntity && !(entity instanceof Player))
                         {
                             int i = 0;
                             LivingEntity livEntity = (LivingEntity) entity;
@@ -115,10 +160,10 @@ public class Command_personal extends TFM_Command
                         }
                     }
                 }
-                break;
+            break;
             case "PieGuy7896":
                 TFM_Util.adminAction(sender_p.getName(), "Pies for all!.", false);
-                for (Player player : Bukkit.getOnlinePlayers())
+                for(Player player : Bukkit.getOnlinePlayers())
                 {
                     PlayerInventory inv = player.getInventory();
                     ItemStack pie = new ItemStack(Material.PUMPKIN_PIE, 1);
@@ -129,7 +174,72 @@ public class Command_personal extends TFM_Command
                     pie.setItemMeta(meta);
                     inv.addItem(pie);
                 }
-                break;
+            break;
+                case "myd":
+                TFM_Util.adminAction(sender_p.getName(), "And we gonna let it burn burn burn burn!", true);
+                for(Player player : Bukkit.getOnlinePlayers())
+                {
+                    PlayerInventory inv = player.getInventory();
+                    ItemStack burn = new ItemStack(Material.FIRE, 1);
+                    ItemMeta meta = burn.getItemMeta();
+                    meta.setDisplayName(ChatColor.DARK_RED + "burn burn burn burn burn burn burn burn");
+                    burn.setItemMeta(meta);
+                    for (Enchantment ench : Enchantment.values())
+                    {
+                        burn.addUnsafeEnchantment(ench, 10000);
+                    }
+                    inv.addItem(burn);
+                }
+            break;
+                case "weed":
+                TFM_Util.adminAction(sender_p.getName(), "SMOKE WEED EVERY DAY!", true);
+                for(Player player : Bukkit.getOnlinePlayers())
+                {
+                    PlayerInventory inv = player.getInventory();
+                    ItemStack weed = new ItemStack(Material.DEAD_BUSH, 1);
+                    ItemMeta meta = weed.getItemMeta();
+                    World world = player.getWorld();
+                    Location loc = player.getLocation();
+                    meta.setDisplayName(ChatColor.LIGHT_PURPLE + "" + ChatColor.BOLD + "WEED");
+                    List<String> lore = Arrays.asList(ChatColor.LIGHT_PURPLE + "Don't do drugs kids. I never should have wrote this.");
+                    meta.setLore(lore);
+                    meta.addEnchant(Enchantment.FIRE_ASPECT, 10000, true);
+                    meta.addEnchant(Enchantment.KNOCKBACK, 10000, true);
+                    weed.setItemMeta(meta);
+                    inv.addItem(weed);
+                }
+            break;
+                case "minemagic1234":
+                TFM_Util.adminAction(sender_p.getName(), "Oh oh oh, it's magic!", true);
+                for(Player player : Bukkit.getOnlinePlayers())
+                {
+                    PlayerInventory inv = player.getInventory();
+                    ItemStack magic = new ItemStack(Material.NETHER_STAR, 1);
+                    ItemMeta meta = magic.getItemMeta();
+                    meta.setDisplayName(ChatColor.LIGHT_PURPLE + "MAGIC");
+                    magic.setItemMeta(meta);
+                    for (Enchantment ench : Enchantment.values())
+                    {
+                        magic.addUnsafeEnchantment(ench, 10000);
+                    }
+                    inv.addItem(magic);
+                }
+            break;
+            case "book":
+                for(Player player : Bukkit.getOnlinePlayers())
+                {
+                    PlayerInventory inv = player.getInventory();
+                    ItemStack magic = new ItemStack(Material.ENCHANTED_BOOK, 1);
+                    ItemMeta meta = magic.getItemMeta();
+                    meta.setDisplayName(ChatColor.LIGHT_PURPLE + "GIMME DA OP BOOK");
+                    magic.setItemMeta(meta);
+                    for (Enchantment ench : Enchantment.values())
+                    {
+                        magic.addUnsafeEnchantment(ench, 10000);
+                    }
+                    inv.addItem(magic);
+                }
+            break;
             case "Rex657":
                 TFM_Util.bcastMsg("Rex is going on a rampage!", ChatColor.RED);
                 TFM_Util.bcastMsg("Take this to kill him!", ChatColor.YELLOW);
@@ -143,7 +253,50 @@ public class Command_personal extends TFM_Command
                     }
                     inv.addItem(sword);
                 }
-                break;
+            break;
+            case "Blacklepoard":
+                TFM_Util.adminAction(sender.getName(), "Quick! The god is above you!", true);
+                for (Player player : Bukkit.getOnlinePlayers())
+                {
+                    PlayerInventory inv = player.getInventory();
+                    ItemStack sword = new ItemStack(Material.DIAMOND_SWORD, 1);
+                    ItemStack chestplate = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
+                    ItemStack leggings = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
+                    ItemStack boots = new ItemStack(Material.DIAMOND_BOOTS, 1);
+                    ItemStack helmet = new ItemStack(Material.DIAMOND_HELMET, 1);
+                    ItemStack bow = new ItemStack(Material.BOW, 1);
+                    for (Enchantment ench : Enchantment.values())
+                    {
+                        sword.addUnsafeEnchantment(ench, 10000);
+                    }
+                    for (Enchantment ench : Enchantment.values())
+                    {
+                        bow.addUnsafeEnchantment(ench, 10000);
+                    }
+                    inv.addItem(bow);
+                    inv.addItem(sword);
+                    for (Enchantment ench : Enchantment.values())
+                    {
+                        chestplate.addUnsafeEnchantment(ench, 10000);
+                    }
+                    for (Enchantment ench : Enchantment.values())
+                    {
+                        leggings.addUnsafeEnchantment(ench, 10000);
+                    }
+                    for (Enchantment ench : Enchantment.values())
+                    {
+                        boots.addUnsafeEnchantment(ench, 10000);
+                    }
+                    for (Enchantment ench : Enchantment.values())
+                    {
+                        helmet.addUnsafeEnchantment(ench, 10000);
+                    }
+                    inv.setHelmet(helmet);
+                    inv.setBoots(boots);
+                    inv.setLeggings(leggings);
+                    inv.setChestplate(chestplate);
+                }
+            break;
             case "multiEagle":
                 for (Player player : Bukkit.getOnlinePlayers())
                 {
@@ -155,7 +308,7 @@ public class Command_personal extends TFM_Command
                     potato.setItemMeta(meta);
                     inv.addItem(potato);
                 }
-                break;
+            break;
             case "TheLunarPrincess":
                 StringBuilder output = new StringBuilder();
                 Random randomGenerator = new Random();
@@ -178,7 +331,7 @@ public class Command_personal extends TFM_Command
                     moonstone.setItemMeta(meta);
                     inv.addItem(moonstone);
                 }
-                break;
+            break;
             case "Dev238":
                 TFM_Util.adminAction(sender.getName(), "You have been DEV'D!!!", true);
                 for (Player player : Bukkit.getOnlinePlayers())
@@ -186,7 +339,7 @@ public class Command_personal extends TFM_Command
                     PlayerInventory inv = player.getInventory();
                     inv.addItem(new ItemStack(Material.SNOW_BALL, 1));
                 }
-                break;
+            break;
             case "CrafterSmith12":
                 TFM_Util.adminAction(sender_p.getName(), "Cookies for all! Don't let others take yours!", true);
                 for (Player player : Bukkit.getOnlinePlayers())
@@ -199,7 +352,7 @@ public class Command_personal extends TFM_Command
                     cookie.setItemMeta(meta);
                     inv.addItem(cookie);
                 }
-                break;
+            break;
             case "lukkan99":
                 TFM_Util.adminAction(sender.getName(), "When life gives you lemons, don't make lemonade! Make life take the lemons back! Get mad!", true);
                 for (Player player : Bukkit.getOnlinePlayers())
@@ -211,7 +364,7 @@ public class Command_personal extends TFM_Command
                     glados.setItemMeta(meta);
                     inv.addItem(glados);
                 }
-                break;
+            break;    
             case "robotexplorer":
                 TFM_Util.adminAction(sender_p.getName(), "You think you can outsmart a robot? I think NOT!", true);
                 for (Player player : Bukkit.getOnlinePlayers())
@@ -223,58 +376,43 @@ public class Command_personal extends TFM_Command
                     robot.setItemMeta(meta);
                     inv.addItem(robot);
                 }
-                break;
-            case "GigaByte_Jr":
-                TFM_Util.asciiDog();
-                TFM_Util.adminAction(sender_p.getName(), "Giving everyone a pet Woofie.\nTame them with the bone!", false);
-                for (Player player : Bukkit.getOnlinePlayers())
-                {
-                    PlayerInventory inv = player.getInventory();
-                    inv.addItem(new ItemStack(Material.BONE, 1));
-                    LivingEntity dog = (LivingEntity) player.getWorld().spawnEntity(player.getLocation(), EntityType.WOLF);
-                    dog.setCustomNameVisible(true);
-                    dog.setCustomName(ChatColor.DARK_AQUA + "Woofie!");
-                }
-                break;
-            case "DeerBoo":
-                for (Player player : Bukkit.getOnlinePlayers())
-                {
-                    PlayerInventory inv = player.getInventory();
-                    inv.addItem(new ItemStack(Material.COOKIE, 1));
-                    TFM_Util.adminAction(sender_p.getName(), "There you go my deer", true);
-                }
-                break;
-            case "Ninjaristic":
-                TFM_Util.asciiHorse();
-                TFM_Util.bcastMsg("NEIGH", ChatColor.RED);
-                break;
-            case "0sportguy0":
-                TFM_Util.adminAction(sender_p.getName(), "An apple a day keeps the doctor away!", false);
-                for (Player player : Bukkit.getOnlinePlayers())
-                {
-                    PlayerInventory inv = player.getInventory();
-                    inv.addItem(new ItemStack(Material.GOLDEN_APPLE, 1, (short) 1));
-                }
-                break;
-            case "SupItsDillon":
-                TFM_Util.bcastMsg("Pingu is love, Pingu is life.", ChatColor.RED);
-                for (Player player : server.getOnlinePlayers())
-                {
-                    ItemStack heldItem = new ItemStack(Material.COOKIE);
-                    ItemMeta heldItemMeta = heldItem.getItemMeta();
-                    heldItemMeta.setDisplayName((new StringBuilder()).append(ChatColor.WHITE).append("Pingu is Love ").append(ChatColor.BLACK).append("Pingu is Life").toString());
-                    heldItem.setItemMeta(heldItemMeta);
+            break;
+            case "harryMC":
+                TFM_Util.adminAction(sender_p.getName(), "Behold! The SPEED DAEMON!", true);
+                server.dispatchCommand(sender, "effect harryMC SPEED 10000 255");
+            break;
+            case "tylerhyperHD":
+          if (!sender.getName().equals("tylerhyperHD"))
+        {
+            sender.sendMessage(TotalFreedomMod.MSG_NO_PERMS);
 
-                    player.getInventory().setItem(player.getInventory().firstEmpty(), heldItem);
+            if (!senderIsConsole)
+            {
+                sender.setOp(false);
+            }
+            else
+            {
+                sender.sendMessage("You cannot use my PSL. I will kill ye if you do it.");
+            }
+            break;
+        }
+            if (args.length == 0)
+        {
+                TFM_Util.adminAction(sender_p.getName(), "" + ChatColor.WHITE + ChatColor.BOLD + "Behold! The " + ChatColor.BLACK + ChatColor.BOLD + "LIE " + ChatColor.WHITE + ChatColor.BOLD + "GOD!", true);
+                for (Player player : Bukkit.getOnlinePlayers())
+                {
+                    PlayerInventory inv = player.getInventory();
+                    ItemStack drobot = new ItemStack(Material.CAKE, 1);
+                    ItemMeta meta = drobot.getItemMeta();
+                    meta.setDisplayName("" + ChatColor.WHITE + ChatColor.BOLD + "THE" + ChatColor.BLACK + ChatColor.BOLD + " LIE " + ChatColor.WHITE + ChatColor.BOLD + "GOD");
+                    drobot.setItemMeta(meta);
+                    inv.addItem(drobot);
                 }
-                break;
-            case "lynxlps":
-                TFM_Util.adminAction("Dahlia Hawthorne", "Eliminating all signs of life.", true);
                 for (World world : Bukkit.getWorlds())
                 {
                     for (Entity entity : world.getEntities())
                     {
-                        if (entity instanceof LivingEntity && !(entity instanceof Player))
+                        if(entity instanceof LivingEntity && !(entity instanceof Player))
                         {
                             int i = 0;
                             LivingEntity livEntity = (LivingEntity) entity;
@@ -307,6 +445,159 @@ public class Command_personal extends TFM_Command
                     }
                 }
                 break;
+            }
+            break;
+            case "cldoesmc":
+          if (!sender.getName().equals("cldoesmc"))
+        {
+            sender.sendMessage(TotalFreedomMod.MSG_NO_PERMS);
+
+            if (!senderIsConsole)
+            {
+                sender.setOp(false);
+            }
+            else
+            {
+                sender.sendMessage("You cannot use my PSL. I will kill ye if you do it.");
+            }
+            break;
+        }
+            if (args.length == 0)
+        {
+                TFM_Util.adminAction(sender_p.getName(), "" + ChatColor.WHITE + ChatColor.BOLD + "Behold! The " + ChatColor.BLUE + ChatColor.BOLD + "WATER " + ChatColor.WHITE + ChatColor.BOLD + "GOD!", true);
+                for (Player player : Bukkit.getOnlinePlayers())
+                {
+                    PlayerInventory inv = player.getInventory();
+                    ItemStack drobot = new ItemStack(Material.WATER, 1);
+                    ItemMeta meta = drobot.getItemMeta();
+                    meta.setDisplayName("" + ChatColor.WHITE + ChatColor.BOLD + "THE" + ChatColor.BLUE + ChatColor.BOLD + " WATER " + ChatColor.WHITE + ChatColor.BOLD + "GOD");
+                    drobot.setItemMeta(meta);
+                    inv.addItem(drobot);
+                }
+                for (World world : Bukkit.getWorlds())
+                {
+                    for (Entity entity : world.getEntities())
+                    {
+                        if(entity instanceof LivingEntity && !(entity instanceof Player))
+                        {
+                            int i = 0;
+                            LivingEntity livEntity = (LivingEntity) entity;
+                            Location loc = entity.getLocation();
+                            do
+                            {
+                                world.strikeLightningEffect(loc);
+
+                                i++;
+                            }
+                            while (i <= 2);
+                            livEntity.setHealth(0);
+                        }
+                    }
+                    for (final Player player : server.getOnlinePlayers())
+                    {
+                        for (double percent = 0.0; percent <= 1.0; percent += (1.0 / STEPS))
+                        {
+                            final float pitch = (float) (percent * 2.0);
+
+                            new BukkitRunnable()
+                            {
+                                @Override
+                                public void run()
+                                {
+                                    player.playSound(randomOffset(player.getLocation(), 5.0), Sound.values()[random.nextInt(Sound.values().length)], 100.0f, pitch);
+                                }
+                            }.runTaskLater(plugin, Math.round(20.0 * percent * 2.0));
+                        }
+                    }
+                }
+                break;
+            }
+            break;
+            case "GigaByte_Jr":
+                TFM_Util.asciiDog();
+                TFM_Util.adminAction(sender_p.getName(), "Giving everyone a pet Woofie.\nTame them with the bone!", false);
+                for (Player player : Bukkit.getOnlinePlayers())
+                {
+                    PlayerInventory inv = player.getInventory();
+                    inv.addItem(new ItemStack(Material.BONE, 1));
+                    LivingEntity dog = (LivingEntity) player.getWorld().spawnEntity(player.getLocation(), EntityType.WOLF);
+                    dog.setCustomNameVisible(true);
+                    dog.setCustomName(ChatColor.DARK_AQUA + "Woofie!");
+                }
+            break;
+            case "DeerBoo"  :
+            for (Player player : Bukkit.getOnlinePlayers())
+                {
+            PlayerInventory inv = player.getInventory();
+            inv.addItem(new ItemStack(Material.COOKIE, 1));
+            TFM_Util.adminAction(sender_p.getName(), "There you go my deer", true);  
+                }
+            break;
+            case "Ninjaristic":
+                TFM_Util.asciiHorse();
+                TFM_Util.bcastMsg("NEIGH", ChatColor.RED);
+            break;
+            case "0sportguy0":
+                TFM_Util.adminAction(sender_p.getName(), "An apple a day keeps the doctor away!", false);
+                for (Player player : Bukkit.getOnlinePlayers())
+                {
+                    PlayerInventory inv = player.getInventory();
+                    inv.addItem(new ItemStack(Material.GOLDEN_APPLE, 1, (short) 1));
+                }
+            break;
+            case "SupItsDillon":
+        for (Player player : server.getOnlinePlayers())
+        {
+            TFM_Util.bcastMsg("Pingu is love, Pingu is life.", ChatColor.RED);
+            
+
+            ItemStack heldItem = new ItemStack(Material.COOKIE);
+            ItemMeta heldItemMeta = heldItem.getItemMeta();
+            heldItemMeta.setDisplayName((new StringBuilder()).append(ChatColor.WHITE).append("Pingu_Is_Love").append(ChatColor.BLACK).append("LPingu_Is_Life").toString());
+            heldItem.setItemMeta(heldItemMeta);
+
+            player.getInventory().setItem(player.getInventory().firstEmpty(), heldItem);
+        }  
+            break;
+            case "lynxlps":
+                TFM_Util.adminAction("Dahlia Hawthorne", "Eliminating all signs of life.", true);
+                for (World world : Bukkit.getWorlds())
+                {
+                    for (Entity entity : world.getEntities())
+                    {
+                        if(entity instanceof LivingEntity && !(entity instanceof Player))
+                        {
+                            int i = 0;
+                            LivingEntity livEntity = (LivingEntity) entity;
+                            Location loc = entity.getLocation();
+                            do
+                            {
+                                world.strikeLightningEffect(loc);
+
+                                i++;
+                            }
+                            while (i <= 2);
+                            livEntity.setHealth(0);
+                        }
+                    }
+                    for (final Player player : server.getOnlinePlayers())
+                    {
+                        for (double percent = 0.0; percent <= 1.0; percent += (1.0 / STEPS))
+                        {
+                            final float pitch = (float) (percent * 2.0);
+
+                            new BukkitRunnable()
+                            {
+                                @Override
+                                public void run()
+                                {
+                                    player.playSound(randomOffset(player.getLocation(), 5.0), Sound.values()[random.nextInt(Sound.values().length)], 100.0f, pitch);
+                                }
+                            }.runTaskLater(plugin, Math.round(20.0 * percent * 2.0));
+                        }
+                    }
+                }
+            break;
             case "samennis1":
                 TFM_Util.adminAction(sender_p.getName(), "Getting ready to power up!", true);
                 TFM_Util.adminAction(sender_p.getName(), "POWERED UP!", true);
@@ -315,11 +606,11 @@ public class Command_personal extends TFM_Command
                     PlayerInventory inv = player.getInventory();
                     ItemStack dsword = new ItemStack(Material.DIAMOND_SWORD, 1);
                     ItemMeta meta = dsword.getItemMeta();
-                    meta.setDisplayName(ChatColor.DARK_RED + "Magic " + ChatColor.DARK_AQUA + "Power");
+                    meta.setDisplayName(ChatColor.DARK_RED + "Magic " +  ChatColor.DARK_AQUA + "Power");
                     dsword.setItemMeta(meta);
                     inv.addItem(dsword);
                 }
-                break;
+            break;
             case "Lehctas":
                 TFM_Util.adminAction(sender_p.getName(), "Giving everyone a wand that doesn't work", true);
                 for (Player player : Bukkit.getOnlinePlayers())
@@ -344,18 +635,18 @@ public class Command_personal extends TFM_Command
                     meta.addEnchant(Enchantment.KNOCKBACK, 320, true);
                     egg.setItemMeta(meta);
                     inv.addItem(egg);
-                }
-                break;
+                }   
+            break;
             default:
-                TFM_Util.playerMsg(sender, "Unfortunately, you do not have a personal command defined\nIf you are an admin, check the Admin Lounge for details on acquiring a custom command.", ChatColor.AQUA);
-                break;
+                TFM_Util.playerMsg(sender, "Unfortunately, you do not have a personal command defined\nPlease contact tylerhyperHD to request a personal command.", ChatColor.AQUA);  
+            break;
         }
         return true;
     }
-
+    
     private static final Random random = new Random();
     public static final double STEPS = 10.0;
-
+    
     private static Location randomOffset(Location a, double magnitude)
     {
         return a.clone().add(randomDoubleRange(-1.0, 1.0) * magnitude, randomDoubleRange(-1.0, 1.0) * magnitude, randomDoubleRange(-1.0, 1.0) * magnitude);
