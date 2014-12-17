@@ -29,6 +29,7 @@ public enum TFM_PlayerRank
     IMPOSTOR("an " + ChatColor.GRAY + ChatColor.UNDERLINE + "Impostor", ChatColor.GRAY.toString() + ChatColor.UNDERLINE + "[IMP]"),
     NON_OP("a " + ChatColor.GREEN + "Non-OP", ChatColor.GREEN.toString()),
     OP("an " + ChatColor.RED + "OP", ChatColor.RED + "[OP]"),
+    FROOSH(ChatColor.LIGHT_PURPLE + "a " + ChatColor.LIGHT_PURPLE + "Senior Admin and a Derpy Cake", ChatColor.LIGHT_PURPLE + "[Derpy Cake]"),
     SUPER("a " + ChatColor.GOLD + "Super Admin", ChatColor.GOLD + "[SA]"),
     GMA("a " + ChatColor.DARK_GREEN + "Super GM Admin", ChatColor.DARK_GREEN + "[GM-A]"),
     TELNET("a " + ChatColor.DARK_GREEN + "Super Telnet Admin", ChatColor.DARK_GREEN + "[STA]"),
