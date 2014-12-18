@@ -10,7 +10,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-@CommandPermissions(level = AdminLevel.OP, source = SourceType.BOTH)
+@CommandPermissions(level = AdminLevel.SENIOR, source = SourceType.BOTH)
 @CommandParameters(description = "Run a command a configurable amount of times.", usage = "/<command> <times> <outcommand>")
 public class Command_multirun extends TFM_Command
 {
