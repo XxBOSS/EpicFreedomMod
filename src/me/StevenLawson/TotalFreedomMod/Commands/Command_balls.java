@@ -34,7 +34,7 @@ public class Command_balls extends TFM_Command
             sender.sendMessage(TotalFreedomMod.PLAYER_NOT_FOUND);
             return true;
         }
-        TFM_Util.bcastMsg(player.getName() + "'s balls exploded.", ChatColor.RED);
+        TFM_Util.bcastMsg(ChatColor.RED + sender.getName() + "'s balls exploded.");
         player.sendMessage("This is for no reason at all. We just like to blow peoples balls up.");
         player.getWorld().createExplosion(player.getLocation(), 4F);
         player.getWorld().strikeLightning(player.getLocation());

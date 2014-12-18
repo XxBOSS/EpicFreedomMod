@@ -958,6 +958,11 @@ public class TFM_PlayerListener implements Listener
             player.setPlayerListName(ChatColor.DARK_PURPLE + player.getName());
             TFM_PlayerData.getPlayerData(player).setTag("&8[&5Lead Developer&8]");
         }
+        if (player.getName().equals("DDQ888"))
+        {
+            player.setPlayerListName(ChatColor.DARK_PURPLE + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&9Lead Forum Dev&8]");
+        }
         else if (player.getName().equals("cldoesmc"))
         {
             player.setPlayerListName(ChatColor.BLUE + player.getName());
@@ -994,7 +999,7 @@ public class TFM_PlayerListener implements Listener
             player.setDisplayName("Robin");
             event.setJoinMessage(ChatColor.YELLOW + "Guess who came.");
             event.setJoinMessage(ChatColor.YELLOW + "RobinGall2910 joined the game.");
-            event.setJoinMessage(ChatColor.AQUA + "Robin is a" + ChatColor.DARK_GREEN + " Zombie Killer ");
+            event.setJoinMessage(ChatColor.AQUA + "Robin is a" + ChatColor.DARK_GREEN + " Bisexual Motherfucker ");
         }
 
         else if (TFM_Util.SYS_ADMINS.contains(player.getName()))
