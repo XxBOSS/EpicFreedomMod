@@ -953,20 +953,23 @@ public class TFM_PlayerListener implements Listener
             player.setPlayerListName(ChatColor.DARK_PURPLE + player.getName());
             TFM_PlayerData.getPlayerData(player).setTag("&8[&5Co-Owner&8]");
         }
-                if (player.getName().equals("tylerhyperHD"))
+        if (player.getName().equals("tylerhyperHD"))
         {
             player.setPlayerListName(ChatColor.DARK_PURPLE + player.getName());
             TFM_PlayerData.getPlayerData(player).setTag("&8[&5Lead Developer&8]");
-        }
-        if (player.getName().equals("DDQ888"))
-        {
-            player.setPlayerListName(ChatColor.DARK_PURPLE + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&9Lead Forum Dev&8]");
+                        event.setJoinMessage(ChatColor.YELLOW + "Guess who mother fucking came.");
+            event.setJoinMessage(ChatColor.YELLOW + "tylerhyperHD joined the fucking game.");
+            event.setJoinMessage(ChatColor.AQUA + "Tyler is a" + ChatColor.DARK_GREEN + " Bisexual Motherfucker. ");
         }
         else if (player.getName().equals("cldoesmc"))
         {
             player.setPlayerListName(ChatColor.BLUE + player.getName());
             TFM_PlayerData.getPlayerData(player).setTag("&f[&4Owner&f]");
+        }
+        else if (player.getName().equals("DDQ888"))
+        {
+            player.setPlayerListName(ChatColor.BLUE + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&5Lead Forum Dev&8]");
         }
         else if (player.getName().equals("jayscoob"))
         {
@@ -997,11 +1000,10 @@ public class TFM_PlayerListener implements Listener
         {
             player.setPlayerListName(ChatColor.DARK_PURPLE + "Robin");
             player.setDisplayName("Robin");
-            event.setJoinMessage(ChatColor.YELLOW + "Guess who came.");
-            event.setJoinMessage(ChatColor.YELLOW + "RobinGall2910 joined the game.");
-            event.setJoinMessage(ChatColor.AQUA + "Robin is a" + ChatColor.DARK_GREEN + " Bisexual Motherfucker ");
+            event.setJoinMessage(ChatColor.YELLOW + "Guess who mother fucking came.");
+            event.setJoinMessage(ChatColor.YELLOW + "RobinGall2910 joined the fucking game.");
+            event.setJoinMessage(ChatColor.AQUA + "Robin is a" + ChatColor.DARK_GREEN + " Bisexual Motherfucking Zombie Killer ");
         }
-
         else if (TFM_Util.SYS_ADMINS.contains(player.getName()))
         {
         player.setPlayerListName(ChatColor.DARK_RED + player.getName());
