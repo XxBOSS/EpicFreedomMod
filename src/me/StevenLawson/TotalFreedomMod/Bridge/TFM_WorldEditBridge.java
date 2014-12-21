@@ -18,16 +18,15 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class TFM_WorldEditBridge
 {
-    private static WorldEditPlugin worldEditPlugin = null;
+    private WorldEditPlugin worldEditPlugin = null;
 
     private TFM_WorldEditBridge()
     {
-        throw new AssertionError();
     }
 
-    public static WorldEditPlugin getWorldEditPlugin()
+    public WorldEditPlugin getWorldEditPlugin()
     {
-        if (worldEditPlugin == null)
+        if (this.worldEditPlugin == null)
         {
             try
             {
@@ -36,7 +35,7 @@ public class TFM_WorldEditBridge
                 {
                     if (we instanceof WorldEditPlugin)
                     {
-                        worldEditPlugin = (WorldEditPlugin) we;
+                        this.worldEditPlugin = (WorldEditPlugin) we;
                     }
                 }
             }
@@ -45,14 +44,14 @@ public class TFM_WorldEditBridge
                 TFM_Log.severe(ex);
             }
         }
-        return worldEditPlugin;
+        return this.worldEditPlugin;
     }
 
-    public static BukkitPlayer getBukkitPlayer(Player player)
+    public BukkitPlayer getBukkitPlayer(Player player)
     {
         try
         {
-            final WorldEditPlugin wep = getWorldEditPlugin();
+            WorldEditPlugin wep = this.getWorldEditPlugin();
             if (wep != null)
             {
                 return wep.wrapPlayer(player);
@@ -65,11 +64,11 @@ public class TFM_WorldEditBridge
         return null;
     }
 
-    public static LocalSession getPlayerSession(Player player)
+    public LocalSession getPlayerSession(Player player)
     {
         try
         {
-            final WorldEditPlugin wep = getWorldEditPlugin();
+            WorldEditPlugin wep = this.getWorldEditPlugin();
             if (wep != null)
             {
                 return wep.getSession(player);
@@ -82,14 +81,14 @@ public class TFM_WorldEditBridge
         return null;
     }
 
-    public static void undo(Player player, int count)
+    public void undo(Player player, int count)
     {
         try
         {
             LocalSession session = getPlayerSession(player);
             if (session != null)
             {
-                final BukkitPlayer bukkitPlayer = getBukkitPlayer(player);
+                BukkitPlayer bukkitPlayer = this.getBukkitPlayer(player);
                 if (bukkitPlayer != null)
                 {
                     for (int i = 0; i < count; i++)
@@ -105,11 +104,11 @@ public class TFM_WorldEditBridge
         }
     }
 
-    public static void setLimit(Player player, int limit)
+    public void setLimit(Player player, int limit)
     {
         try
         {
-            final LocalSession session = getPlayerSession(player);
+            LocalSession session = getPlayerSession(player);
             if (session != null)
             {
                 session.setBlockChangeLimit(limit);
@@ -121,7 +120,7 @@ public class TFM_WorldEditBridge
         }
     }
 
-    public static void validateSelection(final Player player)
+    public void validateSelection(final Player player)
     {
         if (TFM_AdminList.isSuperAdmin(player))
         {
@@ -131,31 +130,26 @@ public class TFM_WorldEditBridge
         try
         {
             final LocalSession session = getPlayerSession(player);
-
-            if (session == null)
+            if (session != null)
             {
-                return;
-            }
-
-            final LocalWorld selectionWorld = session.getSelectionWorld();
-            final Region selection = session.getSelection(selectionWorld);
-
-            if (TFM_ProtectedArea.isInProtectedArea(
-                    getBukkitVector(selection.getMinimumPoint()),
-                    getBukkitVector(selection.getMaximumPoint()),
-                    selectionWorld.getName()))
-            {
-                new BukkitRunnable()
+                final LocalWorld selectionWorld = session.getSelectionWorld();
+                final Region selection = session.getSelection(selectionWorld);
+                if (TFM_ProtectedArea.isInProtectedArea(
+                        getBukkitVector(selection.getMinimumPoint()),
+                        getBukkitVector(selection.getMaximumPoint()),
+                        selectionWorld.getName()))
                 {
-                    @Override
-                    public void run()
+                    new BukkitRunnable()
                     {
-                        player.sendMessage(ChatColor.RED + "The region that you selected contained a protected area. Selection cleared.");
-                        session.getRegionSelector(selectionWorld).clear();
-                    }
-                }.runTask(TotalFreedomMod.plugin);
+                        @Override
+                        public void run()
+                        {
+                            player.sendMessage(ChatColor.RED + "The region that you selected contained a protected area. Selection cleared.");
+                            session.getRegionSelector(selectionWorld).clear();
+                        }
+                    }.runTaskLater(TotalFreedomMod.plugin, 1L);
+                }
             }
-
         }
         catch (IncompleteRegionException ex)
         {
@@ -169,5 +163,15 @@ public class TFM_WorldEditBridge
     private static org.bukkit.util.Vector getBukkitVector(com.sk89q.worldedit.Vector worldEditVector)
     {
         return new org.bukkit.util.Vector(worldEditVector.getX(), worldEditVector.getY(), worldEditVector.getZ());
+    }
+
+    public static TFM_WorldEditBridge getInstance()
+    {
+        return TFM_WorldEditBridgeHolder.INSTANCE;
+    }
+
+    private static class TFM_WorldEditBridgeHolder
+    {
+        private static final TFM_WorldEditBridge INSTANCE = new TFM_WorldEditBridge();
     }
 }
