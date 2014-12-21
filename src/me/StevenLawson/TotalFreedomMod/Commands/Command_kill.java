@@ -17,17 +17,12 @@ import org.bukkit.event.entity.EntityDamageEvent;
 @CommandParameters(description = "Kills the specified player.", usage = "/<command> [player]")
 public abstract class Command_kill extends TFM_Command
 {
-	public boolean run(final Server server, final User user, final String commandLabel, final String[] args) throws Exception
+    @Override
+    public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-		EntityDamageEvent ede = new EntityDamageEvent(user.getBase(), EntityDamageEvent.DamageCause.SUICIDE, Short.MAX_VALUE);
-		server.getPluginManager().callEvent(ede);
-		user.damage(Short.MAX_VALUE);
-		if (user.getHealth() > 0)
-		{
-			user.setHealth(0);
-		}
-		user.sendMessage(_("suicideMessage"));
-		user.setDisplayNick();
+        sender_p.setHealth(0.0);
+        sender_p.sendMessage("Hah! Instead of you killing someone you became suicidal!");
+        TFM_Util.bcastMsg(ChatColor.GOLD + sender_p.getName() + " took their own life.");
         return true;
     }
 }
