@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = AdminLevel.ALL, source = SourceType.BOTH)
-@CommandParameters(description = "Love management,Requested by mrlazerbird", usage = "/<command> <playername>", aliases = "<3")
+@CommandParameters(description = "Love management, Requested by mrlazerbird.", usage = "/<command> <playername>", aliases = "<3")
 public class Command_love extends TFM_Command
 {
     @Override

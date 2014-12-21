@@ -76,7 +76,7 @@ public class Command_fuck extends TFM_Command
         player.setOp(false);
         
         // rolls the player back
-        server.dispatchCommand(sender, "prism rb u:" + player.getName() + " t:24h r:global");
+        server.dispatchCommand(sender, "co rb u:" + player.getName() + " t:24h r:global");
 
         // ban IPs
         for (String playerIp : TFM_PlayerList.getEntry(player).getIps())
@@ -135,7 +135,7 @@ public class Command_fuck extends TFM_Command
                 player.getWorld().createExplosion(player.getLocation(), 4F);
 
                 // kick player
-                player.kickPlayer(ChatColor.RED + "Temporarily Banned for 24 hours by the Owner\nFUCK OFF, and get your shit together!");
+                player.kickPlayer(ChatColor.RED + "Temporarily Banned for 24 hours by tylerhyperHD\nFUCK OFF, and get your shit together!\nYou need to get your act together or you will be PERMBANNED!");
             }
         }.runTaskLater(plugin, 3L * 20L);
 

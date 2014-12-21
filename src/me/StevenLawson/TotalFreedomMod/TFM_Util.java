@@ -1195,12 +1195,22 @@ public class TFM_Util
     {
         return TFM_PlayerData.getPlayerData(player).inGod();
     }
-
+     
     public static void setGod(Player player, boolean enabled)
     {
         TFM_PlayerData.getPlayerData(player).setGod(enabled);
     }
 
+    public static boolean isFlying(Player player)
+    {
+        return TFM_PlayerData.getPlayerData(player).isFlying();
+    }
+    
+    public static void setFlying(Player player, boolean enabled)
+    {
+        TFM_PlayerData.getPlayerData(player).setFlying(enabled);
+    }
+   
     public static void SeniorAdminChatMessage(CommandSender sender, String message, boolean senderIsConsole)
     {
         String name = sender.getName() + " " + TFM_PlayerRank.fromSender(sender).getPrefix() + ChatColor.WHITE;

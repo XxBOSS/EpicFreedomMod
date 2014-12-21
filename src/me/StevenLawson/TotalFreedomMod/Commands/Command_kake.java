@@ -12,15 +12,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-@CommandPermissions(level = AdminLevel.SENIOR, source = SourceType.BOTH)
-@CommandParameters(description = "Gives people who are still alive da Kake.", usage = "/<command>")
+@CommandPermissions(level = AdminLevel.ALL, source = SourceType.BOTH)
+@CommandParameters(description = "For the kake master.", usage = "/<command>")
 public class Command_kake extends TFM_Command
 {
     @Override
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-        if (!sender.getName().equals("tylerhyperHD") && !sender.getName().equals("KandyKake"))
-        {
+            if (!sender.getName().equals("tylerhyperHD") && !sender.getName().equals("KandyKake"))
+            {
             sender.sendMessage(TotalFreedomMod.MSG_NO_PERMS);
 
             if (!senderIsConsole)
@@ -29,10 +29,11 @@ public class Command_kake extends TFM_Command
             }
             else
             {
-                sender.sendMessage("You are not Kandy nor Kake. Stfu.");
+                sender.sendMessage("You are not kandy nor kake. Stfu.");
             }
         StringBuilder output = new StringBuilder();
         Random randomGenerator = new Random();
+
         String[] words = TotalFreedomMod.KAKE_LYRICS.split(" ");
         for (String word : words)
         {
@@ -55,8 +56,7 @@ public class Command_kake extends TFM_Command
         }
 
         TFM_Util.bcastMsg(output.toString());
+        }
         return true;
     }
-        return true;
-}
 }

@@ -22,6 +22,7 @@ import org.bukkit.entity.Player;
 /*
  * This file is to claim this to be used solely for TylerFreedom servers only.
  */
+
 @CommandPermissions(level = AdminLevel.ALL, source = SourceType.BOTH)
 @CommandParameters(description = "Shows information about TylerFreedomMod or reloads it", usage = "/<command> [reload]")
 public class Command_info extends TFM_Command
@@ -59,11 +60,11 @@ public class Command_info extends TFM_Command
             return true;
         }
 
-        playerMsg("Welcome to the EpicFreedomMod; associated with the TylerFreedomMod", ChatColor.GOLD);
-        playerMsg("Created by tylerhyperHD and modified by buildcarter8", ChatColor.GOLD);
+        playerMsg("Welcome to the EpicFreedomMod; Made by tylerhyperHD", ChatColor.GOLD);
+        playerMsg("Created by tylerhyperHD", ChatColor.GOLD);
         StringBuilder developers = new StringBuilder();
-        developers.append("Later worked on by IceGamer94, tylerhyperHD, taahanis, and wisemagick1.");
-        playerMsg("Visit " + ChatColor.AQUA + "http://tylerfreedom.freeforums.net/" + ChatColor.GREEN + " to visit our forums and get support!", ChatColor.GREEN);
+        developers.append("Later worked on by _GeneralOfGames_, RobinGall2910, IceGamer94, Camzie99, buildcarter8, tylerhyperHD, taahanis, and wisemagick1.");
+        playerMsg("Visit " + ChatColor.AQUA + "http://3p1cfreedomcraft.freeforums.net/" + ChatColor.GREEN + " to visit our forums and get support!", ChatColor.GREEN);
 
         return true;
     }

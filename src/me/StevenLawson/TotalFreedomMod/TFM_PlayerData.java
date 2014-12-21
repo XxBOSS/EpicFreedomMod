@@ -56,6 +56,7 @@ public class TFM_PlayerData
     private boolean cmdspyEnabled = false;
     private String tag = null;
     private boolean inGod = false;
+    private boolean isFlying = false;
     private boolean isDoubleJumper = false;
     private int warning = 0;
 
@@ -162,6 +163,16 @@ public class TFM_PlayerData
     public boolean inGod()
     {
         return this.inGod;
+    }
+
+        public boolean isFlying()
+    {
+        return this.isFlying;
+    }
+
+    public void setFlying(boolean state)
+    {
+        this.isFlying = state;
     }
 
     public void setGod(boolean state)

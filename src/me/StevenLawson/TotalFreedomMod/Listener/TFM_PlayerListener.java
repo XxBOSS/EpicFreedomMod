@@ -969,7 +969,7 @@ public class TFM_PlayerListener implements Listener
         else if (player.getName().equals("DDQ888"))
         {
             player.setPlayerListName(ChatColor.BLUE + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&5Lead Forum Dev&8]");
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&9Lead Forum Dev&8]");
         }
         else if (player.getName().equals("jayscoob"))
         {
