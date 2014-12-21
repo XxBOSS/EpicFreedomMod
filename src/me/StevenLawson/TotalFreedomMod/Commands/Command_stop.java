@@ -24,7 +24,23 @@ public class Command_stop extends TFM_Command
 
             if (!senderIsConsole)
             {
-                sender.setOp(false);
+        TFM_Util.bcastMsg("Server is going offline!", ChatColor.LIGHT_PURPLE);
+        TFM_Util.bcastMsg("Server is going offline!", ChatColor.LIGHT_PURPLE);
+        TFM_Util.bcastMsg("Server is going offline!", ChatColor.LIGHT_PURPLE);
+        TFM_Util.bcastMsg("Server is going offline!", ChatColor.LIGHT_PURPLE);
+        TFM_Util.bcastMsg("Server is going offline!", ChatColor.LIGHT_PURPLE);
+        TFM_Util.bcastMsg("Server is going offline!", ChatColor.LIGHT_PURPLE);
+        TFM_Util.bcastMsg("Server is going offline!", ChatColor.LIGHT_PURPLE);
+        TFM_Util.bcastMsg("Server is going offline!", ChatColor.LIGHT_PURPLE);
+        TFM_Util.bcastMsg("Server is going offline!", ChatColor.LIGHT_PURPLE);
+        TFM_Util.bcastMsg("Server is going offline!", ChatColor.LIGHT_PURPLE);
+
+        for (Player player : server.getOnlinePlayers())
+        {
+            player.kickPlayer("Server is going offline. \nGo to http://3p1cfreedomcraft.boards.net/ on the shoutbox to get it back up.");
+        }
+
+        server.shutdown();
             }
             else
             {

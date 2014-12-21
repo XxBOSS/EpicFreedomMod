@@ -29,7 +29,7 @@ import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import static me.StevenLawson.TotalFreedomMod.TFM_Util.playerMsg;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
 import me.StevenLawson.TotalFreedomMod.World.TFM_AdminWorld;
-import net.minecraft.util.org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
