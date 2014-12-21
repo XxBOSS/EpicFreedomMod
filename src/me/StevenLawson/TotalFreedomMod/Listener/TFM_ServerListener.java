@@ -77,12 +77,6 @@ public class TFM_ServerListener implements Listener
             return;
         }
 
-        /*if (TFM_ConfigEntry.ENABLE_CHAOS.getBoolean())
-        {
-            event.setMotd(ChatColor.RED + "Server is currently in chaos mode, prepare for some crazy shit!");
-            return;
-        }*/
-
         if (!TFM_ConfigEntry.SERVER_COLORFUL_MOTD.getBoolean())
         {
             event.setMotd(TFM_Util.colorize(TFM_ConfigEntry.SERVER_MOTD.getString()
@@ -91,7 +85,7 @@ public class TFM_ServerListener implements Listener
         }
         // Colorful MOTD
 
-        String message = String.format("Welcome to EpicFreedom%s! - Fun, Free and Easy! Running on Spigot for Minecraft 1.7.10!", TFM_Util.getPlayerFromIp(ip));
+        String message = String.format("Welcome to EpicFreedom%s! - Fast, Free, and Fun! Running on FULL 1.8!", TFM_Util.getPlayerFromIp(ip));
 
         final StringBuilder motd = new StringBuilder();
 

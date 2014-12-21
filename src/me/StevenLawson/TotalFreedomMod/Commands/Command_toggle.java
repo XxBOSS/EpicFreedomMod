@@ -11,7 +11,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = AdminLevel.SUPER, source = SourceType.BOTH)
-@CommandParameters(description = "Toggles TotalFreedomMod settings", usage = "/<command> [option] [value] [value]")
+@CommandParameters(description = "Toggles EpicFreedomMod settings", usage = "/<command> [option] [value] [value]")
 public class Command_toggle extends TFM_Command
 {
     @Override
