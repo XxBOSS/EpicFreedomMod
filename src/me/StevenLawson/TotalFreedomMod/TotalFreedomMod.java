@@ -60,7 +60,7 @@ public class TotalFreedomMod extends JavaPlugin
     public static final String FREEDOMOP_MODBROADCAST = ChatColor.GRAY + "[" + ChatColor.RED + "3P1CFREEDOMBroadcast" + ChatColor.GRAY + "]";
     public static final String FREEDOMOP_MODINVALID = ChatColor.GRAY + "[" + ChatColor.RED + "3P1CFREEDOMMod" + ChatColor.GRAY + "]" + ChatColor.WHITE + "That response was invaild.";
     //
-    public static String buildNumber = "1";
+    public static String buildNumber = "4";
     public static String buildDate = TotalFreedomMod.buildDate = TFM_Util.dateToString(new Date());
     public static String buildCreator = "tylerhyperHD";
     //
@@ -94,6 +94,8 @@ public class TotalFreedomMod extends JavaPlugin
     {
         TFM_Log.info("Made by tylerhyperHD, Madgeek1450, and DarthSalamon");
         TFM_Log.info("Compiled " + buildDate + " by " + buildCreator);
+
+        TFM_Log.warning("This version is the first release of EpicFreedom in 1.8 which will be highly unstable, please check logs always for errors!");
 
         if (!TFM_ServerInterface.COMPILE_NMS_VERSION.equals(TFM_Util.getNmsVersion()))
         {

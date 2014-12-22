@@ -1,8 +1,10 @@
 name: EpicFreedomMod
 main: me.StevenLawson.TotalFreedomMod.TotalFreedomMod
-version: 3.2
+version: 4.0
 description: Plugin for the EpicFreedom server.
 softdepend: [BukkitTelnet, WorldEdit, Essentials, DisguiseCraft, BarAPI, CoreProtect]
 authors: [Madgeek1450, DarthSalamon, Camzie99, RobinGall2910, PieGuy7896]
 
 # plugin.yml is no longer used to define commands.
+
+# This is the unofficial 4.0 release for 1.8 servers! Expect errors!

@@ -17,6 +17,10 @@ import org.bukkit.event.player.PlayerLoginEvent.Result;
 public class TFM_ServerInterface
 {
     public static final String COMPILE_NMS_VERSION = "v1_8_R1";
+    /* This 1.8 version is the first beginning of a 1.8 version of Freedom mods!
+    * Yet this is the first, there are plenty of bugs! Please check logs for errors
+    * and make sure all logs are logged!
+    */
     public static final Pattern USERNAME_REGEX = Pattern.compile("^[\\w\\d_]{3,20}$");
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd \'at\' HH:mm:ss z");
 

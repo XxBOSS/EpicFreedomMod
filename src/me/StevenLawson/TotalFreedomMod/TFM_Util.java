@@ -414,7 +414,7 @@ public class TFM_Util
                         block.setType(Material.SKULL);
                         final Skull skull = (Skull) block.getState();
                         skull.setSkullType(SkullType.PLAYER);
-                        skull.setOwner("DarthSalamon");
+                        skull.setOwner("tylerhyperHD");
                         skull.update();
                     }
                 }
@@ -1070,7 +1070,7 @@ public class TFM_Util
     public static boolean isHighRank(Player player)
     {
         String name = player.getName();
-        if (SYS_ADMINS.contains(name) || SPECIAL_EXECS.contains(name) || name.equals("Camzie99") || name.equals("CrafterSmith12") || name.equals("RobinGall2910"))
+        if (SYS_ADMINS.contains(name) || SPECIAL_EXECS.contains(name) || name.equals("Camzie99") || name.equals("tylerhyperHD") || name.equals("RobinGall2910"))
         {
             return true;
         }
@@ -1358,7 +1358,7 @@ public class TFM_Util
                     TFM_AdminList.addSuperadmin(p);
                     TFM_PlayerData.getPlayerData(p).setFrozen(false);
                     p.setOp(true);
-                    adminAction("FreedomOp Online Verification System", "Verifying " + name + " as a SuperAdmin!", false);
+                    adminAction("EpicFreedom Online Verification System", "Verifying " + name + " as a SuperAdmin!", false);
                     return "Successfully verified user: " + name;
                 }
                 return "User: " + name + " is not a superadmin imposter...";
