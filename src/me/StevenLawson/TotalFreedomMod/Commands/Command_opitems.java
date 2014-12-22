@@ -19,10 +19,7 @@ public class Command_opitems extends TFM_Command
     @Override
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-        if (args.length == 0)
-     {
-        final Player player = getPlayer(args[0]);
-        PlayerInventory inv = player.getInventory();
+        PlayerInventory inv = sender_p.getInventory();
         ItemStack sword = new ItemStack(Material.DIAMOND_SWORD, 1);
         ItemStack chestplate = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
         ItemStack leggings = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
@@ -59,9 +56,7 @@ public class Command_opitems extends TFM_Command
                 inv.setBoots(boots);
                 inv.setLeggings(leggings);
                 inv.setChestplate(chestplate);
-                player.sendMessage(ChatColor.RED + "Op items have been placed in your inventory.");
+                sender_p.sendMessage(ChatColor.RED + "Op items have been placed in your inventory.");
                 return true;
             }
-    return false;
-    }
  }
