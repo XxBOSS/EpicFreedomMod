@@ -112,9 +112,9 @@ public class TotalFreedomMod extends JavaPlugin
         // Load services
         TFM_AdminList.load();
         TFM_PermbanList.load();
-        TFM_PlayerList.load();
-        TFM_BanManager.load();
-
+        TFM_PlayerList.getInstance().load();
+        TFM_BanManager.getInstance().load();
+        
         // Protect area
         // TODO: Refractor to single .load() method
         if (TFM_ConfigEntry.PROTECTAREA_ENABLED.getBoolean())
@@ -216,8 +216,8 @@ public class TotalFreedomMod extends JavaPlugin
         server.getScheduler().cancelTasks(plugin);
 
         TFM_HTTPD_Manager.stop();
-        TFM_BanManager.save();
-
+        TFM_BanManager.getInstance().save();
+        
         TFM_Log.info("Plugin disabled");
     }
 

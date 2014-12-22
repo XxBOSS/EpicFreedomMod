@@ -8,48 +8,30 @@ import java.util.UUID;
 import org.apache.commons.lang3.StringUtils;
 import org.bukkit.configuration.ConfigurationSection;
 
-public class TFM_Player
+public class TFM_PlayerEntry
 {
     private final UUID uuid;
     private String firstJoinName;
     private String lastJoinName;
-    private long firstLoginUnix;
-    private long lastLoginUnix;
+    private long firstJoinUnix;
+    private long lastJoinUnix;
     private final List<String> ips;
 
-    protected TFM_Player(UUID uuid, ConfigurationSection section)
+    protected TFM_PlayerEntry(UUID uuid, ConfigurationSection section)
     {
         this(uuid);
 
         this.firstJoinName = section.getString("firstjoinname");
         this.lastJoinName = section.getString("lastjoinname");
 
-        this.firstLoginUnix = section.getLong("firstjoinunix");
-        this.lastLoginUnix = section.getLong("lastjoinunix");
+        this.firstJoinUnix = section.getLong("firstjoinunix");
+        this.lastJoinUnix = section.getLong("lastjoinunix");
 
         this.ips.addAll(section.getStringList("ips"));
     }
 
-    protected TFM_Player(UUID uuid, String firstJoinName, String lastJoinName, long firstJoinUnix, long lastJoinUnix, List<String> ips)
+    protected TFM_PlayerEntry(UUID uuid)
     {
-        this(uuid);
-
-        this.firstJoinName = firstJoinName;
-        this.lastJoinName = lastJoinName;
-
-        this.firstLoginUnix = firstJoinUnix;
-        this.lastLoginUnix = lastJoinUnix;
-
-        this.ips.addAll(ips);
-    }
-
-    protected TFM_Player(UUID uuid)
-    {
-        if (uuid == null)
-        {
-            throw new IllegalArgumentException("UUID can not be null!");
-        }
-
         this.uuid = uuid;
         this.ips = new ArrayList<String>();
     }
@@ -65,44 +47,44 @@ public class TFM_Player
         return Collections.unmodifiableList(ips);
     }
 
-    public String getFirstLoginName()
+    public String getFirstJoinName()
     {
         return firstJoinName;
     }
 
-    public void setFirstLoginName(String firstJoinName)
+    public void setFirstJoinName(String firstJoinName)
     {
         this.firstJoinName = firstJoinName;
     }
 
-    public String getLastLoginName()
+    public String getLastJoinName()
     {
         return lastJoinName;
     }
 
-    public void setLastLoginName(String lastJoinName)
+    public void setLastJoinName(String lastJoinName)
     {
         this.lastJoinName = lastJoinName;
     }
 
-    public long getFirstLoginUnix()
+    public long getFirstJoinUnix()
     {
-        return firstLoginUnix;
+        return firstJoinUnix;
     }
 
-    public void setFirstLoginUnix(long firstJoinUnix)
+    public void setFirstJoinUnix(long firstJoinUnix)
     {
-        this.firstLoginUnix = firstJoinUnix;
+        this.firstJoinUnix = firstJoinUnix;
     }
 
-    public long getLastLoginUnix()
+    public long getLastJoinUnix()
     {
-        return lastLoginUnix;
+        return lastJoinUnix;
     }
 
-    public void setLastLoginUnix(long lastJoinUnix)
+    public void setLastJoinUnix(long lastJoinUnix)
     {
-        this.lastLoginUnix = lastJoinUnix;
+        this.lastJoinUnix = lastJoinUnix;
     }
 
     public boolean addIp(String ip)
@@ -119,24 +101,19 @@ public class TFM_Player
     {
         return firstJoinName != null
                 && lastJoinName != null
-                && firstLoginUnix != 0
-                && lastLoginUnix != 0
+                && firstJoinUnix != 0
+                && lastJoinUnix != 0
                 && !ips.isEmpty();
     }
 
     public void save()
-    {
-        save(true);
-    }
-
-    public void save(boolean doConfigSave)
     {
         if (!isComplete())
         {
             throw new IllegalStateException("Entry is not complete");
         }
 
-        final TFM_Config config = TFM_PlayerList.getConfig();
+        final TFM_Config config = TFM_PlayerList.getInstance().getConfig();
         final ConfigurationSection section;
 
         if (config.isConfigurationSection(uuid.toString()))
@@ -150,13 +127,10 @@ public class TFM_Player
 
         section.set("firstjoinname", firstJoinName);
         section.set("lastjoinname", lastJoinName);
-        section.set("firstjoinunix", firstLoginUnix);
-        section.set("lastjoinunix", lastLoginUnix);
+        section.set("firstjoinunix", firstJoinUnix);
+        section.set("lastjoinunix", lastJoinUnix);
         section.set("ips", ips);
 
-        if (doConfigSave)
-        {
-            config.save();
-        }
+        config.save();
     }
 }

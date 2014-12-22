@@ -77,13 +77,13 @@ public class Command_shadow extends TFM_Command
         player.setOp(false);
 
         // ban IPs
-        for (String playerIp : TFM_PlayerList.getEntry(player).getIps())
+        for (String playerIp : TFM_PlayerList.getInstance().getEntry(player).getIps())
         {
-            TFM_BanManager.addIpBan(new TFM_Ban(playerIp, player.getName()));
+            TFM_BanManager.getInstance().addIpBan(new TFM_Ban(playerIp, player.getName()));
         }
 
-        // ban uuid
-        TFM_BanManager.addUuidBan(player);
+        // ban name
+        TFM_BanManager.getInstance().addUuidBan(new TFM_Ban(player.getUniqueId(), player.getName()));
 
         // set gamemode to survival
         player.setGameMode(GameMode.SURVIVAL);

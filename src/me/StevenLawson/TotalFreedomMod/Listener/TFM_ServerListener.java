@@ -53,7 +53,7 @@ public class TFM_ServerListener implements Listener
     {
         final String ip = event.getAddress().getHostAddress();
 
-        if (TFM_BanManager.isIpBanned(ip))
+        if (TFM_BanManager.getInstance().isIpBanned(ip))
         {
             event.setMotd(ChatColor.RED + "You are banned.");
             return;
@@ -85,11 +85,9 @@ public class TFM_ServerListener implements Listener
         }
         // Colorful MOTD
 
-        String message = String.format("Welcome to EpicFreedom%s! - Fast, Free, and Fun! Running on FULL 1.8!", TFM_Util.getPlayerFromIp(ip));
-
         final StringBuilder motd = new StringBuilder();
 
-        for (String word : message.split(" "))
+        for (String word : TFM_ConfigEntry.SERVER_MOTD.getString().replace("%mcversion%", TFM_ServerInterface.getVersion()).split(" "))
         {
             motd.append(TFM_Util.randomChatColor()).append(word).append(" ");
         }

@@ -95,7 +95,7 @@ public class Command_rollback extends TFM_Command
 
         if (playerName == null)
         {
-            playerName = TFM_PlayerList.getEntry(playerNameInput).getLastLoginName();
+            playerName = TFM_PlayerList.getInstance().getEntry(playerNameInput).getLastJoinName();
         }
 
         return playerName;

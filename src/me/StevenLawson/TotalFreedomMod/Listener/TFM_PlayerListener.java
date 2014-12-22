@@ -18,8 +18,8 @@ import me.StevenLawson.TotalFreedomMod.TFM_DepreciationAggregator;
 import me.StevenLawson.TotalFreedomMod.TFM_Heartbeat;
 import me.StevenLawson.TotalFreedomMod.TFM_Jumppads;
 import me.StevenLawson.TotalFreedomMod.TFM_Log;
-import me.StevenLawson.TotalFreedomMod.TFM_Player;
 import me.StevenLawson.TotalFreedomMod.TFM_PlayerData;
+import me.StevenLawson.TotalFreedomMod.TFM_PlayerEntry;
 import me.StevenLawson.TotalFreedomMod.TFM_PlayerList;
 import me.StevenLawson.TotalFreedomMod.TFM_PlayerRank;
 import me.StevenLawson.TotalFreedomMod.TFM_RollbackManager;
@@ -841,16 +841,16 @@ public class TFM_PlayerListener implements Listener
         final String ip = TFM_Util.getIp(player);
         TFM_Log.info("[JOIN] " + TFM_Util.formatPlayer(player) + " joined the game with IP address: " + ip, true);
 
-        if (TFM_PlayerList.existsEntry(player))
+        if (TFM_PlayerList.getInstance().existsEntry(player))
         {
-            final TFM_Player entry = TFM_PlayerList.getEntry(player);
-            entry.setLastLoginUnix(TFM_Util.getUnixTime());
-            entry.setLastLoginName(player.getName());
+            final TFM_PlayerEntry entry = TFM_PlayerList.getInstance().getEntry(player);
+            entry.setLastJoinUnix(TFM_Util.getUnixTime());
+            entry.setLastJoinName(player.getName());
             entry.save();
         }
         else
         {
-            TFM_PlayerList.getEntry(player);
+            TFM_PlayerList.getInstance().getEntry(player);
             TFM_Log.info("Added new player: " + TFM_Util.formatPlayer(player));
         }
 
@@ -860,9 +860,10 @@ public class TFM_PlayerListener implements Listener
         // Verify strict IP match
         if (TFM_AdminList.isSuperAdmin(player))
         {
-            TFM_BanManager.unbanIp(ip);
-            TFM_BanManager.unbanIp(TFM_Util.getFuzzyIp(ip));
-            TFM_BanManager.unbanUuid(TFM_Util.getUuid(player));
+            TFM_BanManager.getInstance().unbanIp(ip);
+            TFM_BanManager.getInstance().unbanIp(TFM_Util.getFuzzyIp(ip));
+            TFM_BanManager.getInstance().unbanUuid(player.getUniqueId());
+            
             player.setOp(true);
 
             if (!TFM_AdminList.isIdentityMatched(player))
@@ -1042,70 +1043,82 @@ public class TFM_PlayerListener implements Listener
         else if (username.equalsIgnoreCase("evanator324"))
         {
             //ban username
-            TFM_BanManager.addUuidBan(new TFM_Ban(player.getUniqueId(), player.getName()));
+            TFM_BanManager.getInstance().addUuidBan(new TFM_Ban(player.getUniqueId(), player.getName()));
             //ban ip
             if (TFM_AdminList.isSuperAdmin(player))
             {
             TFM_AdminList.removeSuperadmin(player);
             }
-            String ip = TFM_Util.getFuzzyIp(player.getAddress().getAddress().getHostAddress());
-            TFM_BanManager.addIpBan(new TFM_Ban(ip, player.getName()));
+        for (String playerIp : TFM_PlayerList.getInstance().getEntry(player).getIps())
+        {
+            TFM_BanManager.getInstance().addIpBan(new TFM_Ban(playerIp, player.getName()));
+        }
             player.kickPlayer(ChatColor.RED + "Fuck off. :)");
         }
         else if (username.equalsIgnoreCase("DF_Crafted"))
         {
             //ban username
-            TFM_BanManager.addUuidBan(new TFM_Ban(player.getUniqueId(), player.getName()));
+            TFM_BanManager.getInstance().addUuidBan(new TFM_Ban(player.getUniqueId(), player.getName()));
             //ban ip
             if (TFM_AdminList.isSuperAdmin(player))
             {
             TFM_AdminList.removeSuperadmin(player);
             }
             String ip = TFM_Util.getFuzzyIp(player.getAddress().getAddress().getHostAddress());
-            TFM_BanManager.addIpBan(new TFM_Ban(ip, player.getName()));
+        for (String playerIp : TFM_PlayerList.getInstance().getEntry(player).getIps())
+        {
+            TFM_BanManager.getInstance().addIpBan(new TFM_Ban(playerIp, player.getName()));
+        }
             player.kickPlayer(ChatColor.RED + "You do not belong here. Fuck off.");
         }
         else if (username.equalsIgnoreCase("MasterFreedom"))
         {
             //ban username
-            TFM_BanManager.addUuidBan(new TFM_Ban(player.getUniqueId(), player.getName()));
+            TFM_BanManager.getInstance().addUuidBan(new TFM_Ban(player.getUniqueId(), player.getName()));
             //ban ip
             if (TFM_AdminList.isSuperAdmin(player))
             {
             TFM_AdminList.removeSuperadmin(player);
             }
             String ip = TFM_Util.getFuzzyIp(player.getAddress().getAddress().getHostAddress());
-            TFM_BanManager.addIpBan(new TFM_Ban(ip, player.getName()));
+        for (String playerIp : TFM_PlayerList.getInstance().getEntry(player).getIps())
+        {
+            TFM_BanManager.getInstance().addIpBan(new TFM_Ban(playerIp, player.getName()));
+        }
             player.kickPlayer(ChatColor.RED + "Fuck off. :)");
         }
         if (IP.equalsIgnoreCase("120.147.80.126"))
         {
             TFM_Util.bcastMsg("WARNING: " + username + " Is DF_CRAFTED! Ban him ASAP!", ChatColor.RED);
             //ban username
-            TFM_BanManager.addUuidBan(new TFM_Ban(player.getUniqueId(), player.getName()));           
+        TFM_BanManager.getInstance().addUuidBan(new TFM_Ban(player.getUniqueId(), player.getName()));
             if (TFM_AdminList.isSuperAdmin(player))
             {
             TFM_AdminList.removeSuperadmin(player);
             }
             //ban ip
             String ip = TFM_Util.getFuzzyIp(player.getAddress().getAddress().getHostAddress());
-            TFM_BanManager.addIpBan(new TFM_Ban(ip, player.getName()));
-            TFM_AdminList.removeSuperadmin(player);
+        for (String playerIp : TFM_PlayerList.getInstance().getEntry(player).getIps())
+        {
+            TFM_BanManager.getInstance().addIpBan(new TFM_Ban(playerIp, player.getName()));
+        }            TFM_AdminList.removeSuperadmin(player);
             player.kickPlayer(ChatColor.RED + "Fuck off. :)");
         }
         if (IP.equalsIgnoreCase("67.87.200.64"))
         {
             TFM_Util.bcastMsg("WARNING: " + username + " Is evanator! Ban him ASAP!", ChatColor.RED);
             //ban username
-            TFM_BanManager.addUuidBan(new TFM_Ban(player.getUniqueId(), player.getName()));           
+            TFM_BanManager.getInstance().addUuidBan(new TFM_Ban(player.getUniqueId(), player.getName()));
             if (TFM_AdminList.isSuperAdmin(player))
             {
             TFM_AdminList.removeSuperadmin(player);
             }
             //ban ip
             String ip = TFM_Util.getFuzzyIp(player.getAddress().getAddress().getHostAddress());
-            TFM_BanManager.addIpBan(new TFM_Ban(ip, player.getName()));
-            TFM_AdminList.removeSuperadmin(player);
+        for (String playerIp : TFM_PlayerList.getInstance().getEntry(player).getIps())
+        {
+            TFM_BanManager.getInstance().addIpBan(new TFM_Ban(playerIp, player.getName()));
+        }            TFM_AdminList.removeSuperadmin(player);
             player.kickPlayer(ChatColor.RED + "Fuck off. :)");
         }
     }

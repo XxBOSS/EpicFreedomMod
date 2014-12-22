@@ -1,6 +1,11 @@
+/*
+
+ This API was known to crash the server in 1.8. Until this is more stable, we are disabling it.
+
 package me.StevenLawson.TotalFreedomMod;
 
 import com.google.common.collect.ImmutableList;
+import java.io.IOException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -11,8 +16,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
 import java.util.concurrent.Callable;
-
 import org.apache.commons.lang3.StringUtils;
+import org.json.simple.parser.ParseException;
 
 // Credits to evilmidget38
 public class TFM_UuidResolver implements Callable<Map<String, UUID>>
@@ -73,7 +78,7 @@ public class TFM_UuidResolver implements Callable<Map<String, UUID>>
                     Thread.sleep(100L);
                 }
             }
-            catch (Exception ex)
+            catch (IOException | ParseException | InterruptedException ex)
             {
                 TFM_Log.severe("Could not resolve UUID(s) of "
                         + StringUtils.join(names.subList(i * 100, Math.min((i + 1) * 100, names.size())), ", "));
@@ -88,3 +93,5 @@ public class TFM_UuidResolver implements Callable<Map<String, UUID>>
         return new TFM_UuidResolver(Arrays.asList(name)).call().get(name);
     }
 }
+
+*/

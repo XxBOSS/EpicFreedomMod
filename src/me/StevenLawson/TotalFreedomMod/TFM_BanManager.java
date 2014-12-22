@@ -9,27 +9,27 @@ import me.StevenLawson.TotalFreedomMod.Config.TFM_Config;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
 
 public class TFM_BanManager
 {
-    private static final List<TFM_Ban> ipBans;
-    private static final List<TFM_Ban> uuidBans;
-    private static final List<UUID> unbannableUUIDs;
+    private static final TFM_BanManager INSTANCE;
+    private final List<TFM_Ban> ipBans;
+    private final List<TFM_Ban> uuidBans;
+    private final List<UUID> unbannableUUIDs;
 
     static
+    {
+        INSTANCE = new TFM_BanManager();
+    }
+
+    private TFM_BanManager()
     {
         ipBans = new ArrayList<TFM_Ban>();
         uuidBans = new ArrayList<TFM_Ban>();
         unbannableUUIDs = new ArrayList<UUID>();
     }
 
-    private TFM_BanManager()
-    {
-        throw new AssertionError();
-    }
-
-    public static void load()
+    public void load()
     {
         ipBans.clear();
         uuidBans.clear();
@@ -66,18 +66,22 @@ public class TFM_BanManager
         save();
         TFM_Log.info("Loaded " + ipBans.size() + " IP bans and " + uuidBans.size() + " UUID bans");
 
-        @SuppressWarnings("unchecked")
-        final TFM_UuidResolver resolver = new TFM_UuidResolver((List<String>) TFM_ConfigEntry.UNBANNABLE_USERNAMES.getList());
-
-        for (UUID uuid : resolver.call().values())
+        for (String username : (List<String>) TFM_ConfigEntry.UNBANNABLE_USERNAMES.getList())
         {
-            unbannableUUIDs.add(uuid);
+            final OfflinePlayer player = Bukkit.getOfflinePlayer(username);
+            if (player == null || player.getUniqueId() == null)
+            {
+                TFM_Log.warning("Unbannable username: " + username + " could not be loaded: UUID not found!");
+                continue;
+            }
+
+            unbannableUUIDs.add(player.getUniqueId());
         }
 
         TFM_Log.info("Loaded " + unbannableUUIDs.size() + " unbannable UUIDs");
     }
 
-    public static void save()
+    public void save()
     {
         final TFM_Config config = new TFM_Config(TotalFreedomMod.plugin, "bans.yml", true);
         config.load();
@@ -108,17 +112,17 @@ public class TFM_BanManager
         config.save();
     }
 
-    public static List<TFM_Ban> getIpBanList()
+    public List<TFM_Ban> getIpBanList()
     {
         return Collections.unmodifiableList(uuidBans);
     }
 
-    public static List<TFM_Ban> getUuidBanList()
+    public List<TFM_Ban> getUuidBanList()
     {
         return Collections.unmodifiableList(uuidBans);
     }
 
-    public static TFM_Ban getByIp(String ip)
+    public TFM_Ban getByIp(String ip)
     {
         for (TFM_Ban ban : ipBans)
         {
@@ -152,7 +156,7 @@ public class TFM_BanManager
         return null;
     }
 
-    public static TFM_Ban getByUuid(UUID uuid)
+    public TFM_Ban getByUuid(UUID uuid)
     {
         for (TFM_Ban ban : uuidBans)
         {
@@ -169,7 +173,7 @@ public class TFM_BanManager
         return null;
     }
 
-    public static void unbanIp(String ip)
+    public void unbanIp(String ip)
     {
         final TFM_Ban ban = getByIp(ip);
 
@@ -182,7 +186,7 @@ public class TFM_BanManager
         save();
     }
 
-    public static void unbanUuid(UUID uuid)
+    public void unbanUuid(UUID uuid)
     {
         final TFM_Ban ban = getByUuid(uuid);
 
@@ -194,22 +198,17 @@ public class TFM_BanManager
         removeBan(ban);
     }
 
-    public static boolean isIpBanned(String ip)
+    public boolean isIpBanned(String ip)
     {
         return getByIp(ip) != null;
     }
 
-    public static boolean isUuidBanned(UUID uuid)
+    public boolean isUuidBanned(UUID uuid)
     {
         return getByUuid(uuid) != null;
     }
 
-    public static void addUuidBan(Player player)
-    {
-        addUuidBan(new TFM_Ban(TFM_Util.getUuid(player), player.getName()));
-    }
-
-    public static void addUuidBan(TFM_Ban ban)
+    public void addUuidBan(TFM_Ban ban)
     {
         if (!ban.isComplete())
         {
@@ -230,12 +229,7 @@ public class TFM_BanManager
         save();
     }
 
-    public static void addIpBan(Player player)
-    {
-        addIpBan(new TFM_Ban(TFM_Util.getIp(player), player.getName()));
-    }
-
-    public static void addIpBan(TFM_Ban ban)
+    public void addIpBan(TFM_Ban ban)
     {
         if (!ban.isComplete())
         {
@@ -251,7 +245,7 @@ public class TFM_BanManager
         save();
     }
 
-    public static void removeBan(TFM_Ban ban)
+    public void removeBan(TFM_Ban ban)
     {
         final Iterator<TFM_Ban> ips = ipBans.iterator();
         while (ips.hasNext())
@@ -274,15 +268,18 @@ public class TFM_BanManager
         save();
     }
 
-    public static void purgeIpBans()
+    public void purgeIpBans()
     {
         ipBans.clear();
-        save();
     }
 
-    public static void purgeUuidBans()
+    public void purgeUuidBans()
     {
         uuidBans.clear();
-        save();
+    }
+
+    public static TFM_BanManager getInstance()
+    {
+        return INSTANCE;
     }
 }

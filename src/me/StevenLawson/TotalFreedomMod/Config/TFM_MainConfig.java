@@ -263,6 +263,7 @@ public class TFM_MainConfig
     {
         return TotalFreedomMod.plugin.getResource(CONFIG_FILENAME);
     }
+    
 
     private static class TFM_Config_DefaultsLoader
     {
@@ -291,5 +292,13 @@ public class TFM_MainConfig
         {
             return defaults.get(path);
         }
+    }
+        public static TFM_MainConfig getInstance()
+    {
+        return TFM_ConfigHolder.INSTANCE;
+    }
+        private static class TFM_ConfigHolder
+    {
+        private static final TFM_MainConfig INSTANCE = new TFM_MainConfig();
     }
 }

@@ -3,44 +3,40 @@ package me.StevenLawson.TotalFreedomMod;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_Config;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
-import com.google.common.collect.Sets;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public class TFM_PlayerList
 {
-    private static final Map<UUID, TFM_Player> playerList;
-    private final static TFM_Config config;
+    private static final TFM_PlayerList INSTANCE;
+    private final Map<UUID, TFM_PlayerEntry> playerList;
+    private TFM_Config config;
 
     static
     {
-        playerList = new HashMap<UUID, TFM_Player>();
-        config = new TFM_Config(TotalFreedomMod.plugin, "playerlist.yml", false);
+        INSTANCE = new TFM_PlayerList();
     }
 
     private TFM_PlayerList()
     {
-        throw new AssertionError();
+        this.playerList = new HashMap<UUID, TFM_PlayerEntry>();
     }
 
-    public static Set<TFM_Player> getAllPlayers()
-    {
-        return Sets.newHashSet(playerList.values());
-    }
-
-    public static TFM_Config getConfig()
+    public TFM_Config getConfig()
     {
         return config;
     }
 
-    public static void load()
+    public void load()
     {
-        TFM_Util.TFMethodTimer timer = new TFM_Util.TFMethodTimer();
-        timer.start();
-
         playerList.clear();
+
+        if (config == null)
+        {
+            config = new TFM_Config(TotalFreedomMod.plugin, "playerlist.yml", false);
+        }
+
         config.load();
 
         // Load players from config
@@ -54,7 +50,7 @@ public class TFM_PlayerList
 
             final UUID uuid = UUID.fromString(uuidString);
 
-            final TFM_Player entry = new TFM_Player(uuid, config.getConfigurationSection(uuidString));
+            final TFM_PlayerEntry entry = new TFM_PlayerEntry(uuid, config.getConfigurationSection(uuidString));
 
             if (!entry.isComplete())
             {
@@ -74,28 +70,24 @@ public class TFM_PlayerList
         // Save list
         saveAll();
 
-        timer.update();
-
-        TFM_Log.info("Loaded playerdata for " + playerList.size() + " players in " + timer.getTotal() + " ms.");
+        TFM_Log.info("Loaded playerdata for " + playerList.size() + " players.");
     }
 
-    private static void saveAll()
+    private void saveAll()
     {
         // Put entries
-        for (TFM_Player entry : playerList.values())
+        for (TFM_PlayerEntry entry : playerList.values())
         {
-            entry.save(false);
+            entry.save();
         }
-
-        getConfig().save();
     }
 
-    public static TFM_Player getEntry(String player)
+    public TFM_PlayerEntry getEntry(String player)
     {
 
-        for (TFM_Player entry : playerList.values())
+        for (TFM_PlayerEntry entry : playerList.values())
         {
-            if (entry.getLastLoginName().equalsIgnoreCase(player))
+            if (entry.getLastJoinName().equalsIgnoreCase(player))
             {
                 return entry;
             }
@@ -104,33 +96,33 @@ public class TFM_PlayerList
         return null;
     }
 
-    public static TFM_Player getEntry(UUID uuid)
+    public TFM_PlayerEntry getEntry(UUID uuid)
     {
         return playerList.get(uuid);
     }
 
-    public static boolean existsEntry(Player player)
+    public boolean existsEntry(Player player)
     {
-        return playerList.containsKey(TFM_Util.getUuid(player));
+        return playerList.containsKey(player.getUniqueId());
     }
 
-    public static TFM_Player getEntry(Player player)
+    public TFM_PlayerEntry getEntry(Player player)
     {
-        final UUID uuid = TFM_Util.getUuid(player);
+        final UUID uuid = player.getUniqueId();
 
         if (existsEntry(player))
         {
             return playerList.get(uuid);
         }
 
-        final TFM_Player entry = new TFM_Player(uuid);
+        final TFM_PlayerEntry entry = new TFM_PlayerEntry(uuid);
 
-        entry.setFirstLoginName(player.getName());
-        entry.setLastLoginName(player.getName());
+        entry.setFirstJoinName(player.getName());
+        entry.setLastJoinName(player.getName());
 
         final long unix = TFM_Util.getUnixTime();
-        entry.setFirstLoginUnix(unix);
-        entry.setLastLoginUnix(unix);
+        entry.setFirstJoinUnix(unix);
+        entry.setLastJoinUnix(unix);
 
         entry.addIp(TFM_Util.getIp(player));
 
@@ -140,39 +132,7 @@ public class TFM_PlayerList
         return entry;
     }
 
-    public static void setUuid(TFM_Player player, UUID oldUuid, UUID newUuid)
-    {
-        if (!playerList.containsKey(oldUuid))
-        {
-            TFM_Log.warning("Could not set new UUID for player " + player.getLastLoginName() + ", player is not loaded!");
-            return;
-        }
-
-        if (oldUuid.equals(newUuid))
-        {
-            TFM_Log.warning("could not set new UUID for player " + player.getLastLoginName() + ", UUIDs match.");
-            return;
-        }
-
-        final TFM_Player newPlayer = new TFM_Player(
-                newUuid,
-                player.getFirstLoginName(),
-                player.getLastLoginName(),
-                player.getFirstLoginUnix(),
-                player.getLastLoginUnix(),
-                player.getIps());
-
-        playerList.remove(oldUuid);
-        playerList.put(newUuid, newPlayer);
-
-        final TFM_Config config = getConfig();
-        config.set(oldUuid.toString(), null);
-        config.save();
-
-        newPlayer.save();
-    }
-
-    public static void purgeAll()
+    public void purgeAll()
     {
         // Clear the config entries
         for (String key : config.getKeys(false))
@@ -184,5 +144,10 @@ public class TFM_PlayerList
 
         // Load online players
         load();
+    }
+
+    public static TFM_PlayerList getInstance()
+    {
+        return INSTANCE;
     }
 }
