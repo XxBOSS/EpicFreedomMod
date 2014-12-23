@@ -107,16 +107,6 @@ public class TFM_EssentialsBridge
         return 0L;
     }
 
-        public static TFM_EssentialsBridge getInstance()
-    {
-        return TFM_EssentialsBridgeHolder.INSTANCE;
-    }
-
-    private static class TFM_EssentialsBridgeHolder
-    {
-        private static final TFM_EssentialsBridge INSTANCE = new TFM_EssentialsBridge();
-    }
-
     public static boolean isEssentialsEnabled()
     {
         try
