@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.EnumMap;
 import java.util.List;
 import me.StevenLawson.TotalFreedomMod.TFM_Log;
@@ -19,11 +18,10 @@ public class TFM_MainConfig
     public static final String CONFIG_FILENAME = "config.yml";
     public static final File CONFIG_FILE = new File(TotalFreedomMod.plugin.getDataFolder(), CONFIG_FILENAME);
     //
-    private static final EnumMap<TFM_ConfigEntry, Object> ENTRY_MAP;
+    private final EnumMap<TFM_ConfigEntry, Object> configEntryMap = new EnumMap<TFM_ConfigEntry, Object>(TFM_ConfigEntry.class);
 
-    static
+    private TFM_MainConfig()
     {
-        ENTRY_MAP = new EnumMap<TFM_ConfigEntry, Object>(TFM_ConfigEntry.class);
         try
         {
             try
@@ -32,7 +30,7 @@ public class TFM_MainConfig
                 TFM_Config_DefaultsLoader defaultsLoader = new TFM_Config_DefaultsLoader(defaultConfig);
                 for (TFM_ConfigEntry entry : TFM_ConfigEntry.values())
                 {
-                    ENTRY_MAP.put(entry, defaultsLoader.get(entry.getConfigName()));
+                    configEntryMap.put(entry, defaultsLoader.get(entry.getConfigName()));
                 }
                 defaultConfig.close();
             }
@@ -51,12 +49,7 @@ public class TFM_MainConfig
         }
     }
 
-    private TFM_MainConfig()
-    {
-        throw new AssertionError();
-    }
-
-    public static final void load()
+    public final void load()
     {
         try
         {
@@ -72,7 +65,7 @@ public class TFM_MainConfig
                     Object value = config.get(path);
                     if (value == null || entry.getType().isAssignableFrom(value.getClass()))
                     {
-                        ENTRY_MAP.put(entry, value);
+                        configEntryMap.put(entry, value);
                     }
                     else
                     {
@@ -99,7 +92,7 @@ public class TFM_MainConfig
         }
     }
 
-    public static String getString(TFM_ConfigEntry entry)
+    public String getString(TFM_ConfigEntry entry)
     {
         try
         {
@@ -112,7 +105,7 @@ public class TFM_MainConfig
         return null;
     }
 
-    public static void setString(TFM_ConfigEntry entry, String value)
+    public void setString(TFM_ConfigEntry entry, String value)
     {
         try
         {
@@ -124,7 +117,7 @@ public class TFM_MainConfig
         }
     }
 
-    public static Double getDouble(TFM_ConfigEntry entry)
+    public Double getDouble(TFM_ConfigEntry entry)
     {
         try
         {
@@ -137,7 +130,7 @@ public class TFM_MainConfig
         return null;
     }
 
-    public static void setDouble(TFM_ConfigEntry entry, Double value)
+    public void setDouble(TFM_ConfigEntry entry, Double value)
     {
         try
         {
@@ -149,7 +142,7 @@ public class TFM_MainConfig
         }
     }
 
-    public static Boolean getBoolean(TFM_ConfigEntry entry)
+    public Boolean getBoolean(TFM_ConfigEntry entry)
     {
         try
         {
@@ -162,7 +155,7 @@ public class TFM_MainConfig
         return null;
     }
 
-    public static void setBoolean(TFM_ConfigEntry entry, Boolean value)
+    public void setBoolean(TFM_ConfigEntry entry, Boolean value)
     {
         try
         {
@@ -174,7 +167,7 @@ public class TFM_MainConfig
         }
     }
 
-    public static Integer getInteger(TFM_ConfigEntry entry)
+    public Integer getInteger(TFM_ConfigEntry entry)
     {
         try
         {
@@ -187,7 +180,7 @@ public class TFM_MainConfig
         return null;
     }
 
-    public static void setInteger(TFM_ConfigEntry entry, Integer value)
+    public void setInteger(TFM_ConfigEntry entry, Integer value)
     {
         try
         {
@@ -199,7 +192,7 @@ public class TFM_MainConfig
         }
     }
 
-    public static List getList(TFM_ConfigEntry entry)
+    public List getList(TFM_ConfigEntry entry)
     {
         try
         {
@@ -212,9 +205,9 @@ public class TFM_MainConfig
         return null;
     }
 
-    public static <T> T get(TFM_ConfigEntry entry, Class<T> type) throws IllegalArgumentException
+    public <T> T get(TFM_ConfigEntry entry, Class<T> type) throws IllegalArgumentException
     {
-        Object value = ENTRY_MAP.get(entry);
+        Object value = configEntryMap.get(entry);
         try
         {
             return type.cast(value);
@@ -225,7 +218,7 @@ public class TFM_MainConfig
         }
     }
 
-    public static <T> void set(TFM_ConfigEntry entry, T value, Class<T> type) throws IllegalArgumentException
+    public <T> void set(TFM_ConfigEntry entry, T value, Class<T> type) throws IllegalArgumentException
     {
         if (!type.isAssignableFrom(entry.getType()))
         {
@@ -235,7 +228,7 @@ public class TFM_MainConfig
         {
             throw new IllegalArgumentException("Value is not of type " + type.getSimpleName());
         }
-        ENTRY_MAP.put(entry, value);
+        configEntryMap.put(entry, value);
     }
 
     private static void copyDefaultConfig(File targetFile)
@@ -263,7 +256,6 @@ public class TFM_MainConfig
     {
         return TotalFreedomMod.plugin.getResource(CONFIG_FILENAME);
     }
-    
 
     private static class TFM_Config_DefaultsLoader
     {
@@ -274,9 +266,7 @@ public class TFM_MainConfig
             try
             {
                 defaults = new YamlConfiguration();
-                final InputStreamReader isr = new InputStreamReader(defaultConfig);
                 defaults.load(defaultConfig);
-                isr.close();
             }
             catch (IOException ex)
             {
@@ -293,11 +283,13 @@ public class TFM_MainConfig
             return defaults.get(path);
         }
     }
-        public static TFM_MainConfig getInstance()
+
+    public static TFM_MainConfig getInstance()
     {
         return TFM_ConfigHolder.INSTANCE;
     }
-        private static class TFM_ConfigHolder
+
+    private static class TFM_ConfigHolder
     {
         private static final TFM_MainConfig INSTANCE = new TFM_MainConfig();
     }

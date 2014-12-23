@@ -16,7 +16,7 @@ import org.bukkit.entity.Player;
 
 @CommandPermissions(level = AdminLevel.OP, source = SourceType.BOTH)
 @CommandParameters(description = "Manage superadmins.",
-        usage = "/<command> <list | clean | clearme [ip] | <add | delete | info> <username>>")
+        usage = "/<command> <list | clean | clear [ip] | <add | delete | info> <username>>")
 public class Command_saconfig extends TFM_Command
 {
     @Override
@@ -57,7 +57,7 @@ public class Command_saconfig extends TFM_Command
             return true;
         }
 
-        if (args[0].equals("clearme"))
+        if (args[0].equals("clear"))
         {
             if (senderIsConsole)
             {
@@ -85,7 +85,8 @@ public class Command_saconfig extends TFM_Command
                     counter++;
                 }
 
-                TFM_AdminList.saveAll();
+                TFM_AdminList.save();
+
                 playerMsg(counter + " IPs removed.");
                 playerMsg(admin.getIps().get(0) + " is now your only IP address");
                 return true;
@@ -107,7 +108,7 @@ public class Command_saconfig extends TFM_Command
             TFM_Util.adminAction(sender.getName(), "Removing a supered IP", true);
 
             admin.removeIp(args[1]);
-            TFM_AdminList.saveAll();
+            TFM_AdminList.save();
 
             playerMsg("Removed IP " + args[1]);
             playerMsg("Current IPs: " + StringUtils.join(admin.getIps(), ", "));
@@ -179,6 +180,7 @@ public class Command_saconfig extends TFM_Command
 
             String targetName = args[1];
 
+
             final Player player = getPlayer(targetName);
 
             if (player != null)
@@ -198,7 +200,7 @@ public class Command_saconfig extends TFM_Command
             // Twitterbot
             if (TFM_ConfigEntry.TWITTERBOT_ENABLED.getBoolean())
             {
-                TFM_TwitterHandler.delTwitterVerbose(targetName, sender);
+                TFM_TwitterHandler.getInstance().delTwitterVerbose(targetName, sender);
             }
             return true;
         }

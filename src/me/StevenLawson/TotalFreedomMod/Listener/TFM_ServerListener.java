@@ -48,7 +48,7 @@ public class TFM_ServerListener implements Listener
      }
      }
      }*/
-    @EventHandler(priority = EventPriority.HIGH)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onServerPing(ServerListPingEvent event)
     {
         final String ip = event.getAddress().getHostAddress();

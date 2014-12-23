@@ -8,10 +8,10 @@ import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
 import net.minecraft.util.org.apache.commons.lang3.ArrayUtils;
 import net.minecraft.util.org.apache.commons.lang3.StringUtils;
-import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.Location;
 
 @CommandPermissions(level = AdminLevel.SUPER, source = SourceType.BOTH)
 @CommandParameters(description = "Temporarily ban someone.", usage = "/<command> [playername] [duration] [reason]")
@@ -54,6 +54,7 @@ public class Command_tempban extends TFM_Command
             reason = StringUtils.join(ArrayUtils.subarray(args, 2, args.length), " ") + " (" + sender.getName() + ")";
             message.append(", Reason: \"").append(reason).append("\"");
         }
+
 
         // strike with lightning effect:
         final Location targetPos = player.getLocation();

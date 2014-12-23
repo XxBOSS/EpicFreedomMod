@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -24,7 +23,6 @@ public class TFM_PlayerData
     public final static Map<Player, TFM_PlayerData> userinfo = new HashMap<Player, TFM_PlayerData>();
     private final Player player;
     private final String ip;
-    private final UUID uuid;
     private boolean isFrozen = false;
     private boolean isMuted = false;
     private boolean isHalted = false;
@@ -53,17 +51,14 @@ public class TFM_PlayerData
     private boolean allCommandsBlocked = false;
     private boolean verifiedSuperadminId = false;
     private String lastCommand = "";
-    private boolean cmdspyEnabled = false;
-    private String tag = null;
     private boolean inGod = false;
-    private boolean isFlying = false;
+    private boolean cmdspyEnabled = false;
     private boolean isDoubleJumper = false;
-    private int warning = 0;
+    private String tag = null;
 
     private TFM_PlayerData(Player player)
     {
         this.player = player;
-        this.uuid = TFM_Util.getUuid(player.getName());
         this.ip = player.getAddress().getAddress().getHostAddress();
     }
 
@@ -71,42 +66,38 @@ public class TFM_PlayerData
     {
         TFM_PlayerData playerdata = TFM_PlayerData.userinfo.get(player);
 
-        if (playerdata != null)
+        if (playerdata == null)
         {
-            return playerdata;
-        }
-
-        Iterator<Entry<Player, TFM_PlayerData>> it = userinfo.entrySet().iterator();
-        while (it.hasNext())
-        {
-            Entry<Player, TFM_PlayerData> pair = it.next();
-            TFM_PlayerData playerdataTest = pair.getValue();
-
-            if (playerdataTest.player.getName().equalsIgnoreCase(player.getName()))
+            Iterator<Entry<Player, TFM_PlayerData>> it = userinfo.entrySet().iterator();
+            while (it.hasNext())
             {
-                if (Bukkit.getOnlineMode())
+                Entry<Player, TFM_PlayerData> pair = it.next();
+                TFM_PlayerData playerdataTest = pair.getValue();
+
+                if (playerdataTest.player.getName().equalsIgnoreCase(player.getName()))
                 {
-                    playerdata = playerdataTest;
-                    break;
-                }
-                else
-                {
-                    if (playerdataTest.ip.equalsIgnoreCase(player.getAddress().getAddress().getHostAddress()))
+                    if (Bukkit.getOnlineMode())
                     {
                         playerdata = playerdataTest;
                         break;
+                    }
+                    else
+                    {
+                        if (playerdataTest.ip.equalsIgnoreCase(player.getAddress().getAddress().getHostAddress()))
+                        {
+                            playerdata = playerdataTest;
+                            break;
+                        }
                     }
                 }
             }
         }
 
-        if (playerdata != null)
+        if (playerdata == null)
         {
-            return playerdata;
+            playerdata = new TFM_PlayerData(player);
+            TFM_PlayerData.userinfo.put(player, playerdata);
         }
-
-        playerdata = new TFM_PlayerData(player);
-        TFM_PlayerData.userinfo.put(player, playerdata);
 
         return playerdata;
     }
@@ -114,11 +105,6 @@ public class TFM_PlayerData
     public String getIpAddress()
     {
         return this.ip;
-    }
-
-    public UUID getUniqueId()
-    {
-        return uuid;
     }
 
     public boolean isOrbiting()
@@ -141,6 +127,16 @@ public class TFM_PlayerData
     {
         return this.orbitStrength;
     }
+    
+    public boolean inGod()
+    {
+        return this.inGod;
+    }
+    
+    public void setGod(boolean state)
+    {
+        this.inGod = state;
+    }
 
     public void setCaged(boolean state)
     {
@@ -160,27 +156,7 @@ public class TFM_PlayerData
         return this.isCaged;
     }
 
-    public boolean inGod()
-    {
-        return this.inGod;
-    }
-
-        public boolean isFlying()
-    {
-        return this.isFlying;
-    }
-
-    public void setFlying(boolean state)
-    {
-        this.isFlying = state;
-    }
-
-    public void setGod(boolean state)
-    {
-        this.inGod = state;
-    }
-
-    public boolean isDoubleJumper()
+        public boolean isDoubleJumper()
     {
         return this.isDoubleJumper;
     }
@@ -189,7 +165,7 @@ public class TFM_PlayerData
     {
         this.isDoubleJumper = state;
     }
-
+    
     public enum CageLayer
     {
         INNER, OUTER
@@ -535,28 +511,5 @@ public class TFM_PlayerData
     public String getTag()
     {
         return this.tag;
-    }
-
-    public int getWarning()
-    {
-        return this.warning;
-    }
-
-    public void incrementWarnings()
-    {
-        this.warning++;
-
-        if (warning >= 2)
-        {
-            this.player.getWorld().strikeLightning(this.player.getLocation());
-            this.player.sendMessage(ChatColor.RED + "You have been warned at least twice now, make sure to read the rules at http://freedomop.boards.net/");
-
-        }
-        {
-            if (warning >= 3)
-            {
-                this.player.kickPlayer("You've been kicked due to you have 3 warnings. Please read the rules at http://freedomop.boards.net/");
-            }
-        }
     }
 }

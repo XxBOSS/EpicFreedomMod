@@ -1,16 +1,12 @@
 package me.StevenLawson.TotalFreedomMod.Commands;
 
-import java.util.Arrays;
-import java.util.List;
-import me.StevenLawson.TotalFreedomMod.TFM_CommandBlocker;
-import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import net.minecraft.util.org.apache.commons.lang3.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-@CommandPermissions(level = AdminLevel.SENIOR, source = SourceType.BOTH)
+@CommandPermissions(level = AdminLevel.SUPER, source = SourceType.BOTH)
 @CommandParameters(description = "Run any command on all users, username placeholder = ?.", usage = "/<command> [fluff] ? [fluff] ?")
 public class Command_wildcard extends TFM_Command
 {
@@ -22,28 +18,32 @@ public class Command_wildcard extends TFM_Command
             return false;
         }
 
-        List<String> blocked = Arrays.asList("doom", "gtfo", "wildcard", "smite", "forcechat", "fchat", "fc", "explode");
-
-        String baseCommand = StringUtils.join(args, " ");
-
-        for (String block : blocked)
+        if (args[0].equals("wildcard"))
         {
-            if (baseCommand.toLowerCase().contains(block) && !TFM_Util.isHighRank(sender))
-            {
-                TFM_Util.playerMsg(sender, String.format("You cannot use %s in a WildCard!", block), ChatColor.RED);
-                return true;
-            }
+            playerMsg("What the hell are you trying to do, you stupid idiot...", ChatColor.RED);
+            return true;
         }
-
-        if (TFM_CommandBlocker.isCommandBlocked(baseCommand, sender))
+        if (args[0].equals("gtfo"))
         {
-            // CommandBlocker handles messages and broadcasts
+            playerMsg("Nice try", ChatColor.RED);
+            return true;
+        }
+        if (args[0].equals("doom"))
+        {
+            playerMsg("Look, we all hate people, but this is not the way to deal with it, doom is evil enough!", ChatColor.RED);
+            return true;
+        }
+        if (args[0].equals("saconfig"))
+        {
+            playerMsg("WOA, WTF are you trying to do???", ChatColor.RED);
             return true;
         }
 
+        String base_command = StringUtils.join(args, " ");
+
         for (Player player : server.getOnlinePlayers())
         {
-            String out_command = baseCommand.replaceAll("\\x3f", player.getName());
+            String out_command = base_command.replaceAll("\\x3f", player.getName());
             playerMsg("Running Command: " + out_command);
             server.dispatchCommand(sender, out_command);
         }

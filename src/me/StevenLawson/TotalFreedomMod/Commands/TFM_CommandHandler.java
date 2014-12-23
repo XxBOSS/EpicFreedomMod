@@ -40,6 +40,7 @@ public class TFM_CommandHandler
                     StringUtils.join(args, " ")), true);
         }
 
+
         final TFM_Command dispatcher;
         try
         {

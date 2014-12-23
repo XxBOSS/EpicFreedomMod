@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
-import net.minecraft.util.org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.configuration.ConfigurationSection;
 
 public class TFM_Admin
@@ -92,25 +92,12 @@ public class TFM_Admin
         }
     }
 
-    public void addIps(List<String> ips)
-    {
-        for (String ip : ips)
-        {
-            addIp(ip);
-        }
-    }
-
     public void removeIp(String ip)
     {
         if (ips.contains(ip))
         {
             ips.remove(ip);
         }
-    }
-
-    public void clearIPs()
-    {
-        ips.clear();
     }
 
     public Date getLastLogin()

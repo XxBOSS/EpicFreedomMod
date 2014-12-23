@@ -95,8 +95,8 @@ public class TFM_Util
             ChatColor.RED,
             ChatColor.LIGHT_PURPLE,
             ChatColor.YELLOW);
-    
-    public static final List<String> permbannedNames = Arrays.asList("jjkatz613", "DF_Crafted", "taahanis", "EXPLODINGTNT001", "SupItsDillon", "Camzie99", "G0DlIkEDM", "BabyBreezy", "buildcater8");
+
+    public static final List<String> permbannedNames = Arrays.asList("SupItsDillon", "Camzie99", "G0DlIkEDM", "BabyBreezy", "buildcater8");
     public static final List<String> permbannedIps = Arrays.asList("77.98.45.165");
     public static ArrayList<String> imposters = new ArrayList<>();
     
@@ -106,11 +106,11 @@ public class TFM_Util
         {
             try
             {
-                if (TFM_DepreciationAggregator.getName_EntityType(type) != null)
+                if (type.getName() != null)
                 {
                     if (Creature.class.isAssignableFrom(type.getEntityClass()))
                     {
-                        mobtypes.put(TFM_DepreciationAggregator.getName_EntityType(type).toLowerCase(), type);
+                        mobtypes.put(type.getName().toLowerCase(), type);
                     }
                 }
             }
@@ -123,16 +123,6 @@ public class TFM_Util
         {
             CHAT_COLOR_NAMES.put(chatColor.name().toLowerCase().replace("_", ""), chatColor);
         }
-    }
-
-    public static void adminAction(String string)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    static String getUniqueId(Player player)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private TFM_Util()
@@ -153,36 +143,7 @@ public class TFM_Util
 
         return true;
     }
-
-    public static UUID generateUuidForName(String name)
-    {
-        TFM_Log.info("Generating spoof UUID for " + name);
-        name = name.toLowerCase();
-        try
-        {
-            final MessageDigest mDigest = MessageDigest.getInstance("SHA1");
-            byte[] result = mDigest.digest(name.getBytes());
-            final StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < result.length; i++)
-            {
-                sb.append(Integer.toString((result[i] & 0xff) + 0x100, 16).substring(1));
-            }
-
-            return UUID.fromString(
-                    sb.substring(0, 8)
-                    + "-" + sb.substring(8, 12)
-                    + "-" + sb.substring(12, 16)
-                    + "-" + sb.substring(16, 20)
-                    + "-" + sb.substring(20, 32));
-        }
-        catch (NoSuchAlgorithmException ex)
-        {
-            TFM_Log.severe(ex);
-        }
-
-        return UUID.randomUUID();
-    }
-
+    
     public static void bcastMsg(String message, ChatColor color)
     {
         TFM_Log.info(message, true);
@@ -390,7 +351,7 @@ public class TFM_Util
                         block.setType(Material.SKULL);
                         final Skull skull = (Skull) block.getState();
                         skull.setSkullType(SkullType.PLAYER);
-                        skull.setOwner("tylerhyperHD");
+                        skull.setOwner("DarthSalamon");
                         skull.update();
                     }
                 }
@@ -403,18 +364,6 @@ public class TFM_Util
         long time = world.getTime();
         time -= time % 24000;
         world.setTime(time + 24000 + ticks);
-    }
-    
-        public static UUID getUuid(String offlineplayer)
-    {
-        final UUID uuid = TFM_UuidResolver.getUUIDOf(offlineplayer);
-
-        if (uuid == null)
-        {
-            return generateUuidForName(offlineplayer);
-        }
-
-        return uuid;
     }
 
     public static void createDefaultConfiguration(final String configFileName)
@@ -562,6 +511,7 @@ public class TFM_Util
 
                 TFM_BanManager.getInstance().addIpBan(new TFM_Ban(ip, player.getName(), "AutoEject", expires, kickMessage));
                 TFM_BanManager.getInstance().addUuidBan(new TFM_Ban(player.getUniqueId(), player.getName(), "AutoEject", expires, kickMessage));
+
                 player.kickPlayer(kickMessage);
 
                 break;
@@ -576,6 +526,7 @@ public class TFM_Util
 
                 TFM_BanManager.getInstance().addIpBan(new TFM_Ban(ip, player.getName(), "AutoEject", expires, kickMessage));
                 TFM_BanManager.getInstance().addUuidBan(new TFM_Ban(player.getUniqueId(), player.getName(), "AutoEject", expires, kickMessage));
+
                 player.kickPlayer(kickMessage);
                 break;
             }
@@ -586,7 +537,7 @@ public class TFM_Util
                 TFM_BanManager.getInstance().addIpBan(new TFM_Ban(ip, player.getName(), "AutoEject", null, kickMessage));
                 TFM_BanManager.getInstance().addIpBan(new TFM_Ban(ipAddressParts[0] + "." + ipAddressParts[1] + ".*.*", player.getName(), "AutoEject", null, kickMessage));
                 TFM_BanManager.getInstance().addUuidBan(new TFM_Ban(player.getUniqueId(), player.getName(), "AutoEject", null, kickMessage));
-                
+
                 TFM_Util.bcastMsg(ChatColor.RED + player.getName() + " has been banned.");
 
                 player.kickPlayer(kickMessage);
@@ -967,20 +918,6 @@ public class TFM_Util
         }
     }
 
-    public static void adminChatMessage(CommandSender sender, String message, boolean senderIsConsole)
-    {
-        String name = sender.getName() + " " + TFM_PlayerRank.fromSender(sender).getPrefix() + ChatColor.WHITE;
-        TFM_Log.info("[ADMIN] " + name + ": " + message);
-
-        for (Player player : Bukkit.getOnlinePlayers())
-        {
-            if (TFM_AdminList.isSuperAdmin(player))
-            {
-                player.sendMessage(ChatColor.BLUE + "[" + ChatColor.AQUA + "Admin Chat" + ChatColor.BLUE + "] " + ChatColor.DARK_RED + name + ": " + ChatColor.GREEN + message);
-            }
-        }
-    }
-
     //getField: Borrowed from WorldEdit
     @SuppressWarnings("unchecked")
     public static <T> T getField(Object from, String name)
@@ -993,6 +930,7 @@ public class TFM_Util
                 Field field = checkClass.getDeclaredField(name);
                 field.setAccessible(true);
                 return (T) field.get(from);
+
 
             }
             catch (NoSuchFieldException ex)
@@ -1042,6 +980,8 @@ public class TFM_Util
     {
         String packageName = Bukkit.getServer().getClass().getPackage().getName();
         return packageName.substring(packageName.lastIndexOf('.') + 1);
+
+
     }
 
     public static void spawnMob(Player player, EntityType entity, int amount)
@@ -1054,7 +994,103 @@ public class TFM_Util
         }
         while (i <= amount);
     }
+    
+    public static class TFM_EntityWiper
+    {
+        private static final List<Class<? extends Entity>> WIPEABLES = new ArrayList<Class<? extends Entity>>();
 
+        static
+        {
+            WIPEABLES.add(EnderCrystal.class);
+            WIPEABLES.add(EnderSignal.class);
+            WIPEABLES.add(ExperienceOrb.class);
+            WIPEABLES.add(Projectile.class);
+            WIPEABLES.add(FallingBlock.class);
+            WIPEABLES.add(Firework.class);
+            WIPEABLES.add(Item.class);
+        }
+
+        private TFM_EntityWiper()
+        {
+            throw new AssertionError();
+        }
+
+        private static boolean canWipe(Entity entity, boolean wipeExplosives, boolean wipeVehicles)
+        {
+            if (wipeExplosives)
+            {
+                if (Explosive.class.isAssignableFrom(entity.getClass()))
+                {
+                    return true;
+                }
+            }
+
+            if (wipeVehicles)
+            {
+                if (Boat.class.isAssignableFrom(entity.getClass()))
+                {
+                    return true;
+                }
+                else if (Minecart.class.isAssignableFrom(entity.getClass()))
+                {
+                    return true;
+                }
+            }
+
+            Iterator<Class<? extends Entity>> it = WIPEABLES.iterator();
+            while (it.hasNext())
+            {
+                if (it.next().isAssignableFrom(entity.getClass()))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public static int wipeEntities(boolean wipeExplosives, boolean wipeVehicles)
+        {
+            int removed = 0;
+
+            Iterator<World> worlds = Bukkit.getWorlds().iterator();
+            while (worlds.hasNext())
+            {
+                Iterator<Entity> entities = worlds.next().getEntities().iterator();
+                while (entities.hasNext())
+                {
+                    Entity entity = entities.next();
+                    if (canWipe(entity, wipeExplosives, wipeVehicles))
+                    {
+                        entity.remove();
+                        removed++;
+                    }
+                }
+            }
+
+            return removed;
+        }
+    }
+
+    public static enum EjectMethod
+    {
+        STRIKE_ONE, STRIKE_TWO, STRIKE_THREE;
+    }
+
+    public static void adminChatMessage(CommandSender sender, String message, boolean senderIsConsole)
+    {
+        String name = sender.getName() + " " + TFM_PlayerRank.fromSender(sender).getPrefix() + ChatColor.WHITE;
+        TFM_Log.info("[ADMIN] " + name + ": " + message);
+
+        for (Player player : Bukkit.getOnlinePlayers())
+        {
+            if (TFM_AdminList.isSuperAdmin(player))
+            {
+                player.sendMessage(ChatColor.BLUE + "[" + ChatColor.AQUA + "Admin Chat" + ChatColor.BLUE + "] " + ChatColor.DARK_RED + name + ": " + ChatColor.GREEN + message);
+            }
+        }
+    }
+    
     public static boolean isHighRank(Player player)
     {
         String name = player.getName();
@@ -1076,6 +1112,7 @@ public class TFM_Util
         }
         return isHighRank((Player) sender);
     }
+
 
     public static void asciiDog()
     {
@@ -1188,16 +1225,6 @@ public class TFM_Util
     {
         TFM_PlayerData.getPlayerData(player).setGod(enabled);
     }
-
-    public static boolean isFlying(Player player)
-    {
-        return TFM_PlayerData.getPlayerData(player).isFlying();
-    }
-    
-    public static void setFlying(Player player, boolean enabled)
-    {
-        TFM_PlayerData.getPlayerData(player).setFlying(enabled);
-    }
    
     public static void SeniorAdminChatMessage(CommandSender sender, String message, boolean senderIsConsole)
     {
@@ -1221,118 +1248,6 @@ public class TFM_Util
     public static void setDoubleJumper(Player player, boolean state)
     {
         TFM_PlayerData.getPlayerData(player).setDoubleJumper(state);
-    }
-
-    public static class TFM_EntityWiper
-    {
-        private static final List<Class<? extends Entity>> WIPEABLES = new ArrayList<Class<? extends Entity>>();
-
-        static
-        {
-            WIPEABLES.add(EnderCrystal.class);
-            WIPEABLES.add(EnderSignal.class);
-            WIPEABLES.add(ExperienceOrb.class);
-            WIPEABLES.add(Projectile.class);
-            WIPEABLES.add(FallingBlock.class);
-            WIPEABLES.add(Firework.class);
-            WIPEABLES.add(Item.class);
-        }
-
-        private TFM_EntityWiper()
-        {
-            throw new AssertionError();
-        }
-
-        private static boolean canWipe(Entity entity, boolean wipeExplosives, boolean wipeVehicles)
-        {
-            if (wipeExplosives)
-            {
-                if (Explosive.class.isAssignableFrom(entity.getClass()))
-                {
-                    return true;
-                }
-            }
-
-            if (wipeVehicles)
-            {
-                if (Boat.class.isAssignableFrom(entity.getClass()))
-                {
-                    return true;
-                }
-                else if (Minecart.class.isAssignableFrom(entity.getClass()))
-                {
-                    return true;
-                }
-            }
-
-            Iterator<Class<? extends Entity>> it = WIPEABLES.iterator();
-            while (it.hasNext())
-            {
-                if (it.next().isAssignableFrom(entity.getClass()))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        public static int wipeEntities(boolean wipeExplosives, boolean wipeVehicles)
-        {
-            int removed = 0;
-
-            Iterator<World> worlds = Bukkit.getWorlds().iterator();
-            while (worlds.hasNext())
-            {
-                Iterator<Entity> entities = worlds.next().getEntities().iterator();
-                while (entities.hasNext())
-                {
-                    Entity entity = entities.next();
-                    if (canWipe(entity, wipeExplosives, wipeVehicles))
-                    {
-                        entity.remove();
-                        removed++;
-                    }
-                }
-            }
-
-            return removed;
-        }
-    }
-
-    public static enum EjectMethod
-    {
-        STRIKE_ONE, STRIKE_TWO, STRIKE_THREE;
-    }
-
-    public static class TFMethodTimer
-    {
-        private long lastStart;
-        private long total = 0;
-
-        public TFMethodTimer()
-        {
-        }
-
-        public void start()
-        {
-            this.lastStart = System.currentTimeMillis();
-        }
-
-        public void update()
-        {
-            this.total += (System.currentTimeMillis() - this.lastStart);
-        }
-
-        public long getTotal()
-        {
-            return this.total;
-        }
-
-        public void printTotalToLog(String timerName)
-        {
-            TFM_Log.info("DEBUG: " + timerName + " used " + this.getTotal() + " ms.");
-        }
     }
     
     public static String process(String name)

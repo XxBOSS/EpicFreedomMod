@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = AdminLevel.OP, source = SourceType.BOTH)
-@CommandParameters(description = "Quickly change your own gamemode to creative, or define someone's username to change theirs.", usage = "/<command> [partialname]", aliases = "gmc")
+@CommandParameters(description = "Quickly change your own gamemode to creative, or define someone's username to change theirs.", usage = "/<command> [partialname]")
 public class Command_creative extends TFM_Command
 {
     @Override
@@ -54,6 +54,7 @@ public class Command_creative extends TFM_Command
                 return true;
             }
 
+
             player = getPlayer(args[0]);
 
             if (player == null)
@@ -61,6 +62,7 @@ public class Command_creative extends TFM_Command
                 sender.sendMessage(TotalFreedomMod.PLAYER_NOT_FOUND);
                 return true;
             }
+
         }
 
         playerMsg("Setting " + player.getName() + " to game mode 'Creative'.");

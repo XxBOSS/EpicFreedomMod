@@ -11,7 +11,6 @@ import org.bukkit.entity.Player;
 @CommandParameters(description = "Op everyone on the server, optionally change everyone's gamemode at the same time.", usage = "/<command> [-c | -s]")
 public class Command_opall extends TFM_Command
 {
-
     @Override
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
@@ -26,13 +25,10 @@ public class Command_opall extends TFM_Command
                 doSetGamemode = true;
                 targetGamemode = GameMode.CREATIVE;
             }
-            else
+            else if (args[0].equals("-s"))
             {
-                if (args[0].equals("-s"))
-                {
-                    doSetGamemode = true;
-                    targetGamemode = GameMode.SURVIVAL;
-                }
+                doSetGamemode = true;
+                targetGamemode = GameMode.SURVIVAL;
             }
         }
 

@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_GameRuleHandler;
 import me.StevenLawson.TotalFreedomMod.TFM_Log;
@@ -33,7 +32,7 @@ public final class TFM_AdminWorld extends TFM_CustomWorld
     private final Map<CommandSender, Boolean> accessCache = new HashMap<CommandSender, Boolean>();
     //
     private Long cacheLastCleared = null;
-    private Map<Player, Player> guestList = new HashMap<Player, Player>(); // Guest, Supervisor
+    private Map<Player, Player> guestList = new HashMap<Player, Player>();
     private WeatherMode weatherMode = WeatherMode.OFF;
     private TimeOfDay timeOfDay = TimeOfDay.INHERIT;
 
@@ -103,38 +102,35 @@ public final class TFM_AdminWorld extends TFM_CustomWorld
 
     public Player removeGuest(Player guest)
     {
-        final Player player = guestList.remove(guest);
+        Player player = guestList.remove(guest);
         wipeAccessCache();
         return player;
     }
 
     public Player removeGuest(String partialName)
     {
-        partialName = partialName.toLowerCase();
-        final Iterator<Player> it = guestList.keySet().iterator();
-
+        partialName = partialName.toLowerCase().trim();
+        Iterator<Player> it = guestList.values().iterator();
         while (it.hasNext())
         {
-            final Player player = it.next();
-            if (player.getName().toLowerCase().contains(partialName))
+            Player player = it.next();
+            if (player.getName().toLowerCase().trim().contains(partialName))
             {
-                removeGuest(player);
-                return player;
+                return removeGuest(player);
             }
         }
-
         return null;
     }
 
     public String guestListToString()
     {
-        final List<String> output = new ArrayList<String>();
-        final Iterator<Map.Entry<Player, Player>> it = guestList.entrySet().iterator();
+        List<String> output = new ArrayList<String>();
+        Iterator<Map.Entry<Player, Player>> it = guestList.entrySet().iterator();
         while (it.hasNext())
         {
-            final Entry<Player, Player> entry = it.next();
-            final Player player = entry.getKey();
-            final Player supervisor = entry.getValue();
+            Map.Entry<Player, Player> entry = it.next();
+            Player player = entry.getKey();
+            Player supervisor = entry.getValue();
             output.add(player.getName() + " (Supervisor: " + supervisor.getName() + ")");
         }
         return StringUtils.join(output, ", ");

@@ -1,10 +1,7 @@
 package me.StevenLawson.TotalFreedomMod.Commands;
 
-import java.util.ArrayList;
-import java.util.List;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
-import net.minecraft.util.org.apache.commons.lang3.StringUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -27,30 +24,26 @@ public class Command_qop extends TFM_Command
             silent = args[1].equalsIgnoreCase("-s");
         }
 
-        final String targetName = args[0].toLowerCase();
+        boolean matched_player = false;
 
-        final List<String> matchedPlayerNames = new ArrayList<String>();
-        for (final Player player : server.getOnlinePlayers())
+        String targetName = args[0].toLowerCase();
+
+        for (Player player : server.getOnlinePlayers())
         {
-            if (player.getName().toLowerCase().contains(targetName) || player.getDisplayName().toLowerCase().contains(targetName))
+            if (player.getName().toLowerCase().indexOf(targetName) != -1 || player.getDisplayName().toLowerCase().indexOf(targetName) != -1)
             {
-                if (!player.isOp())
+                matched_player = true;
+
+                if (!silent)
                 {
-                    matchedPlayerNames.add(player.getName());
-                    player.setOp(true);
-                    player.sendMessage(TotalFreedomMod.YOU_ARE_OP);
+                    TFM_Util.adminAction(sender.getName(), "Opping " + player.getName(), false);
                 }
+                player.setOp(true);
+                player.sendMessage(TotalFreedomMod.YOU_ARE_OP);
             }
         }
 
-        if (!matchedPlayerNames.isEmpty())
-        {
-            if (!silent)
-            {
-                TFM_Util.adminAction(sender.getName(), "Opping " + StringUtils.join(matchedPlayerNames, ", "), false);
-            }
-        }
-        else
+        if (!matched_player)
         {
             playerMsg("No targets matched.");
         }

@@ -12,7 +12,6 @@ public enum TFM_ConfigEntry
     ALLOW_LAVA_PLACE(Boolean.class, "allow.lava_place"),
     ALLOW_TNT_MINECARTS(Boolean.class, "allow.tnt_minecarts"),
     ALLOW_WATER_PLACE(Boolean.class, "allow.water_place"),
-    ENABLE_CHAOS(Boolean.class, "enable_chaos"),
     //
     MOB_LIMITER_ENABLED(Boolean.class, "moblimiter.enabled"),
     MOB_LIMITER_MAX(Integer.class, "moblimiter.max"),
@@ -30,10 +29,9 @@ public enum TFM_ConfigEntry
     SERVER_ADDRESS(String.class, "server.address"),
     SERVER_MOTD(String.class, "server.motd"),
     SERVER_OWNERS(List.class, "server.owners"),
-    VERIFY_PASSWORD(String.class, "verify.password"),
-    DEVELOPERS(List.class, "server.developers"),
     SERVER_BAN_URL(String.class, "server.ban_url"),
     SERVER_PERMBAN_URL(String.class, "server.permban_url"),
+    VERIFY_PASSWORD(String.class, "verify.password"),
     //
     TWITTERBOT_ENABLED(Boolean.class, "twitterbot.enabled"),
     TWITTERBOT_SECRET(String.class, "twitterbot.secret"),
@@ -44,7 +42,6 @@ public enum TFM_ConfigEntry
     //
     ENABLE_PREPROCESS_LOG(Boolean.class, "preprocess_log"),
     ENABLE_PET_PROTECT(Boolean.class, "petprotect.enabled"),
-    ENABLE_ADMINWORLD(Boolean.class, "adminworld_enabled"),
     //
     LANDMINES_ENABLED(Boolean.class, "landmines_enabled"),
     TOSSMOB_ENABLED(Boolean.class, "tossmob_enabled"),
@@ -68,11 +65,6 @@ public enum TFM_ConfigEntry
     //
     FLATLANDS_GENERATE(Boolean.class, "flatlands.generate"),
     FLATLANDS_GENERATE_PARAMS(String.class, "flatlands.generate_params"),
-    //
-    ANNOUNCER_ENABLED(Boolean.class, "announcer.enabled"),
-    ANNOUNCER_INTERVAL(Integer.class, "announcer.interval"),
-    ANNOUNCER_PREFIX(String.class, "announcer.prefix"),
-    ANNOUNCER_ANNOUNCEMENTS(List.class, "announcer.announcements"),
     //
     EXPLOSIVE_RADIUS(Double.class, "explosive_radius"),
     FREECAM_TRIGGER_COUNT(Integer.class, "freecam_trigger_count"),
@@ -106,51 +98,51 @@ public enum TFM_ConfigEntry
 
     public String getString()
     {
-        return TFM_MainConfig.getString(this);
+        return TFM_MainConfig.getInstance().getString(this);
     }
 
     public String setString(String value)
     {
-        TFM_MainConfig.setString(this, value);
+        TFM_MainConfig.getInstance().setString(this, value);
         return value;
     }
 
     public Double getDouble()
     {
-        return TFM_MainConfig.getDouble(this);
+        return TFM_MainConfig.getInstance().getDouble(this);
     }
 
     public Double setDouble(Double value)
     {
-        TFM_MainConfig.setDouble(this, value);
+        TFM_MainConfig.getInstance().setDouble(this, value);
         return value;
     }
 
     public Boolean getBoolean()
     {
-        return TFM_MainConfig.getBoolean(this);
+        return TFM_MainConfig.getInstance().getBoolean(this);
     }
 
     public Boolean setBoolean(Boolean value)
     {
-        TFM_MainConfig.setBoolean(this, value);
+        TFM_MainConfig.getInstance().setBoolean(this, value);
         return value;
     }
 
     public Integer getInteger()
     {
-        return TFM_MainConfig.getInteger(this);
+        return TFM_MainConfig.getInstance().getInteger(this);
     }
 
     public Integer setInteger(Integer value)
     {
-        TFM_MainConfig.setInteger(this, value);
+        TFM_MainConfig.getInstance().setInteger(this, value);
         return value;
     }
 
     public List<?> getList()
     {
-        return TFM_MainConfig.getList(this);
+        return TFM_MainConfig.getInstance().getList(this);
     }
 
     public static TFM_ConfigEntry findConfigEntry(String name)

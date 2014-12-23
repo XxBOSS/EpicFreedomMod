@@ -1,11 +1,9 @@
 package me.StevenLawson.TotalFreedomMod.Commands;
 
-import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
+import me.StevenLawson.TotalFreedomMod.World.TFM_AdminWorld;
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
-import me.StevenLawson.TotalFreedomMod.World.TFM_AdminWorld;
-import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -17,18 +15,12 @@ public class Command_adminworld extends TFM_Command
 {
     private enum CommandMode
     {
-        TELEPORT, GUEST, TIME, WEATHER;
+        TELEPORT, GUEST, TIME, WEATHER
     }
 
     @Override
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-        if (!TFM_ConfigEntry.ENABLE_ADMINWORLD.getBoolean() && !TFM_Util.isHighRank(sender))
-        {
-            TFM_Util.playerMsg(sender, "Admin World is currently disabled!", ChatColor.RED);
-            return true;
-        }
-
         CommandMode commandMode = null;
 
         if (args.length == 0)
@@ -230,9 +222,7 @@ public class Command_adminworld extends TFM_Command
 
     private class PermissionDeniedException extends Exception
     {
-        private static final long serialVersionUID = 1L;
-
-        private PermissionDeniedException(String string)
+        public PermissionDeniedException(String string)
         {
             super(string);
         }

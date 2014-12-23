@@ -45,7 +45,7 @@ public class Command_trainingmode extends TFM_Command
             {
                 if (!TFM_AdminList.isSuperAdmin(player))
                 {
-                    player.kickPlayer("FreedomOP is now in a Training Session.");
+                    player.kickPlayer("EpicFreedom is now in a Training Session.");
                 }
             }
             return true;

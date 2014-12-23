@@ -1,7 +1,6 @@
 package me.StevenLawson.TotalFreedomMod.Commands;
 
 import java.util.List;
-import me.StevenLawson.TotalFreedomMod.TFM_DepreciationAggregator;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -55,15 +54,15 @@ public class Command_setlever extends TFM_Command
 
         final Location leverLocation = new Location(world, x, y, z);
 
-        final boolean leverOn = (args[4].trim().equalsIgnoreCase("on") || args[4].trim().equalsIgnoreCase("1"));
+        final boolean leverOn = (args[4].trim().equalsIgnoreCase("on") || args[4].trim().equalsIgnoreCase("1")) ? true : false;
 
         final Block targetBlock = leverLocation.getBlock();
 
         if (targetBlock.getType() == Material.LEVER)
         {
-            org.bukkit.material.Lever lever = TFM_DepreciationAggregator.makeLeverWithData(TFM_DepreciationAggregator.getData_Block(targetBlock));
+            org.bukkit.material.Lever lever = new org.bukkit.material.Lever(Material.LEVER, targetBlock.getData());
             lever.setPowered(leverOn);
-            TFM_DepreciationAggregator.setData_Block(targetBlock, TFM_DepreciationAggregator.getData_MaterialData(lever));
+            targetBlock.setData(lever.getData());
             targetBlock.getState().update();
         }
         else

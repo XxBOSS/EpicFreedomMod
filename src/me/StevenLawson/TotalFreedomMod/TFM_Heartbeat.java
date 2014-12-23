@@ -1,8 +1,8 @@
 package me.StevenLawson.TotalFreedomMod;
 
+import me.StevenLawson.TotalFreedomMod.World.TFM_AdminWorld;
 import me.StevenLawson.TotalFreedomMod.Bridge.TFM_EssentialsBridge;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
-import me.StevenLawson.TotalFreedomMod.World.TFM_AdminWorld;
 import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -31,8 +31,10 @@ public class TFM_Heartbeat extends BukkitRunnable
     {
         lastRan = System.currentTimeMillis();
 
-        final boolean doAwayKickCheck = TFM_ConfigEntry.AUTOKICK_ENABLED.getBoolean()
-                && TFM_EssentialsBridge.isEssentialsEnabled()
+        final TFM_EssentialsBridge essentialsBridge = TFM_EssentialsBridge.getInstance();
+        final boolean doAwayKickCheck =
+                TFM_ConfigEntry.AUTOKICK_ENABLED.getBoolean()
+                && essentialsBridge.isEssentialsEnabled()
                 && ((server.getOnlinePlayers().length / server.getMaxPlayers()) > TFM_ConfigEntry.AUTOKICK_THRESHOLD.getDouble());
 
         for (Player player : server.getOnlinePlayers())
@@ -44,7 +46,7 @@ public class TFM_Heartbeat extends BukkitRunnable
 
             if (doAwayKickCheck)
             {
-                final long lastActivity = TFM_EssentialsBridge.getLastActivity(player.getName());
+                final long lastActivity = essentialsBridge.getLastActivity(player.getName());
                 if (lastActivity > 0 && lastActivity + AUTO_KICK_TIME < System.currentTimeMillis())
                 {
                     player.kickPlayer("Automatically kicked by server for inactivity.");

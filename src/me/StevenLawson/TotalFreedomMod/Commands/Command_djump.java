@@ -1,8 +1,5 @@
 package me.StevenLawson.TotalFreedomMod.Commands;
 
-import com.earth2me.essentials.commands.PlayerNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;

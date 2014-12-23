@@ -1,7 +1,7 @@
 package me.StevenLawson.TotalFreedomMod.Commands;
 
-import me.StevenLawson.TotalFreedomMod.TFM_PlayerList;
 import me.StevenLawson.TotalFreedomMod.TFM_RollbackManager;
+import me.StevenLawson.TotalFreedomMod.TFM_PlayerList;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -14,11 +14,6 @@ public class Command_rollback extends TFM_Command
     @Override
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-        if (args.length == 0 || args.length > 2)
-        {
-            return false;
-        }
-
         if (args.length == 1)
         {
             if ("purgeall".equalsIgnoreCase(args[0]))
@@ -45,10 +40,8 @@ public class Command_rollback extends TFM_Command
                 playerMsg("Rolled back " + TFM_RollbackManager.rollback(playerName) + " edits for " + playerName + ".");
                 playerMsg("If this rollback was a mistake, use /rollback undo " + playerName + " within 40 seconds to reverse the rollback.");
             }
-            return true;
         }
-
-        if (args.length == 2)
+        else if (args.length == 2)
         {
             if ("purge".equalsIgnoreCase(args[0]))
             {
@@ -61,10 +54,8 @@ public class Command_rollback extends TFM_Command
                 }
 
                 playerMsg("Purged " + TFM_RollbackManager.purgeEntries(playerName) + " rollback history entries for " + playerName + ".");
-                return true;
             }
-
-            if ("undo".equalsIgnoreCase(args[0]))
+            else if ("undo".equalsIgnoreCase(args[0]))
             {
                 String playerName = getPlayerName(args[1]);
 
@@ -76,16 +67,24 @@ public class Command_rollback extends TFM_Command
 
                 TFM_Util.adminAction(sender.getName(), "Reverting rollback for player: " + playerName, false);
                 playerMsg("Reverted " + TFM_RollbackManager.undoRollback(playerName) + " edits for " + playerName + ".");
-                return true;
+            }
+            else
+            {
+                return false;
             }
         }
+        else
+        {
+            return false;
+        }
 
-        return false;
+        return true;
     }
 
     private String getPlayerName(String playerNameInput)
     {
         String playerName = null;
+
 
         final Player player = getPlayer(playerNameInput);
         if (player != null)

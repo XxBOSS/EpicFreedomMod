@@ -59,26 +59,7 @@ public class Command_enchant extends TFM_Command
                 {
                     if (ench.canEnchantItem(itemInHand))
                     {
-                    itemInHand.addUnsafeEnchantment(ench, 10000);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    TFM_Log.info("Error using " + ench.getName() + " on " + itemInHand.getType().name() + " held by " + sender_p.getName() + ".");
-                }
-            }
-
-            playerMsg("Added all possible enchantments for this item.");
-        }
-                else if (args[0].equalsIgnoreCase("god"))
-        {
-            for (Enchantment ench : Enchantment.values())
-            {
-                try
-                {
-                    if (ench.canEnchantItem(itemInHand))
-                    {
-                      itemInHand.addUnsafeEnchantment(ench, 10000);
+                        itemInHand.addEnchantment(ench, ench.getMaxLevel());
                     }
                 }
                 catch (Exception ex)

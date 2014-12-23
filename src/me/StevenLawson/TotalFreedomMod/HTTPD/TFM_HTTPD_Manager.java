@@ -17,28 +17,20 @@ import org.bukkit.Bukkit;
 
 public class TFM_HTTPD_Manager
 {
-    public static String MIME_DEFAULT_BINARY;
+    @Deprecated
+    public static String MIME_DEFAULT_BINARY = "application/octet-stream";
     //
-    private static final Pattern EXT_REGEX;
+    private static final Pattern EXT_REGEX = Pattern.compile("\\.([^\\.\\s]+)$");
     //
-    public static final int PORT;
+    public static final int PORT = TFM_ConfigEntry.HTTPD_PORT.getInteger();
     //
-    private static final TFM_HTTPD HTTPD;
+    private final TFM_HTTPD httpd = new TFM_HTTPD(PORT);
 
     private TFM_HTTPD_Manager()
     {
-        throw new AssertionError();
     }
 
-    static
-    {
-        MIME_DEFAULT_BINARY = "application/octet-stream";
-        EXT_REGEX = Pattern.compile("\\.([^\\.\\s]+)$");
-        PORT = TFM_ConfigEntry.HTTPD_PORT.getInteger();
-        HTTPD = new TFM_HTTPD(PORT);
-    }
-
-    public static void start()
+    public void start()
     {
         if (!TFM_ConfigEntry.HTTPD_ENABLED.getBoolean())
         {
@@ -47,11 +39,11 @@ public class TFM_HTTPD_Manager
 
         try
         {
-            HTTPD.start();
+            httpd.start();
 
-            if (HTTPD.isAlive())
+            if (httpd.isAlive())
             {
-                TFM_Log.info("TFM HTTPd started. Listening on port: " + HTTPD.getListeningPort());
+                TFM_Log.info("TFM HTTPd started. Listening on port: " + httpd.getListeningPort());
             }
             else
             {
@@ -64,14 +56,14 @@ public class TFM_HTTPD_Manager
         }
     }
 
-    public static void stop()
+    public void stop()
     {
         if (!TFM_ConfigEntry.HTTPD_ENABLED.getBoolean())
         {
             return;
         }
 
-        HTTPD.stop();
+        httpd.stop();
 
         TFM_Log.info("TFM HTTPd stopped.");
     }
@@ -132,14 +124,6 @@ public class TFM_HTTPD_Manager
             public Response getResponse(HTTPSession session)
             {
                 return new Module_players(session).getResponse();
-            }
-        }),
-        LOGS(new ModuleExecutable(false, "logs")
-        {
-            @Override
-            public Response getResponse(HTTPSession session)
-            {
-                return new Module_logs(session).getResponse();
             }
         });
         //
@@ -282,5 +266,15 @@ public class TFM_HTTPD_Manager
         }
 
         return response;
+    }
+
+    public static TFM_HTTPD_Manager getInstance()
+    {
+        return TFM_HTTPDManagerHolder.INSTANCE;
+    }
+
+    private static class TFM_HTTPDManagerHolder
+    {
+        private static final TFM_HTTPD_Manager INSTANCE = new TFM_HTTPD_Manager();
     }
 }

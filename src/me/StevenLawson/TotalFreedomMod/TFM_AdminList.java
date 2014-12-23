@@ -16,7 +16,7 @@ import me.StevenLawson.TotalFreedomMod.Config.TFM_Config;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_MainConfig;
 import me.StevenLawson.TotalFreedomMod.World.TFM_AdminWorld;
-import com.google.common.collect.Sets;
+import net.minecraft.util.com.google.common.collect.Sets;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
@@ -197,34 +197,6 @@ public class TFM_AdminList
         }
 
         TFM_AdminWorld.getInstance().wipeAccessCache();
-    }
-    
-       public static void saveAll()
-    {
-        final TFM_Config config = new TFM_Config(TotalFreedomMod.plugin, TotalFreedomMod.SUPERADMIN_FILE, true);
-        config.load();
-
-        config.set("clean_threshold_hours", cleanThreshold);
-
-        final Iterator<Entry<UUID, TFM_Admin>> it = adminList.entrySet().iterator();
-        while (it.hasNext())
-        {
-            final Entry<UUID, TFM_Admin> pair = it.next();
-
-            final UUID uuid = pair.getKey();
-            final TFM_Admin superadmin = pair.getValue();
-
-            config.set("admins." + uuid + ".last_login_name", superadmin.getLastLoginName());
-            config.set("admins." + uuid + ".is_activated", superadmin.isActivated());
-            config.set("admins." + uuid + ".is_telnet_admin", superadmin.isTelnetAdmin());
-            config.set("admins." + uuid + ".is_senior_admin", superadmin.isSeniorAdmin());
-            config.set("admins." + uuid + ".last_login", TFM_Util.dateToString(superadmin.getLastLogin()));
-            config.set("admins." + uuid + ".custom_login_message", superadmin.getCustomLoginMessage());
-            config.set("admins." + uuid + ".console_aliases", TFM_Util.removeDuplicates(superadmin.getConsoleAliases()));
-            config.set("admins." + uuid + ".ips", TFM_Util.removeDuplicates(superadmin.getIps()));
-        }
-
-        config.save();
     }
 
     private static void parseOldConfig(TFM_Config config)
@@ -525,7 +497,7 @@ public class TFM_AdminList
         }
 
         return false;
-    }
+        }
 
     public static void addSuperadmin(OfflinePlayer player)
     {
@@ -614,6 +586,7 @@ public class TFM_AdminList
 
                 superadmin.setActivated(false);
                 Command_logs.deactivateSuperadmin(superadmin);
+                TFM_TwitterHandler.getInstance().delTwitter(superadmin.getLastLoginName());
             }
         }
 

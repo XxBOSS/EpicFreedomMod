@@ -3,7 +3,9 @@ package me.StevenLawson.TotalFreedomMod;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_Config;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
+import net.minecraft.util.com.google.common.collect.Sets;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -145,7 +147,6 @@ public class TFM_PlayerList
         // Load online players
         load();
     }
-
     public static TFM_PlayerList getInstance()
     {
         return INSTANCE;
