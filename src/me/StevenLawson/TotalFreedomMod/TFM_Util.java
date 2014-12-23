@@ -154,28 +154,6 @@ public class TFM_Util
         return true;
     }
 
-    public static UUID getUuid(OfflinePlayer offlinePlayer)
-    {
-        if (offlinePlayer instanceof Player)
-        {
-            return TFM_PlayerData.getPlayerData((Player) offlinePlayer).getUniqueId();
-        }
-
-        return getUuid(offlinePlayer.getName());
-    }
-
-    public static UUID getUuid(String offlineplayer)
-    {
-        final UUID uuid = TFM_UuidResolver.getUUIDOf(offlineplayer);
-
-        if (uuid == null)
-        {
-            return generateUuidForName(offlineplayer);
-        }
-
-        return uuid;
-    }
-
     public static UUID generateUuidForName(String name)
     {
         TFM_Log.info("Generating spoof UUID for " + name);
@@ -265,7 +243,7 @@ public class TFM_Util
 
     public static String formatPlayer(OfflinePlayer player)
     {
-        return player.getName() + " (" + TFM_Util.getUuid(player) + ")";
+        return player.getName() + " (" + player.getUniqueId() + ")";
     }
 
     /**
@@ -425,6 +403,18 @@ public class TFM_Util
         long time = world.getTime();
         time -= time % 24000;
         world.setTime(time + 24000 + ticks);
+    }
+    
+        public static UUID getUuid(String offlineplayer)
+    {
+        final UUID uuid = TFM_UuidResolver.getUUIDOf(offlineplayer);
+
+        if (uuid == null)
+        {
+            return generateUuidForName(offlineplayer);
+        }
+
+        return uuid;
     }
 
     public static void createDefaultConfiguration(final String configFileName)
