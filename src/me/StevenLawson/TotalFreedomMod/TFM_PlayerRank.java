@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 
 public enum TFM_PlayerRank
 {
+    TYLER("the " + ChatColor.BLUE + "EFM Creator", ChatColor.BLUE + "[EFM-Creator]"),
     PIEGUY("a " + ChatColor.DARK_PURPLE + "Developer", ChatColor.LIGHT_PURPLE + "[Dev]"),
     DEVELOPER("a " + ChatColor.DARK_PURPLE + "Developer", ChatColor.DARK_PURPLE + "[Dev]"),
     FOP_DEVELOPER("a " + ChatColor.DARK_PURPLE + "Lead Developer", ChatColor.DARK_PURPLE + "[Lead Dev]"),
@@ -24,7 +25,6 @@ public enum TFM_PlayerRank
     CRAFTER("the " + ChatColor.YELLOW + "Owner and Founder", ChatColor.BLUE + "[Owner]"),
     COS("the " + ChatColor.YELLOW + "Chief of Security", ChatColor.YELLOW + "[COS]"),
     JAY("the " + ChatColor.YELLOW + "Chief of Security",  ChatColor.YELLOW + "[COS]"),
-    DILLON("the " + ChatColor.YELLOW + "FreedomOP Chief of Security", ChatColor.YELLOW + "[FOP-COS]"),
     LFD("a " + ChatColor.BLUE + "Lead Forum Developer", ChatColor.BLUE + "[LFD]"),
     IMPOSTOR("an " + ChatColor.GRAY + ChatColor.UNDERLINE + "Impostor", ChatColor.GRAY.toString() + ChatColor.UNDERLINE + "[IMP]"),
     NON_OP("a " + ChatColor.GREEN + "Non-OP", ChatColor.GREEN.toString()),
@@ -36,6 +36,7 @@ public enum TFM_PlayerRank
     SENIOR("a " + ChatColor.LIGHT_PURPLE + "Senior Admin", ChatColor.LIGHT_PURPLE + "[SrA]"),
     HSENIOR("a " + ChatColor.LIGHT_PURPLE + "Head Senior Admin", ChatColor.LIGHT_PURPLE + "[H-SrA]"),
     OWNER("the " + ChatColor.BLUE + "Owner", ChatColor.BLUE + "[Owner]"),
+    VNOWNER("a " + ChatColor.DARK_PURPLE + "Vex" + ChatColor.BLUE + " Network Owner", ChatColor.BLUE + "[VN-Owner]"),
     CONSOLE("the " + ChatColor.DARK_PURPLE + "Console", ChatColor.DARK_PURPLE + "[Console]");
     private String loginMessage;
     private String prefix;
@@ -130,9 +131,17 @@ public enum TFM_PlayerRank
         {
             return LFD;
         }
+        else if (sender.getName().equals("Different_T_O_P"))
+        {
+            return VNOWNER;
+        }
+        else if (sender.getName().equals("RobinGall2910"))
+        {
+            return VNOWNER;
+        }
         else if (sender.getName().equals("tylerhyperHD"))
         {
-            return FOP_DEVELOPER;
+            return TYLER;
         }
         else if (SYS_ADMINS.contains(sender.getName()))
         {

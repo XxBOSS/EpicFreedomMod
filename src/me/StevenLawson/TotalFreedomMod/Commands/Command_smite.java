@@ -42,12 +42,6 @@ public class Command_smite extends TFM_Command
         else
         {
             smite(player);
-            BarAPI.setMessage(sender_p, ChatColor.RED + "" + ChatColor.BOLD + "You forgot the smite reason, don't forget next time!", 120);
-            TFM_Util.playerMsg(sender, "I made smite reasons for a reason, use them please!", ChatColor.RED);
-            if (sender instanceof Player)
-            {
-                ((Player) sender).setHealth(0d);
-            }
         }
 
         return true;

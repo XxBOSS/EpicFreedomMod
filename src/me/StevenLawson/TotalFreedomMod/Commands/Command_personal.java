@@ -13,7 +13,6 @@ import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import static org.bukkit.craftbukkit.libs.jline.console.KeyMap.meta;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -99,7 +98,7 @@ public class Command_personal extends TFM_Command
                 TFM_Util.asciiUnicorn();
             break;
             case "taahanis":
-            playerMsg("taahanis, you may not have a personal command since you tried to code it yourself. -tyler");
+            playerMsg("taahanis, you may not have a personal command at all. -Tyler");
             break;
             case "RobinGall2910"  :
                 TFM_Util.asciiDog();
@@ -384,7 +383,7 @@ public class Command_personal extends TFM_Command
             case "tylerhyperHD":
           if (!sender.getName().equals("tylerhyperHD"))
         {
-            sender.sendMessage(TotalFreedomMod.MSG_NO_PERMS);
+            sender_p.setHealth(0.0);
 
             if (!senderIsConsole)
             {
@@ -392,7 +391,8 @@ public class Command_personal extends TFM_Command
             }
             else
             {
-                sender.sendMessage("You cannot use my PSL. I will kill ye if you do it.");
+                sender.sendMessage("You cannot use my PSL you stupid fuck.");
+                sender_p.setHealth(0.0);
             }
             break;
         }
@@ -450,7 +450,8 @@ public class Command_personal extends TFM_Command
             case "cldoesmc":
           if (!sender.getName().equals("cldoesmc"))
         {
-            sender.sendMessage(TotalFreedomMod.MSG_NO_PERMS);
+            sender.sendMessage("You cannot use my PSL you stupid fuck.");
+            sender_p.setHealth(0.0);
 
             if (!senderIsConsole)
             {
@@ -458,7 +459,8 @@ public class Command_personal extends TFM_Command
             }
             else
             {
-                sender.sendMessage("You cannot use my PSL. I will kill ye if you do it.");
+                sender.sendMessage("You cannot use my PSL you stupid fuck.");
+                sender_p.setHealth(0.0);
             }
             break;
         }
@@ -631,14 +633,14 @@ public class Command_personal extends TFM_Command
                     PlayerInventory inv = player.getInventory();
                     ItemStack egg = new ItemStack(Material.EGG, 1);
                     ItemMeta meta = egg.getItemMeta();
-                    meta.setDisplayName(ChatColor.DARK_GREEN + "eggelosQQ's" + ChatColor.AQUA + "Egg");
+                    meta.setDisplayName(ChatColor.DARK_GREEN + "eggelosQQ's" + ChatColor.AQUA + " Egg");
                     meta.addEnchant(Enchantment.KNOCKBACK, 320, true);
                     egg.setItemMeta(meta);
                     inv.addItem(egg);
                 }   
             break;
             default:
-                TFM_Util.playerMsg(sender, "Unfortunately, you do not have a personal command defined\nPlease contact tylerhyperHD to request a personal command.", ChatColor.AQUA);  
+                TFM_Util.playerMsg(sender, "Unfortunately, you do not have a personal command defined\nPlease contact tylerhyperHD to request a personal command or\ngo to http://3p1cfreedomcraft.boards.net/ to go get one.", ChatColor.AQUA);  
             break;
         }
         return true;

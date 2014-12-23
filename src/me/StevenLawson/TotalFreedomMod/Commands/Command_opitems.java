@@ -1,6 +1,3 @@
-/*
- * This is a beta command still being developed. All help will help this command get out there.
- */
 package me.StevenLawson.TotalFreedomMod.Commands;
 
 import org.bukkit.ChatColor;
@@ -56,7 +53,8 @@ public class Command_opitems extends TFM_Command
                 inv.setBoots(boots);
                 inv.setLeggings(leggings);
                 inv.setChestplate(chestplate);
-                sender_p.sendMessage(ChatColor.RED + "Op items have been placed in your inventory.");
+                sender_p.sendMessage(ChatColor.GRAY + "Op items have been placed in your inventory.");
+                sender_p.sendMessage(ChatColor.GRAY + "You can thank me later for fixing this command.");
                 return true;
             }
  }

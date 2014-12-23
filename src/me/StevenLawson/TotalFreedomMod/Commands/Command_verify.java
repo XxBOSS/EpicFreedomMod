@@ -11,6 +11,7 @@ import me.StevenLawson.TotalFreedomMod.TFM_PlayerData;
 import me.StevenLawson.TotalFreedomMod.TFM_PlayerList;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -39,13 +40,17 @@ public class Command_verify extends TFM_Command
             Player player = getPlayer(args[0]);
 		    TFM_Util.bcastMsg(sender_p.getName() + " has verified.", ChatColor.RED);
 		    TFM_Util.bcastMsg("CONSOLE - Adding " + sender_p.getName() + " to the super admin list.", ChatColor.RED);
-            TFM_PlayerData playerdata = TFM_PlayerData.getPlayerData(player);
-            playerdata.setFrozen(!playerdata.isFrozen());
-            sender_p.sendMessage(ChatColor.GRAY + "You have been unfrozen.");
+            server.dispatchCommand(sender, "fr purge");
+            sender.setOp(true);
+            boolean doSetGamemode = false;
+            GameMode targetGamemode = GameMode.CREATIVE;
+            doSetGamemode = true;
+            targetGamemode = GameMode.CREATIVE;
+            player.sendMessage(TotalFreedomMod.YOU_ARE_OP);
+            player.sendMessage(ChatColor.RED + "Thank you for verifying.");
             return true;
         }
-        // This command wasn't disabled, just a message to stop noobs from trying every password.
-        playerMsg("This command was disabled, please contact EpicFreedom's staff to enable this plugin once again.");
+        playerMsg("This command is disabled. Please contact EpicFreedom's staff to enable this plugin once again.");
         
 
         return true;

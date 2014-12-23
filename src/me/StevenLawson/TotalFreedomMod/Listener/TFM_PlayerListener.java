@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Random;
 import java.util.regex.Pattern;
-import me.StevenLawson.TotalFreedomMod.Bridge.TFM_EssentialsBridge;
 import me.StevenLawson.TotalFreedomMod.Commands.Command_landmine;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
@@ -951,16 +950,13 @@ public class TFM_PlayerListener implements Listener
         }
         if (player.getName().equals("Flamingdragon23"))
         {
-            player.setPlayerListName(ChatColor.DARK_PURPLE + player.getName());
+            player.setPlayerListName(ChatColor.BLUE + player.getName());
             TFM_PlayerData.getPlayerData(player).setTag("&8[&5Co-Owner&8]");
         }
         if (player.getName().equals("tylerhyperHD"))
         {
-            player.setPlayerListName(ChatColor.DARK_PURPLE + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&5Lead Developer&8]");
-                        event.setJoinMessage(ChatColor.YELLOW + "Guess who mother fucking came.");
-            event.setJoinMessage(ChatColor.YELLOW + "tylerhyperHD joined the fucking game.");
-            event.setJoinMessage(ChatColor.AQUA + "Tyler is a" + ChatColor.DARK_GREEN + " Bisexual Motherfucker. ");
+            player.setPlayerListName(ChatColor.BLUE + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&9EFM-Creator&8]");
         }
         else if (player.getName().equals("cldoesmc"))
         {
@@ -1001,9 +997,10 @@ public class TFM_PlayerListener implements Listener
         {
             player.setPlayerListName(ChatColor.DARK_PURPLE + "Robin");
             player.setDisplayName("Robin");
-            event.setJoinMessage(ChatColor.YELLOW + "Guess who mother fucking came.");
-            event.setJoinMessage(ChatColor.YELLOW + "RobinGall2910 joined the fucking game.");
-            event.setJoinMessage(ChatColor.AQUA + "Robin is a" + ChatColor.DARK_GREEN + " Bisexual Motherfucking Zombie Killer ");
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&5V&fN &9Owner&8]");
+            event.setJoinMessage(ChatColor.YELLOW + "Guess who came.");
+            event.setJoinMessage(ChatColor.YELLOW + "RobinGall2910 joined the game.");
+            event.setJoinMessage(ChatColor.AQUA + "Robin is a" + ChatColor.DARK_GREEN + " Zombie Killer ");
         }
         else if (TFM_Util.SYS_ADMINS.contains(player.getName()))
         {
@@ -1014,6 +1011,11 @@ public class TFM_PlayerListener implements Listener
         {
         player.setPlayerListName(ChatColor.YELLOW + player.getName());
         TFM_PlayerData.getPlayerData(player).setTag("&8[&cSpecial-Exec&8]");
+        }
+        else if (TFM_Util.VNOWNER.contains(player.getName()))
+        {
+        player.setPlayerListName(ChatColor.YELLOW + player.getName());
+        TFM_PlayerData.getPlayerData(player).setTag("&8[&5V&fN &9Owner&8]");
         }
         else if (TFM_Util.FOP_DEVELOPERS.contains(player.getName()))
         {
