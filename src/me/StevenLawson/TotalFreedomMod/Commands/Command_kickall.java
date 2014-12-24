@@ -5,7 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-@CommandPermissions(level = AdminLevel.SENIOR, source = SourceType.BOTH)
+@CommandPermissions(level = AdminLevel.ALL, source = SourceType.BOTH)
 @CommandParameters(
         description = "Kicks all players from the server.",
         usage = "/<command>")

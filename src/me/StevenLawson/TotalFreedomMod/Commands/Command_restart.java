@@ -8,8 +8,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 @CommandPermissions(level = AdminLevel.SUPER, source = SourceType.BOTH)
-@CommandParameters(description = "Kicks everyone and stops the server.", usage = "/<command>")
-public class Command_stop extends TFM_Command
+@CommandParameters(description = "Kicks everyone and restarts the server.", usage = "/<command>")
+public class Command_restart extends TFM_Command
 {
     @Override
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
@@ -40,7 +40,7 @@ public class Command_stop extends TFM_Command
         }.runTaskLater(plugin, 10L);
         for (Player player : server.getOnlinePlayers())
         {
-            player.kickPlayer("Server is going offline.\nGo to http://3p1cfreedomcraft.boards.net/ to get it back up.");
+            player.kickPlayer("Server is restarting.\nCome back in about 30 seconds.");
         }
 
         server.shutdown();

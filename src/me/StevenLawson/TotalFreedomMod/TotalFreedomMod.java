@@ -90,6 +90,11 @@ public class TotalFreedomMod extends JavaPlugin
     {
         TFM_Log.info("Made by tylerhyperHD, Madgeek1450, and DarthSalamon");
         TFM_Log.info("Compiled " + buildDate + " by " + buildCreator);
+        TFM_Log.info("/***********************/");
+        TFM_Log.info("");
+        TFM_Log.info("Made for EpicFreedom - An all-op server");
+        TFM_Log.info("");
+        TFM_Log.info("/***********************/");
 
         TFM_Util.deleteCoreDumps();
 
