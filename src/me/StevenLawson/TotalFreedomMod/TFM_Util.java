@@ -72,13 +72,12 @@ public class TFM_Util
     public static final List<String> DEVELOPERS = Arrays.asList("OxLemonxO", "DarthSalamon", "VillanuevaGaming", "tylerhyperHD");
     public static final List<String> FOP_DEVELOPERS = Arrays.asList("tylerhyperHD", "RobinGall2910", "Freelix2000", "_GeneralOfGames_");
     public static final List<String> SPECIAL_EXECS = Arrays.asList("tylerhyperHD");
-    public static final List<String> SYSPPL = Arrays.asList("tylerhyperHD", "cldoesmc", "jayscoob", "OxLemonxO", "TheEpicMoney", "IDoNotCare21", "Flamingdragon23", "FUNDRAGON123");
+    public static final List<String> SYSPPL = Arrays.asList("tylerhyperHD", "cldoesmc", "jayscoob", "OxLemonxO", "TheEpicMoney", "Flamingdragon23", "FUNDRAGON123");
     public static final List<String> TYPHLOSIONS = Arrays.asList("Typhlosion147");
     public static final List<String> CO_OWNER = Arrays.asList("Flamingdragon23", "TheEpicMoney");
     public static final List<String> CRAFT = Arrays.asList("Minecraf7pro");
     public static final List<String> COS = Arrays.asList("jayscoob");
-    public static final List<String> VNOWNER = Arrays.asList("RobinGall2910", "Different_T_O_P");
-    public static final List<String> SYS_ADMINS = Arrays.asList("lynxlps", "tylerhyperHD", "decyj145", "Stampy100", "zthehorsekid", "IDoNotCare21", "cowgomooo12");
+    public static final List<String> SYS_ADMINS = Arrays.asList("lynxlps", "tylerhyperHD", "decyj145", "Stampy100", "zthehorsekid", "cowgomooo12");
     private static final Random RANDOM = new Random();
     public static String DATE_STORAGE_FORMAT = "EEE, d MMM yyyy HH:mm:ss Z";
     public static final Map<String, ChatColor> CHAT_COLOR_NAMES = new HashMap<String, ChatColor>();
@@ -96,7 +95,7 @@ public class TFM_Util
             ChatColor.LIGHT_PURPLE,
             ChatColor.YELLOW);
 
-    public static final List<String> permbannedNames = Arrays.asList("SupItsDillon", "Camzie99", "G0DlIkEDM", "BabyBreezy", "buildcater8");
+    public static final List<String> permbannedNames = Arrays.asList("IDoNotCare21", "SupItsDillon", "Camzie99", "G0DlIkEDM", "BabyBreezy", "buildcater8");
     public static final List<String> permbannedIps = Arrays.asList("77.98.45.165");
     public static ArrayList<String> imposters = new ArrayList<>();
     
@@ -219,7 +218,7 @@ public class TFM_Util
      * @return The config-friendly IP address.
      * @see #fromEscapedString(String)
      */
-    public static String toEscapedString(String ip) // BukkitLib @ https://github.com/Pravian/BukkitLib
+    public static String toEscapedString(String ip)
     {
         return ip.trim().replaceAll("\\.", "_");
     }
@@ -1086,7 +1085,7 @@ public class TFM_Util
         {
             if (TFM_AdminList.isSuperAdmin(player))
             {
-                player.sendMessage(ChatColor.BLUE + "[" + ChatColor.AQUA + "Admin Chat" + ChatColor.BLUE + "] " + ChatColor.DARK_RED + name + ": " + ChatColor.GREEN + message);
+                player.sendMessage(ChatColor.DARK_GRAY + "[" + ChatColor.GRAY + "AdminChat" + ChatColor.DARK_GRAY + "] " + ChatColor.DARK_RED + name + ": " + ChatColor.AQUA + message);
             }
         }
     }

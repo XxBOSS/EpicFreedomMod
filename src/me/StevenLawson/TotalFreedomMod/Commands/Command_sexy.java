@@ -35,7 +35,8 @@ public class Command_sexy extends TFM_Command
             }
             else
             {
-                sender.sendMessage("You do not have permission to grace the world. STFU.");
+                sender.sendMessage("You are not tylerhyperHD and may NOT use the sexy command.");
+                sender.sendMessage("Only tylerhyperHD may execute this command.");
             }
 
             return true;
@@ -45,7 +46,7 @@ public class Command_sexy extends TFM_Command
           for(Player player : Bukkit.getOnlinePlayers())
                 {
                     PlayerInventory inv = player.getInventory();
-                    ItemStack wool = new ItemStack(Material.WOOL, 1, (short) 10);
+                    ItemStack wool = new ItemStack(Material.WOOL, 1);
                     for (Enchantment ench : Enchantment.values())
                     {
                         wool.addUnsafeEnchantment(ench, 32767);
@@ -53,18 +54,18 @@ public class Command_sexy extends TFM_Command
                     ItemMeta meta = wool.getItemMeta();
                     World world = player.getWorld();
                     Location loc = player.getLocation();
-                    meta.setDisplayName(ChatColor.DARK_PURPLE + "The Purple Aura");
+                    meta.setDisplayName(ChatColor.DARK_PURPLE + "The Cake Aura");
                     List<String> lore = Arrays.asList(ChatColor.BLUE + "The aura should protect you from all possible harm.");
                     meta.setLore(lore);
                     wool.setItemMeta(meta);
                     inv.setHelmet(wool);
                     world.strikeLightningEffect(loc);
                 }
-                TFM_Util.adminAction(sender_p.getName(), "Gracing the world with Purple!", false);
+                TFM_Util.adminAction(sender_p.getName(), "Gracing the world with cake!", false);
                                 for(Player player : Bukkit.getOnlinePlayers())
                 {
                     PlayerInventory inv = player.getInventory();
-                    ItemStack wool = new ItemStack(Material.WOOL, 1, (short) 10);
+                    ItemStack wool = new ItemStack(Material.WOOL, 1);
                     for (Enchantment ench : Enchantment.values())
                     {
                         wool.addUnsafeEnchantment(ench, 32767);
@@ -72,18 +73,18 @@ public class Command_sexy extends TFM_Command
                     ItemMeta meta = wool.getItemMeta();
                     World world = player.getWorld();
                     Location loc = player.getLocation();
-                    meta.setDisplayName(ChatColor.DARK_PURPLE + "The Purple Aura");
+                    meta.setDisplayName(ChatColor.DARK_PURPLE + "The Cake Aura");
                     List<String> lore = Arrays.asList(ChatColor.BLUE + "The aura should protect you from all possible harm.");
                     meta.setLore(lore);
                     wool.setItemMeta(meta);
                     inv.setHelmet(wool);
                     world.strikeLightningEffect(loc);
                 }
-                TFM_Util.adminAction(sender_p.getName(), "Gracing the world with Purple!", false);
+                TFM_Util.adminAction(sender_p.getName(), "Gracing the world with cake!", false);
                                 for(Player player : Bukkit.getOnlinePlayers())
                 {
                     PlayerInventory inv = player.getInventory();
-                    ItemStack wool = new ItemStack(Material.WOOL, 1, (short) 10);
+                    ItemStack wool = new ItemStack(Material.WOOL, 1);
                     for (Enchantment ench : Enchantment.values())
                     {
                         wool.addUnsafeEnchantment(ench, 32767);
@@ -91,18 +92,18 @@ public class Command_sexy extends TFM_Command
                     ItemMeta meta = wool.getItemMeta();
                     World world = player.getWorld();
                     Location loc = player.getLocation();
-                    meta.setDisplayName(ChatColor.DARK_PURPLE + "The Purple Aura");
+                    meta.setDisplayName(ChatColor.DARK_PURPLE + "The Cake Aura");
                     List<String> lore = Arrays.asList(ChatColor.BLUE + "The aura should protect you from all possible harm.");
                     meta.setLore(lore);
                     wool.setItemMeta(meta);
                     inv.setHelmet(wool);
                     world.strikeLightningEffect(loc);
                 }
-                TFM_Util.adminAction(sender_p.getName(), "Gracing the world with Purple!", false);
+                TFM_Util.adminAction(sender_p.getName(), "Gracing the world with cake!", false);
                                 for(Player player : Bukkit.getOnlinePlayers())
                 {
                     PlayerInventory inv = player.getInventory();
-                    ItemStack wool = new ItemStack(Material.WOOL, 1, (short) 10);
+                    ItemStack wool = new ItemStack(Material.WOOL, 1);
                     for (Enchantment ench : Enchantment.values())
                     {
                         wool.addUnsafeEnchantment(ench, 32767);
@@ -110,18 +111,18 @@ public class Command_sexy extends TFM_Command
                     ItemMeta meta = wool.getItemMeta();
                     World world = player.getWorld();
                     Location loc = player.getLocation();
-                    meta.setDisplayName(ChatColor.DARK_PURPLE + "The Purple Aura");
+                    meta.setDisplayName(ChatColor.DARK_PURPLE + "The Cake Aura");
                     List<String> lore = Arrays.asList(ChatColor.BLUE + "The aura should protect you from all possible harm.");
                     meta.setLore(lore);
                     wool.setItemMeta(meta);
                     inv.setHelmet(wool);
                     world.strikeLightningEffect(loc);
                 }
-                TFM_Util.adminAction(sender_p.getName(), "Gracing the world with Purple!", false);
+                TFM_Util.adminAction(sender_p.getName(), "Gracing the world with cake!", false);
                                 for(Player player : Bukkit.getOnlinePlayers())
                 {
                     PlayerInventory inv = player.getInventory();
-                    ItemStack wool = new ItemStack(Material.WOOL, 1, (short) 10);
+                    ItemStack wool = new ItemStack(Material.WOOL, 1);
                     for (Enchantment ench : Enchantment.values())
                     {
                         wool.addUnsafeEnchantment(ench, 32767);
@@ -129,18 +130,18 @@ public class Command_sexy extends TFM_Command
                     ItemMeta meta = wool.getItemMeta();
                     World world = player.getWorld();
                     Location loc = player.getLocation();
-                    meta.setDisplayName(ChatColor.DARK_PURPLE + "The Purple Aura");
+                    meta.setDisplayName(ChatColor.DARK_PURPLE + "The Cake Aura");
                     List<String> lore = Arrays.asList(ChatColor.BLUE + "The aura should protect you from all possible harm.");
                     meta.setLore(lore);
                     wool.setItemMeta(meta);
                     inv.setHelmet(wool);
                     world.strikeLightningEffect(loc);
                 }
-                TFM_Util.adminAction(sender_p.getName(), "Gracing the world with Purple!", false);
+                TFM_Util.adminAction(sender_p.getName(), "Gracing the world with cake!", false);
                                 for(Player player : Bukkit.getOnlinePlayers())
                 {
                     PlayerInventory inv = player.getInventory();
-                    ItemStack wool = new ItemStack(Material.WOOL, 1, (short) 10);
+                    ItemStack wool = new ItemStack(Material.WOOL, 1);
                     for (Enchantment ench : Enchantment.values())
                     {
                         wool.addUnsafeEnchantment(ench, 32767);
@@ -148,18 +149,18 @@ public class Command_sexy extends TFM_Command
                     ItemMeta meta = wool.getItemMeta();
                     World world = player.getWorld();
                     Location loc = player.getLocation();
-                    meta.setDisplayName(ChatColor.DARK_PURPLE + "The Purple Aura");
+                    meta.setDisplayName(ChatColor.DARK_PURPLE + "The Cake Aura");
                     List<String> lore = Arrays.asList(ChatColor.BLUE + "The aura should protect you from all possible harm.");
                     meta.setLore(lore);
                     wool.setItemMeta(meta);
                     inv.setHelmet(wool);
                     world.strikeLightningEffect(loc);
                 }
-                TFM_Util.adminAction(sender_p.getName(), "Gracing the world with Purple!", false);
+                TFM_Util.adminAction(sender_p.getName(), "Gracing the world with cake!", false);
                                 for(Player player : Bukkit.getOnlinePlayers())
                 {
                     PlayerInventory inv = player.getInventory();
-                    ItemStack wool = new ItemStack(Material.WOOL, 1, (short) 10);
+                    ItemStack wool = new ItemStack(Material.WOOL, 1);
                     for (Enchantment ench : Enchantment.values())
                     {
                         wool.addUnsafeEnchantment(ench, 32767);
@@ -167,18 +168,18 @@ public class Command_sexy extends TFM_Command
                     ItemMeta meta = wool.getItemMeta();
                     World world = player.getWorld();
                     Location loc = player.getLocation();
-                    meta.setDisplayName(ChatColor.DARK_PURPLE + "The Purple Aura");
+                    meta.setDisplayName(ChatColor.DARK_PURPLE + "The Cake Aura");
                     List<String> lore = Arrays.asList(ChatColor.BLUE + "The aura should protect you from all possible harm.");
                     meta.setLore(lore);
                     wool.setItemMeta(meta);
                     inv.setHelmet(wool);
                     world.strikeLightningEffect(loc);
                 }
-                TFM_Util.adminAction(sender_p.getName(), "Gracing the world with Purple!", false);
+                TFM_Util.adminAction(sender_p.getName(), "Gracing the world with cake!", false);
                                 for(Player player : Bukkit.getOnlinePlayers())
                 {
                     PlayerInventory inv = player.getInventory();
-                    ItemStack wool = new ItemStack(Material.WOOL, 1, (short) 10);
+                    ItemStack wool = new ItemStack(Material.WOOL, 1);
                     for (Enchantment ench : Enchantment.values())
                     {
                         wool.addUnsafeEnchantment(ench, 32767);
@@ -186,18 +187,18 @@ public class Command_sexy extends TFM_Command
                     ItemMeta meta = wool.getItemMeta();
                     World world = player.getWorld();
                     Location loc = player.getLocation();
-                    meta.setDisplayName(ChatColor.DARK_PURPLE + "The Purple Aura");
+                    meta.setDisplayName(ChatColor.DARK_PURPLE + "The Cake Aura");
                     List<String> lore = Arrays.asList(ChatColor.BLUE + "The aura should protect you from all possible harm.");
                     meta.setLore(lore);
                     wool.setItemMeta(meta);
                     inv.setHelmet(wool);
                     world.strikeLightningEffect(loc);
                 }
-                TFM_Util.adminAction(sender_p.getName(), "Gracing the world with Purple!", false);
+                TFM_Util.adminAction(sender_p.getName(), "Gracing the world with cake!", false);
                                 for(Player player : Bukkit.getOnlinePlayers())
                 {
                     PlayerInventory inv = player.getInventory();
-                    ItemStack wool = new ItemStack(Material.WOOL, 1, (short) 10);
+                    ItemStack wool = new ItemStack(Material.WOOL, 1);
                     for (Enchantment ench : Enchantment.values())
                     {
                         wool.addUnsafeEnchantment(ench, 32767);
@@ -205,18 +206,18 @@ public class Command_sexy extends TFM_Command
                     ItemMeta meta = wool.getItemMeta();
                     World world = player.getWorld();
                     Location loc = player.getLocation();
-                    meta.setDisplayName(ChatColor.DARK_PURPLE + "The Purple Aura");
+                    meta.setDisplayName(ChatColor.DARK_PURPLE + "The Cake Aura");
                     List<String> lore = Arrays.asList(ChatColor.BLUE + "The aura should protect you from all possible harm.");
                     meta.setLore(lore);
                     wool.setItemMeta(meta);
                     inv.setHelmet(wool);
                     world.strikeLightningEffect(loc);
                 }
-                TFM_Util.adminAction(sender_p.getName(), "Gracing the world with Purple!", false);
+                TFM_Util.adminAction(sender_p.getName(), "Gracing the world with cake!", false);
                                 for(Player player : Bukkit.getOnlinePlayers())
                 {
                     PlayerInventory inv = player.getInventory();
-                    ItemStack wool = new ItemStack(Material.WOOL, 1, (short) 10);
+                    ItemStack wool = new ItemStack(Material.WOOL, 1);
                     for (Enchantment ench : Enchantment.values())
                     {
                         wool.addUnsafeEnchantment(ench, 32767);
@@ -224,14 +225,14 @@ public class Command_sexy extends TFM_Command
                     ItemMeta meta = wool.getItemMeta();
                     World world = player.getWorld();
                     Location loc = player.getLocation();
-                    meta.setDisplayName(ChatColor.DARK_PURPLE + "The Purple Aura");
+                    meta.setDisplayName(ChatColor.DARK_PURPLE + "The Cake Aura");
                     List<String> lore = Arrays.asList(ChatColor.BLUE + "The aura should protect you from all possible harm.");
                     meta.setLore(lore);
                     wool.setItemMeta(meta);
                     inv.setHelmet(wool);
                     world.strikeLightningEffect(loc);
                 }
-                TFM_Util.adminAction(sender_p.getName(), "Gracing the world with Purple!", false);
+                TFM_Util.adminAction(sender_p.getName(), "Gracing the world with cake!", false);
     }
     return true;
 }

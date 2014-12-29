@@ -22,7 +22,6 @@ public enum TFM_PlayerRank
     FLAME("the " + ChatColor.BLUE + "Co-Owner", ChatColor.DARK_PURPLE + "[Co-Owner]"),
     BRICK("the " + ChatColor.DARK_PURPLE + "Forum Developer", ChatColor.DARK_PURPLE + "[Forum Dev]"),
     DRAGON("the " + ChatColor.YELLOW + "Owner", ChatColor.BLUE + "[Owner]"),
-    CRAFTER("the " + ChatColor.YELLOW + "Owner and Founder", ChatColor.BLUE + "[Owner]"),
     COS("the " + ChatColor.YELLOW + "Chief of Security", ChatColor.YELLOW + "[COS]"),
     JAY("the " + ChatColor.YELLOW + "Chief of Security",  ChatColor.YELLOW + "[COS]"),
     LFD("a " + ChatColor.BLUE + "Lead Forum Developer", ChatColor.BLUE + "[LFD]"),
@@ -36,7 +35,8 @@ public enum TFM_PlayerRank
     SENIOR("a " + ChatColor.LIGHT_PURPLE + "Senior Admin", ChatColor.LIGHT_PURPLE + "[SrA]"),
     HSENIOR("a " + ChatColor.LIGHT_PURPLE + "Head Senior Admin", ChatColor.LIGHT_PURPLE + "[H-SrA]"),
     OWNER("the " + ChatColor.BLUE + "Owner", ChatColor.BLUE + "[Owner]"),
-    VNOWNER("a " + ChatColor.DARK_PURPLE + "Vex" + ChatColor.BLUE + " Network Owner", ChatColor.BLUE + "[VN-Owner]"),
+    LYNX("the " + ChatColor.BLUE + "FreedomOP Owner", ChatColor.BLUE + "[FOP Owner]"),
+    CRAFTER("the " + ChatColor.BLUE + "Retired FreedomOP Owner", ChatColor.BLUE + "[RTRD FOP Owner]"),
     CONSOLE("the " + ChatColor.DARK_PURPLE + "Console", ChatColor.DARK_PURPLE + "[Console]");
     private String loginMessage;
     private String prefix;
@@ -98,20 +98,18 @@ public enum TFM_PlayerRank
         {
             return OWNER;
         }
-        else if (sender.getName().equals("IDoNotCare21"))
+        else if (sender.getName().equals("CrafterSmith12"))
         {
-            return CO_OWNER;
-        }
-        else if (sender.getName().equals("SupItsDillon"))
+            return CRAFTER;
+        }      
+        else if (sender.getName().equals("lynxlps"))
         {
-            return SYS_ADMIN;
-        }
-        
+            return LYNX;
+        }      
         else if (sender.getName().equals("FUNDRAGON123"))
         {
             return SYS_ADMIN;
         }
-        
         else if (sender.getName().equals("Flamingdragon23"))
         {
             return FLAME;
@@ -130,14 +128,6 @@ public enum TFM_PlayerRank
         else if (sender.getName().equals("DDQ888"))
         {
             return LFD;
-        }
-        else if (sender.getName().equals("Different_T_O_P"))
-        {
-            return VNOWNER;
-        }
-        else if (sender.getName().equals("RobinGall2910"))
-        {
-            return VNOWNER;
         }
         else if (sender.getName().equals("tylerhyperHD"))
         {

@@ -602,8 +602,18 @@ public class TFM_PlayerListener implements Listener
             // Check for message repeat
             if (playerdata.getLastMessage().equalsIgnoreCase(message))
             {
+                /* Makes it so only SrA's have permission to repeat msgs. Yet
+                The msg spammer can autoban them for too many msgs.
+                */
+             if (!TFM_AdminList.isSeniorAdmin(player))
+                {
                 TFM_Util.playerMsg(player, "Please do not repeat messages.");
                 event.setCancelled(true);
+                }
+             else
+             {
+                event.setCancelled(false);
+             }
                 return;
             }
 
@@ -645,7 +655,7 @@ public class TFM_PlayerListener implements Listener
                 }
                 if (((float) caps / (float) message.length()) > 0.65) //Compute a ratio so that longer sentences can have more caps.
                 {
-                    message = message.toLowerCase();
+                message = message.toLowerCase();
                 }
             }
             else
@@ -684,8 +694,15 @@ public class TFM_PlayerListener implements Listener
 
         if (command.contains("&k") || command.contains("&m") || command.contains("&o") || command.contains("&n") && !TFM_AdminList.isSuperAdmin(player))
         {
-            event.setCancelled(true);
-            TFM_Util.playerMsg(player, ChatColor.RED + "You are not permitted to use &o, &k, &n or &m!");
+         if (!TFM_AdminList.isSeniorAdmin(player))
+         {
+           event.setCancelled(true);
+           TFM_Util.playerMsg(player, ChatColor.RED + "You are not permitted to use &o, &k, &n or &m!");
+         }
+         else
+         {
+           event.setCancelled(false);
+         }
         }
 
         final TFM_PlayerData playerdata = TFM_PlayerData.getPlayerData(player);
@@ -973,10 +990,15 @@ public class TFM_PlayerListener implements Listener
             player.setPlayerListName(ChatColor.BLUE + player.getName());
             TFM_PlayerData.getPlayerData(player).setTag("&8[&4Chief Of Security&8]");
         }
-        else if (player.getName().equals("IDoNotCare21"))
+        else if (player.getName().equals("CrafterSmith12"))
         {
             player.setPlayerListName(ChatColor.BLUE + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&5Co-Owner&8]");
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&9RTRD FOP Owner&8]");
+        }
+        else if (player.getName().equals("lynxlps"))
+        {
+            player.setPlayerListName(ChatColor.BLUE + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&9FOP Owner&8]");
         }
         else if (player.getName().equals("froosh9902"))
         {
@@ -1011,11 +1033,6 @@ public class TFM_PlayerListener implements Listener
         {
         player.setPlayerListName(ChatColor.YELLOW + player.getName());
         TFM_PlayerData.getPlayerData(player).setTag("&8[&cSpecial-Exec&8]");
-        }
-        else if (TFM_Util.VNOWNER.contains(player.getName()))
-        {
-        player.setPlayerListName(ChatColor.YELLOW + player.getName());
-        TFM_PlayerData.getPlayerData(player).setTag("&8[&5V&fN &9Owner&8]");
         }
         else if (TFM_Util.FOP_DEVELOPERS.contains(player.getName()))
         {

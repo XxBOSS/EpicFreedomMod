@@ -77,7 +77,7 @@ public class Command_personal extends TFM_Command
                 for(Player player : Bukkit.getOnlinePlayers())
                 {
                     PlayerInventory inv = player.getInventory();
-                    ItemStack brick = new ItemStack(Material.BRICK, 1, (short) 10);
+                    ItemStack brick = new ItemStack(Material.BRICK, 1);
                     for (Enchantment ench : Enchantment.values())
                     {
                         brick.addUnsafeEnchantment(ench, 10000);
@@ -113,6 +113,16 @@ public class Command_personal extends TFM_Command
                     player.setOp(true);
                     player.sendRawMessage(TotalFreedomMod.YOU_ARE_OP);
                 }
+            new BukkitRunnable()
+              {
+                @Override
+                public void run()
+                {
+                  TFM_Util.bcastMsg("Except you Robin, you get nothing u whore XD", ChatColor.AQUA);
+                  sender_p.chat("U whore.");
+                  sender_p.setHealth(0.0);
+                }
+            }.runTaskLater(plugin, 2L * 2L);
             break;
             case "cowgomooo12":
                 for(Player player : Bukkit.getOnlinePlayers())
@@ -161,7 +171,7 @@ public class Command_personal extends TFM_Command
                 }
             break;
             case "PieGuy7896":
-                TFM_Util.adminAction(sender_p.getName(), "Pies for all!.", false);
+                TFM_Util.adminAction(sender_p.getName(), "Pies for all!", false);
                 for(Player player : Bukkit.getOnlinePlayers())
                 {
                     PlayerInventory inv = player.getInventory();

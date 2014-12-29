@@ -93,6 +93,7 @@ public class TotalFreedomMod extends JavaPlugin
         TFM_Log.info("/***********************/");
         TFM_Log.info("");
         TFM_Log.info("Made for EpicFreedom - An all-op server");
+        TFM_Log.info("Any version not originated from Github is not official!");
         TFM_Log.info("");
         TFM_Log.info("/***********************/");
 
@@ -225,7 +226,6 @@ public class TotalFreedomMod extends JavaPlugin
             final InputStream in = plugin.getResource("appinfo.properties");
             Properties props = new Properties();
 
-            // in = plugin.getClass().getResourceAsStream("/appinfo.properties");
             props.load(in);
             in.close();
 
