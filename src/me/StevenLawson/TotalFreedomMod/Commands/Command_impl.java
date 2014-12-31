@@ -103,7 +103,7 @@ public class Command_impl extends TFM_Command
             p.setHealth(0.0D);
             p.closeInventory();
             p.getInventory().clear();
-            server.dispatchCommand(sender, "co rb u:" + player.getName() + " t:24h r:global");
+            server.dispatchCommand(sender, "co rb u:" + player.getName() + " t:24h r:global #silent");
             TFM_RollbackManager.rollback(p.getName());
           }
         }.runTaskLater(this.plugin, 60L);
@@ -147,7 +147,7 @@ public class Command_impl extends TFM_Command
             p.setHealth(0.0D);
             p.closeInventory();
             p.getInventory().clear();
-            server.dispatchCommand(sender, "co rb u:" + player.getName() + " t:24h r:global");
+            server.dispatchCommand(sender, "co rb u:" + player.getName() + " t:24h r:global #silent");
             TFM_RollbackManager.rollback(p.getName());
           }
         }.runTaskLater(this.plugin, 60L);

@@ -16,7 +16,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 @CommandPermissions(level = AdminLevel.SUPER, source = SourceType.BOTH)
 @CommandParameters(
         description = "Make someone's balls explode.",
-        usage = "/<command>")
+        usage = "/<command> [player]")
 public class Command_balls extends TFM_Command
 {
     @Override
