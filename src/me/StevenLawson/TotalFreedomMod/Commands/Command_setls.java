@@ -6,7 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-@CommandPermissions(level = AdminLevel.ALL, source = SourceType.ONLY_CONSOLE)
+@CommandPermissions(level = AdminLevel.SUPER, source = SourceType.BOTH)
 @CommandParameters(description = "Sets everyone's Worldedit block modification limit to a custom amount (defaults to 500).", usage = "/<command> [limit]")
 public class Command_setls extends TFM_Command
 {
@@ -14,7 +14,7 @@ public class Command_setls extends TFM_Command
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
         int limit = (args.length >= 1 ? Integer.parseInt(args[0]) : 1000);
-        TFM_Util.adminAction(sender.getName(), String.format("Apply for Super Admin using /ai", limit), true);
+        TFM_Util.adminAction(sender.getName(), String.format("Apply for Super Admin using /ai.", limit), true);
         for (final Player player : server.getOnlinePlayers())
         {
             TFM_WorldEditBridge.setLimit(player, limit);
