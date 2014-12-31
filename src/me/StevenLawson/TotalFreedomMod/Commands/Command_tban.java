@@ -20,7 +20,7 @@ public class Command_tban extends TFM_Command
     @Override
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-        if (args.length != 1)
+        if (args.length == 0)
         {
             return false;
         }
@@ -32,12 +32,12 @@ public class Command_tban extends TFM_Command
             playerMsg(TotalFreedomMod.PLAYER_NOT_FOUND, ChatColor.RED);
             return true;
         }
+
         String reason = null;
         if (args.length >= 2)
         {
             reason = StringUtils.join(ArrayUtils.subarray(args, 1, args.length), " ");
         }
-
 
         // strike with lightning effect:
         final Location targetPos = player.getLocation();
@@ -51,10 +51,10 @@ public class Command_tban extends TFM_Command
         }
 
         String ip = TFM_Util.getFuzzyIp(player.getAddress().getAddress().getHostAddress());
-        TFM_Util.bcastMsg(String.format("tempbanning %s for 5 minutes.", player.getName(), ip) + (reason != null ? ("- Reason: " + ChatColor.YELLOW + reason) : ""), ChatColor.RED);
+        TFM_Util.bcastMsg(String.format("Tempbanning %s for 5 minutes.", player.getName(), ip) + (reason != null ? ("- Reason: " + ChatColor.YELLOW + reason) : ""), ChatColor.RED);
         TFM_BanManager.getInstance().addUuidBan(
         new TFM_Ban(player.getUniqueId(), player.getName(), sender.getName(), TFM_Util.parseDateOffset("5m"), reason));
-        player.kickPlayer(ChatColor.RED + "Tempbanned for 5 minutes" + (reason != null ? ("\nReason: " + ChatColor.YELLOW + reason) : ""));
+        player.kickPlayer(ChatColor.RED + "You have been temporarily banned for 5 minutes" + (reason != null ? ("\nReason: " + ChatColor.YELLOW + reason) : ""));
 
         return true;
     }
