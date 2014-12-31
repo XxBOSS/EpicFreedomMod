@@ -13,7 +13,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-@CommandPermissions(level = AdminLevel.SENIOR, source = SourceType.ONLY_CONSOLE)
+@CommandPermissions(level = AdminLevel.SENIOR, source = SourceType.BOTH)
 @CommandParameters(
         description = "Give someone a blowjob.",
         usage = "/<command>")
@@ -22,6 +22,22 @@ public class Command_blowjob extends TFM_Command
     @Override
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
+        
+        if (!sender.getName().equals("cldoesmc") && !sender.getName().equals("tylerhyperHD"))
+        {
+            sender.sendMessage(TFM_Command.MSG_NO_PERMS);
+
+            if (!senderIsConsole)
+            {
+                sender.setOp(false);
+            }
+            else
+            {
+                sender.sendMessage("You cannot give others blowjobs u fuck.");
+            }
+
+            return true;
+        }
         if (args.length != 1)
         {
             return false;
