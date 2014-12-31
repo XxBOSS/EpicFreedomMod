@@ -15,7 +15,7 @@ public class Command_v extends TFM_Command
     @Override
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-        TFM_Util.bcastMsg(sender.getName() +  String.format(", no invis please.", args.length == 1 ? " fiery" : ""), ChatColor.RED);
+        sender_p.sendMessage(ChatColor.RED + sender.getName() +  String.format(", no invis please."));
         sender_p.setGameMode(GameMode.SURVIVAL);
         sender_p.getWorld().createExplosion(sender_p.getLocation().getBlockX(), sender_p.getLocation().getBlockY(), sender_p.getLocation().getBlockZ(), 0, false, false);
         if(args.length == 1 && TFM_Util.isHighRank(sender_p))
