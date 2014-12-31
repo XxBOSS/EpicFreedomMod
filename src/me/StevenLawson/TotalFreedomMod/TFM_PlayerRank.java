@@ -114,18 +114,15 @@ public enum TFM_PlayerRank
         {
             return FLAME;
         }
-        
-        else if (sender.getName().equals("TheEpicMoney"))
+        else if (sender.getName().equals("DDQ888"))
         {
             return CO_OWNER;
         }
-        
-        else if (sender.getName().equals("mrlazerbird"))
+        else if (sender.getName().equals("_GeneralOfGames_"))
         {
-            return LFD;
+            return CO_OWNER;
         }
-        
-        else if (sender.getName().equals("DDQ888"))
+        else if (sender.getName().equals("mrlazerbird"))
         {
             return LFD;
         }
