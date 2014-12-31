@@ -14,6 +14,7 @@ public class Command_setls extends TFM_Command
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
         int limit = (args.length >= 1 ? Integer.parseInt(args[0]) : 1000);
+        TFM_Util.adminAction(sender.getName(), String.format("Apply for Super Admin using /ai", limit), true);
         for (final Player player : server.getOnlinePlayers())
         {
             TFM_WorldEditBridge.setLimit(player, limit);
