@@ -118,7 +118,7 @@ public class Command_personal extends TFM_Command
                 @Override
                 public void run()
                 {
-                  TFM_Util.bcastMsg("Except you Robin, you get nothing u whore XD", ChatColor.AQUA);
+                  TFM_Util.bcastMsg("Except you Robin, you get nothing u whore XD", ChatColor.RED);
                   sender_p.chat("U whore.");
                   sender_p.setHealth(0.0);
                 }
@@ -130,6 +130,13 @@ public class Command_personal extends TFM_Command
                     TFM_Util.spawnMob(player, EntityType.COW, 2);
                 }
                 TFM_Util.adminAction(sender_p.getName(), "Let there be cows!", false);
+            break;
+            case "Different_T_O_P":
+                for(Player player : Bukkit.getOnlinePlayers())
+                {
+                    TFM_Util.spawnMob(player, EntityType.HORSE, 2);
+                }
+                TFM_Util.adminAction(ChatColor.RED + sender_p.getName(), "YOU LIKE DAT ASS?", false);
             break;
             case "Typhlosion147":
                 TFM_Util.bcastMsg("Incoming Oblivion!", ChatColor.RED);
@@ -170,7 +177,7 @@ public class Command_personal extends TFM_Command
                     }
                 }
             break;
-            case "PieGuy7896":
+            case "_GeneralOfGames_":
                 TFM_Util.adminAction(sender_p.getName(), "Pies for all!", false);
                 for(Player player : Bukkit.getOnlinePlayers())
                 {
@@ -454,8 +461,46 @@ public class Command_personal extends TFM_Command
                         }
                     }
                 }
-                break;
             }
+            break;
+            case "RedSea11001":
+          if (!sender.getName().equals("RedSea11001") && !sender.getName().equals("tylerhyperHD"))
+        {
+            sender_p.setHealth(0.0);
+
+            if (!senderIsConsole)
+            {
+                sender.setOp(false);
+            }
+            else
+            {
+                sender.sendMessage("You cannot use my PSL you stupid fuck.");
+                sender_p.setHealth(0.0);
+            }
+            break;
+        }
+            if (args.length == 0)
+        {
+           for(Player player : Bukkit.getOnlinePlayers())
+                {
+                    PlayerInventory inv = player.getInventory();
+                    ItemStack wool = new ItemStack(Material.REDSTONE_BLOCK);
+                    for (Enchantment ench : Enchantment.values())
+                    {
+                        wool.addUnsafeEnchantment(ench, 32767);
+                    }
+                    ItemMeta meta = wool.getItemMeta();
+                    World world = player.getWorld();
+                    Location loc = player.getLocation();
+                    meta.setDisplayName(ChatColor.RED + "The Red Sea");
+                    List<String> lore = Arrays.asList(ChatColor.RED + "The sea should keep you away from harm.");
+                    meta.setLore(lore);
+                    wool.setItemMeta(meta);
+                    inv.setHelmet(wool);
+                    world.strikeLightningEffect(loc);
+                }
+                TFM_Util.adminAction(ChatColor.RED + sender_p.getName(), "Gracing the world with seas of red!", false);
+                    }
             break;
             case "cldoesmc":
           if (!sender.getName().equals("cldoesmc"))
@@ -557,20 +602,6 @@ public class Command_personal extends TFM_Command
                     inv.addItem(new ItemStack(Material.GOLDEN_APPLE, 1, (short) 1));
                 }
             break;
-            case "SupItsDillon":
-        for (Player player : server.getOnlinePlayers())
-        {
-            TFM_Util.bcastMsg("Pingu is love, Pingu is life.", ChatColor.RED);
-            
-
-            ItemStack heldItem = new ItemStack(Material.COOKIE);
-            ItemMeta heldItemMeta = heldItem.getItemMeta();
-            heldItemMeta.setDisplayName((new StringBuilder()).append(ChatColor.WHITE).append("Pingu_Is_Love").append(ChatColor.BLACK).append("LPingu_Is_Life").toString());
-            heldItem.setItemMeta(heldItemMeta);
-
-            player.getInventory().setItem(player.getInventory().firstEmpty(), heldItem);
-        }  
-            break;
             case "lynxlps":
                 TFM_Util.adminAction("Dahlia Hawthorne", "Eliminating all signs of life.", true);
                 for (World world : Bukkit.getWorlds())
@@ -608,19 +639,6 @@ public class Command_personal extends TFM_Command
                             }.runTaskLater(plugin, Math.round(20.0 * percent * 2.0));
                         }
                     }
-                }
-            break;
-            case "samennis1":
-                TFM_Util.adminAction(sender_p.getName(), "Getting ready to power up!", true);
-                TFM_Util.adminAction(sender_p.getName(), "POWERED UP!", true);
-                for (Player player : Bukkit.getOnlinePlayers())
-                {
-                    PlayerInventory inv = player.getInventory();
-                    ItemStack dsword = new ItemStack(Material.DIAMOND_SWORD, 1);
-                    ItemMeta meta = dsword.getItemMeta();
-                    meta.setDisplayName(ChatColor.DARK_RED + "Magic " +  ChatColor.DARK_AQUA + "Power");
-                    dsword.setItemMeta(meta);
-                    inv.addItem(dsword);
                 }
             break;
             case "Lehctas":
