@@ -28,8 +28,8 @@ public class Command_tfipbanlist extends TFM_Command
                 {
                     try
                     {
-                        TFM_BanManager.getInstance().purgeIpBans();
-                        TFM_Util.adminAction(sender.getName(), "Purging the IP ban list", true);
+                        TFM_BanManager.purgeIpBans();
+                        TFM_Util.adminAction(sender.getName(), "Removing all IP bans", true);
 
                         sender.sendMessage(ChatColor.GRAY + "IP ban list has been purged.");
                     }
@@ -47,7 +47,7 @@ public class Command_tfipbanlist extends TFM_Command
             }
         }
 
-        playerMsg(TFM_BanManager.getInstance().getIpBanList().size() + " IPbans total");
+        playerMsg(TFM_BanManager.getIpBanList().size() + " IPbans total");
 
         return true;
     }

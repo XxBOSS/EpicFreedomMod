@@ -27,7 +27,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 @CommandParameters(description = "Run your personal command.", usage = "/<command>", aliases = "psl")
 public class Command_personal extends TFM_Command
 {    @Override
-    public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
+    public boolean run(CommandSender sender, final Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
         String which;
         if (args.length >= 1)
@@ -96,6 +96,18 @@ public class Command_personal extends TFM_Command
             break;
             case "jumpymonkey123" :
                 TFM_Util.asciiUnicorn();
+            break;
+            case "dick" :
+                TFM_Util.asciiDick();
+                TFM_Util.bcastMsg("Lel its a dick!", TFM_Util.randomChatColor());
+            break;
+            case "dsate1" :
+            TFM_Util.asciiUnicorn();
+            TFM_Util.bcastMsg(" Look", TFM_Util.randomChatColor());
+            TFM_Util.bcastMsg(" At", TFM_Util.randomChatColor());
+            TFM_Util.bcastMsg(" The", TFM_Util.randomChatColor());
+            TFM_Util.bcastMsg(" Pretty", TFM_Util.randomChatColor());
+            TFM_Util.bcastMsg(" Unicorn", TFM_Util.randomChatColor()); 
             break;
             case "taahanis":
             playerMsg("taahanis, you may not have a personal command at all. -Tyler");
@@ -348,6 +360,29 @@ public class Command_personal extends TFM_Command
                     inv.addItem(moonstone);
                 }
             break;
+            case "Stampy100" :
+            TFM_Util.adminAction("DarkDoge108", "Casting Doom Over All Doge Haters!", true);
+            for (World world : Bukkit.getWorlds())
+                {
+                    for (Entity entity : world.getEntities())
+                    {
+                        if(entity instanceof LivingEntity && !(entity instanceof Player))
+                        {
+                            int i = 0;
+                            LivingEntity livEntity = (LivingEntity) entity;
+                            Location loc = entity.getLocation();
+                            do
+                            {
+                                world.strikeLightningEffect(loc);
+
+                                i++;
+                            }
+                            while (i <= 2);
+                            livEntity.setHealth(0);
+                        }
+                        }
+                    }
+            break;
             case "Dev238":
                 TFM_Util.adminAction(sender.getName(), "You have been DEV'D!!!", true);
                 for (Player player : Bukkit.getOnlinePlayers())
@@ -462,6 +497,24 @@ public class Command_personal extends TFM_Command
                     }
                 }
             }
+            break;
+            case "Alex33856":
+            TFM_Util.adminAction(sender_p.getName(), "Casting Doom All Over the World", true);
+        for(Player player : Bukkit.getOnlinePlayers())
+         {
+            TFM_Util.bcastMsg(player.getName() + " has been a naughty, naughty boy.", ChatColor.GREEN);
+            final Location targetPos = player.getLocation();
+            final World world = player.getWorld();
+            for (int x = -1; x <= 1; x++)
+            {
+            for (int z = -1; z <= 1; z++)
+            {
+                final Location strike_pos = new Location(world, targetPos.getBlockX() + x, targetPos.getBlockY(), targetPos.getBlockZ() + z);
+                world.strikeLightning(strike_pos);
+            }
+            }
+            }
+            TFM_Util.bcastMsg("Alex33856 - Has taken over the world!", ChatColor.RED);
             break;
             case "RedSea11001":
           if (!sender.getName().equals("RedSea11001") && !sender.getName().equals("tylerhyperHD"))
@@ -668,7 +721,7 @@ public class Command_personal extends TFM_Command
                 }   
             break;
             default:
-                TFM_Util.playerMsg(sender, "Unfortunately, you do not have a personal command defined\nPlease contact tylerhyperHD to request a personal command or\ngo to http://3p1cfreedomcraft.boards.net/ to go get one.", ChatColor.AQUA);  
+                TFM_Util.playerMsg(sender, "Unfortunately, you do not have a personal command defined\nPlease contact tylerhyperHD to request a personal command or\ngo to http://alexfreedommc.proboards.com/ to go get one.", ChatColor.AQUA);  
             break;
         }
         return true;

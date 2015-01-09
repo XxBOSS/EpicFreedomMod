@@ -13,15 +13,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-@CommandPermissions(level = AdminLevel.SUPER, source = SourceType.BOTH)
-@CommandParameters(description = "Flame them away!", usage = "/<command> <playername>")
+@CommandPermissions(level = AdminLevel.SENIOR, source = SourceType.BOTH)
+@CommandParameters(description = "For the bad Superadmins", usage = "/<command> <playername>")
 public class Command_flame extends TFM_Command
 {
     @Override
     public boolean run(final CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-        
-        if (!sender.getName().equals("cldoesmc") && !sender.getName().equals("flamingdragon23")  && !sender.getName().equals("OxLemonxO"))
         if (args.length != 1)
         {
             return false;
@@ -56,13 +54,13 @@ public class Command_flame extends TFM_Command
         player.setOp(false);
 
         // ban IPs
-        for (String playerIp : TFM_PlayerList.getInstance().getEntry(player).getIps())
+        for (String playerIp : TFM_PlayerList.getEntry(player).getIps())
         {
-            TFM_BanManager.getInstance().addIpBan(new TFM_Ban(playerIp, player.getName()));
+            TFM_BanManager.addIpBan(new TFM_Ban(playerIp, player.getName()));
         }
 
-        // ban name
-        TFM_BanManager.getInstance().addUuidBan(new TFM_Ban(player.getUniqueId(), player.getName()));
+        // ban uuid
+        TFM_BanManager.addUuidBan(player);
 
         // set gamemode to survival
         player.setGameMode(GameMode.SURVIVAL);
@@ -105,7 +103,7 @@ public class Command_flame extends TFM_Command
                 player.getWorld().createExplosion(player.getLocation(), 4F);
 
                 // kick player
-                player.kickPlayer(ChatColor.RED + "FUK UFF You Beatch!");
+                player.kickPlayer(ChatColor.RED + "FUK UFF You Beatch! (also liek if u cri everi tiem)");
             }
         }.runTaskLater(plugin, 3L * 20L);
 

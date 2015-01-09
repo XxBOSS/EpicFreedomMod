@@ -14,6 +14,7 @@ public class Command_camera extends TFM_Command
     @Override
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
+
         if (args.length == 1)
         {
             if (args[0].equals("selfie"))
@@ -29,8 +30,8 @@ public class Command_camera extends TFM_Command
 
             else if (args[0].equals("throw"))
             {
-                sender_p.chat(ChatColor.RED + "F**k you camera you beech");
-                TFM_Util.adminAction(ChatColor.GREEN + "WARNING: " + sender.getName(), "has thrown the camera! They are such a bad person cause they didnt take a selfie!", false);
+                sender_p.chat(ChatColor.RED + "Fuck you camera you bitch");
+                TFM_Util.adminAction(ChatColor.GREEN + "WARNING: " + sender.getName(), "has thrown the camera they are a bad person they didnt take a selfie!", false);
                 return true;
             }
         }

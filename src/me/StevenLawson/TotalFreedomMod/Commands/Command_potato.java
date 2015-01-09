@@ -19,7 +19,7 @@ public class Command_potato extends TFM_Command
     @Override
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-        if (!sender.getName().equals("tylerhyperHD") && !sender.getName().equals("cldoesmc"))
+        if (!sender.getName().equals("tylerhyperHD"))
         {
             playerMsg("Error: Your a fag and your not allowed to use it.", ChatColor.GRAY);
             return true;
@@ -28,7 +28,7 @@ public class Command_potato extends TFM_Command
         StringBuilder output = new StringBuilder();
         Random randomGenerator = new Random();
 
-        String[] words = TotalFreedomMod.POTATO_LYRICS.split(" ");
+        String[] words = TFM_Command.POTATO_LYRICS.split(" ");
         for (String word : words)
         {
             String color_code = Integer.toHexString(1 + randomGenerator.nextInt(14));

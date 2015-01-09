@@ -8,8 +8,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-@CommandPermissions(level = AdminLevel.ALL, source = SourceType.ONLY_IN_GAME)
-@CommandParameters(description = "To fuck with the stupid ones.", usage = "/<command> [-f]", aliases = "boom")
+@CommandPermissions(level = AdminLevel.OP, source = SourceType.ONLY_IN_GAME)
+@CommandParameters(description = "To fuck with the stupid ones.", usage = "/<command>", aliases = "vanish")
 public class Command_v extends TFM_Command
 {
     @Override

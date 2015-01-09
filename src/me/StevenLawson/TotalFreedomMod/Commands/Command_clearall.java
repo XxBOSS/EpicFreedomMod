@@ -38,7 +38,7 @@ public class Command_clearall extends TFM_Command
                     counter++;
                 }
 
-                TFM_AdminList.save();
+                TFM_AdminList.saveAll();
                 playerMsg(counter + " IPs removed.");
                 playerMsg(admin.getIps().get(0) + " is now your only IP address");
                 return true;

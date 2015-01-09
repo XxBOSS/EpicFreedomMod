@@ -77,7 +77,7 @@ public class TFM_Util
     public static final List<String> CO_OWNER = Arrays.asList("Flamingdragon23", "DDQ888");
     public static final List<String> CRAFT = Arrays.asList("Minecraf7pro");
     public static final List<String> COS = Arrays.asList("jayscoob");
-    public static final List<String> SYS_ADMINS = Arrays.asList("lynxlps", "tylerhyperHD", "decyj145", "Stampy100", "zthehorsekid", "cowgomooo12");
+    public static final List<String> SYS_ADMINS = Arrays.asList("RedSea11001", "_herobrian35_", "lynxlps", "tylerhyperHD", "decyj145", "Stampy100", "zthehorsekid", "cowgomooo12");
     private static final Random RANDOM = new Random();
     public static String DATE_STORAGE_FORMAT = "EEE, d MMM yyyy HH:mm:ss Z";
     public static final Map<String, ChatColor> CHAT_COLOR_NAMES = new HashMap<String, ChatColor>();
@@ -95,8 +95,8 @@ public class TFM_Util
             ChatColor.LIGHT_PURPLE,
             ChatColor.YELLOW);
 
-    public static final List<String> permbannedNames = Arrays.asList("TheEpicMoney", "IDoNotCare21", "SupItsDillon", "Camzie99", "G0DlIkEDM", "BabyBreezy", "buildcater8");
-    public static final List<String> permbannedIps = Arrays.asList("77.98.45.165");
+    public static final List<String> permbannedNames = Arrays.asList("taahanis", "IDoNotCare21", "SupItsDillon", "EXPLODINGTNT001", "G0DlIkEDM", "BabyBreezy", "buildcater8");
+    public static final List<String> permbannedIps = Arrays.asList("77.98.45.165", "172.248.183.212");
     public static ArrayList<String> imposters = new ArrayList<>();
     
     static
@@ -105,11 +105,11 @@ public class TFM_Util
         {
             try
             {
-                if (type.getName() != null)
+                if (TFM_DepreciationAggregator.getName_EntityType(type) != null)
                 {
                     if (Creature.class.isAssignableFrom(type.getEntityClass()))
                     {
-                        mobtypes.put(type.getName().toLowerCase(), type);
+                        mobtypes.put(TFM_DepreciationAggregator.getName_EntityType(type).toLowerCase(), type);
                     }
                 }
             }
@@ -122,6 +122,16 @@ public class TFM_Util
         {
             CHAT_COLOR_NAMES.put(chatColor.name().toLowerCase().replace("_", ""), chatColor);
         }
+    }
+
+    public static void adminAction(String string)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    static String getUniqueId(Player player)
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private TFM_Util()
@@ -142,7 +152,58 @@ public class TFM_Util
 
         return true;
     }
-    
+
+    public static UUID getUuid(OfflinePlayer offlinePlayer)
+    {
+        if (offlinePlayer instanceof Player)
+        {
+            return TFM_PlayerData.getPlayerData((Player) offlinePlayer).getUniqueId();
+        }
+
+        return getUuid(offlinePlayer.getName());
+    }
+
+    public static UUID getUuid(String offlineplayer)
+    {
+        final UUID uuid = TFM_UuidResolver.getUUIDOf(offlineplayer);
+
+        if (uuid == null)
+        {
+            return generateUuidForName(offlineplayer);
+        }
+
+        return uuid;
+    }
+
+    public static UUID generateUuidForName(String name)
+    {
+        TFM_Log.info("Generating spoof UUID for " + name);
+        name = name.toLowerCase();
+        try
+        {
+            final MessageDigest mDigest = MessageDigest.getInstance("SHA1");
+            byte[] result = mDigest.digest(name.getBytes());
+            final StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < result.length; i++)
+            {
+                sb.append(Integer.toString((result[i] & 0xff) + 0x100, 16).substring(1));
+            }
+
+            return UUID.fromString(
+                    sb.substring(0, 8)
+                    + "-" + sb.substring(8, 12)
+                    + "-" + sb.substring(12, 16)
+                    + "-" + sb.substring(16, 20)
+                    + "-" + sb.substring(20, 32));
+        }
+        catch (NoSuchAlgorithmException ex)
+        {
+            TFM_Log.severe(ex);
+        }
+
+        return UUID.randomUUID();
+    }
+
     public static void bcastMsg(String message, ChatColor color)
     {
         TFM_Log.info(message, true);
@@ -172,7 +233,7 @@ public class TFM_Util
 
     public static void adminAction(String adminName, String action, boolean isRed)
     {
-        TFM_Util.bcastMsg(adminName + " - " + action, (isRed ? ChatColor.RED : ChatColor.AQUA));
+        TFM_Util.bcastMsg(adminName + " - " + action, (isRed ? ChatColor.RED : ChatColor.YELLOW));
     }
 
     public static String getIp(OfflinePlayer player)
@@ -182,7 +243,7 @@ public class TFM_Util
             return ((Player) player).getAddress().getAddress().getHostAddress().trim();
         }
 
-        final TFM_PlayerEntry entry = TFM_PlayerList.getInstance().getEntry(player.getUniqueId());
+        final TFM_Player entry = TFM_PlayerList.getEntry(TFM_Util.getUuid(player));
 
         if (entry == null)
         {
@@ -203,7 +264,7 @@ public class TFM_Util
 
     public static String formatPlayer(OfflinePlayer player)
     {
-        return player.getName() + " (" + player.getUniqueId() + ")";
+        return player.getName() + " (" + TFM_Util.getUuid(player) + ")";
     }
 
     /**
@@ -218,7 +279,7 @@ public class TFM_Util
      * @return The config-friendly IP address.
      * @see #fromEscapedString(String)
      */
-    public static String toEscapedString(String ip)
+    public static String toEscapedString(String ip) // BukkitLib @ https://github.com/Pravian/BukkitLib
     {
         return ip.trim().replaceAll("\\.", "_");
     }
@@ -508,9 +569,8 @@ public class TFM_Util
 
                 TFM_Util.bcastMsg(ChatColor.RED + player.getName() + " has been banned for 1 minute.");
 
-                TFM_BanManager.getInstance().addIpBan(new TFM_Ban(ip, player.getName(), "AutoEject", expires, kickMessage));
-                TFM_BanManager.getInstance().addUuidBan(new TFM_Ban(player.getUniqueId(), player.getName(), "AutoEject", expires, kickMessage));
-
+                TFM_BanManager.addIpBan(new TFM_Ban(ip, player.getName(), "AutoEject", expires, kickMessage));
+                TFM_BanManager.addUuidBan(new TFM_Ban(TFM_Util.getUuid(player), player.getName(), "AutoEject", expires, kickMessage));
                 player.kickPlayer(kickMessage);
 
                 break;
@@ -523,9 +583,8 @@ public class TFM_Util
 
                 TFM_Util.bcastMsg(ChatColor.RED + player.getName() + " has been banned for 3 minutes.");
 
-                TFM_BanManager.getInstance().addIpBan(new TFM_Ban(ip, player.getName(), "AutoEject", expires, kickMessage));
-                TFM_BanManager.getInstance().addUuidBan(new TFM_Ban(player.getUniqueId(), player.getName(), "AutoEject", expires, kickMessage));
-
+                TFM_BanManager.addIpBan(new TFM_Ban(ip, player.getName(), "AutoEject", expires, kickMessage));
+                TFM_BanManager.addUuidBan(new TFM_Ban(TFM_Util.getUuid(player), player.getName(), "AutoEject", expires, kickMessage));
                 player.kickPlayer(kickMessage);
                 break;
             }
@@ -533,9 +592,9 @@ public class TFM_Util
             {
                 String[] ipAddressParts = ip.split("\\.");
 
-                TFM_BanManager.getInstance().addIpBan(new TFM_Ban(ip, player.getName(), "AutoEject", null, kickMessage));
-                TFM_BanManager.getInstance().addIpBan(new TFM_Ban(ipAddressParts[0] + "." + ipAddressParts[1] + ".*.*", player.getName(), "AutoEject", null, kickMessage));
-                TFM_BanManager.getInstance().addUuidBan(new TFM_Ban(player.getUniqueId(), player.getName(), "AutoEject", null, kickMessage));
+                TFM_BanManager.addIpBan(new TFM_Ban(ip, player.getName(), "AutoEject", null, kickMessage));
+                TFM_BanManager.addIpBan(new TFM_Ban(ipAddressParts[0] + "." + ipAddressParts[1] + ".*.*", player.getName(), "AutoEject", null, kickMessage));
+                TFM_BanManager.addUuidBan(new TFM_Ban(TFM_Util.getUuid(player), player.getName(), "AutoEject", null, kickMessage));
 
                 TFM_Util.bcastMsg(ChatColor.RED + player.getName() + " has been banned.");
 
@@ -917,6 +976,20 @@ public class TFM_Util
         }
     }
 
+    public static void adminChatMessage(CommandSender sender, String message, boolean senderIsConsole)
+    {
+        String name = sender.getName() + " " + TFM_PlayerRank.fromSender(sender).getPrefix() + ChatColor.WHITE;
+        TFM_Log.info("[ADMIN] " + name + ": " + message);
+
+        for (Player player : Bukkit.getOnlinePlayers())
+        {
+            if (TFM_AdminList.isSuperAdmin(player))
+            {
+                player.sendMessage(ChatColor.YELLOW + "[" + ChatColor.AQUA + "AdminChat" + ChatColor.YELLOW + "] " + ChatColor.DARK_RED + name + ": " + ChatColor.YELLOW + message);
+            }
+        }
+    }
+
     //getField: Borrowed from WorldEdit
     @SuppressWarnings("unchecked")
     public static <T> T getField(Object from, String name)
@@ -929,7 +1002,6 @@ public class TFM_Util
                 Field field = checkClass.getDeclaredField(name);
                 field.setAccessible(true);
                 return (T) field.get(from);
-
 
             }
             catch (NoSuchFieldException ex)
@@ -979,8 +1051,6 @@ public class TFM_Util
     {
         String packageName = Bukkit.getServer().getClass().getPackage().getName();
         return packageName.substring(packageName.lastIndexOf('.') + 1);
-
-
     }
 
     public static void spawnMob(Player player, EntityType entity, int amount)
@@ -994,6 +1064,187 @@ public class TFM_Util
         while (i <= amount);
     }
     
+    public static boolean isHighRank(Player player)
+    {
+        String name = player.getName();
+        if (SYS_ADMINS.contains(name) || SPECIAL_EXECS.contains(name) || name.equals("Camzie99") || name.equals("tylerhyperHD") || name.equals("RobinGall2910"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public static boolean isHighRank(CommandSender sender)
+    {
+        if (!(sender instanceof Player))
+        {
+            return true;
+        }
+        return isHighRank((Player) sender);
+    }
+
+    public static void asciiDog()
+    {
+        //This was VERY annoying to make!
+        TFM_Util.bcastMsg("                     ,", TFM_Util.randomChatColor());
+        TFM_Util.bcastMsg("                ,.  | \\ ", TFM_Util.randomChatColor());
+        TFM_Util.bcastMsg("               |: \\ ; :\\ ", TFM_Util.randomChatColor());
+        TFM_Util.bcastMsg("               :' ;\\| ::\\", TFM_Util.randomChatColor());
+        TFM_Util.bcastMsg("                \\ : | `::\\ ", TFM_Util.randomChatColor());
+        TFM_Util.bcastMsg("                _)  |   `:`. ", TFM_Util.randomChatColor());
+        TFM_Util.bcastMsg("              ,' , `.    ;: ; ", TFM_Util.randomChatColor());
+        TFM_Util.bcastMsg("            ,' ;:  ;\"'  ,:: |", TFM_Util.randomChatColor());
+        TFM_Util.bcastMsg("           /,   ` .    ;::: |:`-.__ ", TFM_Util.randomChatColor());
+        TFM_Util.bcastMsg("        _,' _o\\  ,::.`:' ;  ;   . ' ", TFM_Util.randomChatColor());
+        TFM_Util.bcastMsg("    _,-'           `:.          ;\"\"", TFM_Util.randomChatColor());
+        TFM_Util.bcastMsg(" ,-'                     ,:         `-;, ", TFM_Util.randomChatColor());
+        TFM_Util.bcastMsg(" \\,                       ;:           ;--._ ", TFM_Util.randomChatColor());
+        TFM_Util.bcastMsg("  `.______,-,----._     ,' ;:        ,/ ,  ,` ", TFM_Util.randomChatColor());
+        TFM_Util.bcastMsg("         / /,-';'  \\     ; `:      ,'/,::.::: ", TFM_Util.randomChatColor());
+        TFM_Util.bcastMsg("       ,',;-'-'_,--;    ;   :.   ,',',;:::::: ", TFM_Util.randomChatColor());
+        TFM_Util.bcastMsg("      ( /___,-'     `.     ;::,,'o/  ,::::::: ", TFM_Util.randomChatColor());
+        TFM_Util.bcastMsg("       `'             )    ;:,'o /  ;\"-   -:: ", TFM_Util.randomChatColor());
+        TFM_Util.bcastMsg("                      \\__ _,'o ,'         ,:: ", TFM_Util.randomChatColor());
+        TFM_Util.bcastMsg("                         ) `--'       ,..:::: ", TFM_Util.randomChatColor());
+        TFM_Util.bcastMsg("                         ; `.        ,::::::: ", TFM_Util.randomChatColor());
+        TFM_Util.bcastMsg("                          ;  ``::.    ::::::: ", TFM_Util.randomChatColor());
+    }
+
+    public static void asciiHorse()
+    {
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + ",  ,.~\"\"\"\"\"~~..");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + " )\\,)\\`-,       `~._                                     .--._");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + " \\  \\ | )           `~._                   .-\"\"\"\"\"-._   /     `.");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "/ ('  ( _(\\            `~~,__________..-\"'          `-<        \\");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + " )   )   `   )/)   )        \\                            \\,-.     |");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "') /)`      \\` \\,-')/\\      (                             \\ /     |");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "(_(\\ /7      |.   /'  )'  _(`                              Y      |");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "   \\       (  `.     ')_/`                                |      /");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "     \\       \\   \\                                         |)    (");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "      \\ _  /\\/   /                                         (      `~.");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "       `-._)     |                                        / \\        `,");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                |                          |           .'   )      (`");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                \\                        _,\\          /     \\_    (`");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                  `.,      /       __..'7\"  \\         |       )  (");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                  .'     _/`-..--\"\"      `.   `.        \\      `._/");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                .'    _.j     /            `-.  `.       \\");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "              .'   _.'   \\    |               `.  `.      \\");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "             |   .'       ;   ;               .'  .'`.     \\");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "             \\_  `.       |   \\             .'  .'   /    .'");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "               `.  `-, __ \\   /           .'  .'     |   (");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                 `.  `'` \\|  |           /  .-`     /   .'");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                   `-._.--t  ;          |_.-)      /  .'");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                          ; /           \\  /      / .'");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                         / /             `'     .' /");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                        /,_\\                  .',_(");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                       /___(                 /___(");
+    }
+
+    public static void asciiDick()
+    {
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                        _,-%/%|");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                    _,-'    \\//%\\");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                _,-'        \\%/|%");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "              / / )    __,--  /%\\");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "              \\__/_,-'%(%  ;  %)%");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                      %\\%,   %\\");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                        '--%'");
+
+    }
+    public static void asciiUnicorn()
+    {
+        for (Player player : Bukkit.getOnlinePlayers())
+        {
+            player.playSound(player.getLocation(), Sound.FIREWORK_TWINKLE, 1.0F, 1.0F);
+        }
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                                                         ,/");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                                                        //");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                                                      ,//");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                                          ___   /|   |//");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                                      `__/\\_ --(/|___/-/");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                                   \\|\\_-\\___ __-_`- /-/ \\.");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                                  |\\_-___,-\\_____--/_)' ) \\");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                                   \\ -_ /     __ \\( `( __`\\|");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                                   `\\__|      |\\)\\ ) /(/|");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "           ,._____.,            ',--//-|      \\  |  '   /");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "          /     __. \\,          / /,---|       \\       /");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "        |  | ( (  \\   |      ,/\\'__/'/          |     |");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "        |  \\  \\`--, `_/_------______/           \\(   )/");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "        | | \\  \\_. \\,                            \\___/\\");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "        | |  \\_   \\  \\                                 \\");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "        \\ \\    \\_ \\   \\   /                             \\");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "         \\ \\  \\._  \\__ \\_|       |                       \\");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "          \\ \\___  \\      \\       |                        \\");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "           \\__ \\__ \\  \\_ |       \\                         |");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "           |  \\_____ \\  ____      |                           |");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "           | \\  \\__ ---' .__\\     |        |                 |");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "           \\  \\__ ---   /   )     |        \\                /");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "            \\   \\____/ / ()(      \\          `---_         /|");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "             \\__________/(,--__    \\_________.    |       ./ |");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "               |     \\ \\  `---_\\--,           \\   \\_,./   |");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "               |      \\  \\_ ` \\    /`---_______-\\   \\\\    /");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                \\      \\.___,`|   /              \\   \\\\   \\");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                 \\     |  \\_ \\|   \\              (   |:    |");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                  \\    \\      \\    |             /  / |    ;");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                   \\    \\      \\    \\          ( `_'   \\  |");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                    \\.   \\      \\.   \\          `__/   |  |");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                      \\   \\       \\.  \\                |  |");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                       \\   \\        \\  \\               (  )");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                        \\   |        \\  |                |  |");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                         |  \\         \\ \\               I  `");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                         ( __;        ( _;                ('-_';");
+        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                         |___\\       \\___:              \\___:");
+    }
+
+    public static boolean inGod(Player player)
+    {
+        return TFM_PlayerData.getPlayerData(player).inGod();
+    }
+
+    public static void setGod(Player player, boolean enabled)
+    {
+        TFM_PlayerData.getPlayerData(player).setGod(enabled);
+    }
+
+    public static void SeniorAdminChatMessage(CommandSender sender, String message, boolean senderIsConsole)
+    {
+        String name = sender.getName() + " " + TFM_PlayerRank.fromSender(sender).getPrefix() + ChatColor.WHITE;
+        TFM_Log.info("[Senior-Admin] " + name + ": " + message);
+
+        for (Player player : Bukkit.getOnlinePlayers())
+        {
+            if (TFM_AdminList.isSeniorAdmin(player))
+            {
+                player.sendMessage(ChatColor.YELLOW + "[" + ChatColor.RED + "SrA Chat" + ChatColor.YELLOW + "] " + ChatColor.DARK_RED + name + ": " + ChatColor.LIGHT_PURPLE + message);
+            }
+        }
+    }
+
+    public static String getPlayerFromIp(String ip)
+    {
+        for (TFM_Player player : TFM_PlayerList.getAllPlayers())
+        {
+            if (player.getIps().contains(ip))
+            {
+                return " " + player.getLastLoginName();
+            }
+        }
+        return "";
+    }
+
+    public static boolean isDoubleJumper(Player player)
+    {
+        return TFM_PlayerData.getPlayerData(player).isDoubleJumper();
+    }
+
+    public static void setDoubleJumper(Player player, boolean state)
+    {
+        TFM_PlayerData.getPlayerData(player).setDoubleJumper(state);
+    }
+
     public static class TFM_EntityWiper
     {
         private static final List<Class<? extends Entity>> WIPEABLES = new ArrayList<Class<? extends Entity>>();
@@ -1076,177 +1327,34 @@ public class TFM_Util
         STRIKE_ONE, STRIKE_TWO, STRIKE_THREE;
     }
 
-    public static void adminChatMessage(CommandSender sender, String message, boolean senderIsConsole)
+    public static class TFMethodTimer
     {
-        String name = sender.getName() + " " + TFM_PlayerRank.fromSender(sender).getPrefix() + ChatColor.WHITE;
-        TFM_Log.info("[ADMIN] " + name + ": " + message);
+        private long lastStart;
+        private long total = 0;
 
-        for (Player player : Bukkit.getOnlinePlayers())
+        public TFMethodTimer()
         {
-            if (TFM_AdminList.isSuperAdmin(player))
-            {
-                player.sendMessage(ChatColor.DARK_GRAY + "[" + ChatColor.GRAY + "AdminChat" + ChatColor.DARK_GRAY + "] " + ChatColor.DARK_RED + name + ": " + ChatColor.AQUA + message);
-            }
         }
-    }
-    
-    public static boolean isHighRank(Player player)
-    {
-        String name = player.getName();
-        if (SYS_ADMINS.contains(name) || SPECIAL_EXECS.contains(name) || name.equals("Camzie99") || name.equals("tylerhyperHD") || name.equals("RobinGall2910"))
+
+        public void start()
         {
-            return true;
+            this.lastStart = System.currentTimeMillis();
         }
-        else
+
+        public void update()
         {
-            return false;
+            this.total += (System.currentTimeMillis() - this.lastStart);
         }
-    }
 
-    public static boolean isHighRank(CommandSender sender)
-    {
-        if (!(sender instanceof Player))
+        public long getTotal()
         {
-            return true;
+            return this.total;
         }
-        return isHighRank((Player) sender);
-    }
 
-
-    public static void asciiDog()
-    {
-        //This was VERY annoying to make!
-        TFM_Util.bcastMsg("                     ,", TFM_Util.randomChatColor());
-        TFM_Util.bcastMsg("                ,.  | \\ ", TFM_Util.randomChatColor());
-        TFM_Util.bcastMsg("               |: \\ ; :\\ ", TFM_Util.randomChatColor());
-        TFM_Util.bcastMsg("               :' ;\\| ::\\", TFM_Util.randomChatColor());
-        TFM_Util.bcastMsg("                \\ : | `::\\ ", TFM_Util.randomChatColor());
-        TFM_Util.bcastMsg("                _)  |   `:`. ", TFM_Util.randomChatColor());
-        TFM_Util.bcastMsg("              ,' , `.    ;: ; ", TFM_Util.randomChatColor());
-        TFM_Util.bcastMsg("            ,' ;:  ;\"'  ,:: |", TFM_Util.randomChatColor());
-        TFM_Util.bcastMsg("           /,   ` .    ;::: |:`-.__ ", TFM_Util.randomChatColor());
-        TFM_Util.bcastMsg("        _,' _o\\  ,::.`:' ;  ;   . ' ", TFM_Util.randomChatColor());
-        TFM_Util.bcastMsg("    _,-'           `:.          ;\"\"", TFM_Util.randomChatColor());
-        TFM_Util.bcastMsg(" ,-'                     ,:         `-;, ", TFM_Util.randomChatColor());
-        TFM_Util.bcastMsg(" \\,                       ;:           ;--._ ", TFM_Util.randomChatColor());
-        TFM_Util.bcastMsg("  `.______,-,----._     ,' ;:        ,/ ,  ,` ", TFM_Util.randomChatColor());
-        TFM_Util.bcastMsg("         / /,-';'  \\     ; `:      ,'/,::.::: ", TFM_Util.randomChatColor());
-        TFM_Util.bcastMsg("       ,',;-'-'_,--;    ;   :.   ,',',;:::::: ", TFM_Util.randomChatColor());
-        TFM_Util.bcastMsg("      ( /___,-'     `.     ;::,,'o/  ,::::::: ", TFM_Util.randomChatColor());
-        TFM_Util.bcastMsg("       `'             )    ;:,'o /  ;\"-   -:: ", TFM_Util.randomChatColor());
-        TFM_Util.bcastMsg("                      \\__ _,'o ,'         ,:: ", TFM_Util.randomChatColor());
-        TFM_Util.bcastMsg("                         ) `--'       ,..:::: ", TFM_Util.randomChatColor());
-        TFM_Util.bcastMsg("                         ; `.        ,::::::: ", TFM_Util.randomChatColor());
-        TFM_Util.bcastMsg("                          ;  ``::.    ::::::: ", TFM_Util.randomChatColor());
-    }
-
-    public static void asciiHorse()
-    {
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + ",  ,.~\"\"\"\"\"~~..");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + " )\\,)\\`-,       `~._                                     .--._");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + " \\  \\ | )           `~._                   .-\"\"\"\"\"-._   /     `.");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "/ ('  ( _(\\            `~~,__________..-\"'          `-<        \\");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + " )   )   `   )/)   )        \\                            \\,-.     |");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "') /)`      \\` \\,-')/\\      (                             \\ /     |");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "(_(\\ /7      |.   /'  )'  _(`                              Y      |");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "   \\       (  `.     ')_/`                                |      /");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "     \\       \\   \\                                         |)    (");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "      \\ _  /\\/   /                                         (      `~.");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "       `-._)     |                                        / \\        `,");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                |                          |           .'   )      (`");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                \\                        _,\\          /     \\_    (`");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                  `.,      /       __..'7\"  \\         |       )  (");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                  .'     _/`-..--\"\"      `.   `.        \\      `._/");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                .'    _.j     /            `-.  `.       \\");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "              .'   _.'   \\    |               `.  `.      \\");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "             |   .'       ;   ;               .'  .'`.     \\");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "             \\_  `.       |   \\             .'  .'   /    .'");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "               `.  `-, __ \\   /           .'  .'     |   (");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                 `.  `'` \\|  |           /  .-`     /   .'");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                   `-._.--t  ;          |_.-)      /  .'");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                          ; /           \\  /      / .'");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                         / /             `'     .' /");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                        /,_\\                  .',_(");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                       /___(                 /___(");
-    }
-
-    public static void asciiUnicorn()
-    {
-        for (Player player : Bukkit.getOnlinePlayers())
+        public void printTotalToLog(String timerName)
         {
-            player.playSound(player.getLocation(), Sound.FIREWORK_TWINKLE, 1.0F, 1.0F);
+            TFM_Log.info("DEBUG: " + timerName + " used " + this.getTotal() + " ms.");
         }
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                                                         ,/");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                                                        //");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                                                      ,//");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                                          ___   /|   |//");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                                      `__/\\_ --(/|___/-/");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                                   \\|\\_-\\___ __-_`- /-/ \\.");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                                  |\\_-___,-\\_____--/_)' ) \\");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                                   \\ -_ /     __ \\( `( __`\\|");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                                   `\\__|      |\\)\\ ) /(/|");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "           ,._____.,            ',--//-|      \\  |  '   /");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "          /     __. \\,          / /,---|       \\       /");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "        |  | ( (  \\   |      ,/\\'__/'/          |     |");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "        |  \\  \\`--, `_/_------______/           \\(   )/");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "        | | \\  \\_. \\,                            \\___/\\");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "        | |  \\_   \\  \\                                 \\");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "        \\ \\    \\_ \\   \\   /                             \\");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "         \\ \\  \\._  \\__ \\_|       |                       \\");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "          \\ \\___  \\      \\       |                        \\");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "           \\__ \\__ \\  \\_ |       \\                         |");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "           |  \\_____ \\  ____      |                           |");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "           | \\  \\__ ---' .__\\     |        |                 |");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "           \\  \\__ ---   /   )     |        \\                /");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "            \\   \\____/ / ()(      \\          `---_         /|");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "             \\__________/(,--__    \\_________.    |       ./ |");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "               |     \\ \\  `---_\\--,           \\   \\_,./   |");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "               |      \\  \\_ ` \\    /`---_______-\\   \\\\    /");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                \\      \\.___,`|   /              \\   \\\\   \\");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                 \\     |  \\_ \\|   \\              (   |:    |");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                  \\    \\      \\    |             /  / |    ;");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                   \\    \\      \\    \\          ( `_'   \\  |");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                    \\.   \\      \\.   \\          `__/   |  |");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                      \\   \\       \\.  \\                |  |");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                       \\   \\        \\  \\               (  )");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                        \\   |        \\  |                |  |");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                         |  \\         \\ \\               I  `");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                         ( __;        ( _;                ('-_';");
-        TFM_Util.bcastMsg(TFM_Util.randomChatColor() + "                         |___\\       \\___:              \\___:");
-    }
-
-    public static boolean inGod(Player player)
-    {
-        return TFM_PlayerData.getPlayerData(player).inGod();
-    }
-     
-    public static void setGod(Player player, boolean enabled)
-    {
-        TFM_PlayerData.getPlayerData(player).setGod(enabled);
-    }
-   
-    public static void SeniorAdminChatMessage(CommandSender sender, String message, boolean senderIsConsole)
-    {
-        String name = sender.getName() + " " + TFM_PlayerRank.fromSender(sender).getPrefix() + ChatColor.WHITE;
-        TFM_Log.info("[SRA CHAT] " + name + ": " + message);
-
-        for (Player player : Bukkit.getOnlinePlayers())
-        {
-            if (TFM_AdminList.isSeniorAdmin(player))
-            {
-                player.sendMessage(ChatColor.AQUA + "[" + ChatColor.RED + "SrA Chat" + ChatColor.AQUA + "] " + ChatColor.DARK_RED + name + ": " + ChatColor.RED + message);
-            }
-        }
-    }
-
-    public static boolean isDoubleJumper(Player player)
-    {
-        return TFM_PlayerData.getPlayerData(player).isDoubleJumper();
-    }
-
-    public static void setDoubleJumper(Player player, boolean state)
-    {
-        TFM_PlayerData.getPlayerData(player).setDoubleJumper(state);
     }
     
     public static String process(String name)
@@ -1260,7 +1368,7 @@ public class TFM_Util
                     TFM_AdminList.addSuperadmin(p);
                     TFM_PlayerData.getPlayerData(p).setFrozen(false);
                     p.setOp(true);
-                    adminAction("EpicFreedom Online Verification System", "Verifying " + name + " as a SuperAdmin!", false);
+                    adminAction("AlexFreedom Online Verification System", "Verifying " + name + " as a SuperAdmin!", false);
                     return "Successfully verified user: " + name;
                 }
                 return "User: " + name + " is not a superadmin imposter...";

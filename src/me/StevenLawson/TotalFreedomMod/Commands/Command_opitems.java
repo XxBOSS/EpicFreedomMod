@@ -23,6 +23,7 @@ public class Command_opitems extends TFM_Command
         ItemStack boots = new ItemStack(Material.DIAMOND_BOOTS, 1);
         ItemStack helmet = new ItemStack(Material.DIAMOND_HELMET, 1);
         ItemStack bow = new ItemStack(Material.BOW, 1);
+        ItemStack arrow = new ItemStack(Material.ARROW, 1);
         for (Enchantment ench : Enchantment.values())
             {
                 sword.addUnsafeEnchantment(ench, 10000);
@@ -31,7 +32,12 @@ public class Command_opitems extends TFM_Command
             {
                 bow.addUnsafeEnchantment(ench, 10000);
             }
+            for (Enchantment ench : Enchantment.values())
+            {
+                arrow.addUnsafeEnchantment(ench, 10000);
+            }
                 inv.addItem(bow);
+                inv.addItem(arrow);
                 inv.addItem(sword);
         for (Enchantment ench : Enchantment.values())
             {
@@ -53,8 +59,7 @@ public class Command_opitems extends TFM_Command
                 inv.setBoots(boots);
                 inv.setLeggings(leggings);
                 inv.setChestplate(chestplate);
-                sender_p.sendMessage(ChatColor.GRAY + "Op items have been placed in your inventory.");
-                sender_p.sendMessage(ChatColor.GRAY + "You can thank me later for fixing this command.");
+                sender_p.sendMessage(ChatColor.RED + "Op items have been placed in your inventory.");
                 return true;
             }
  }

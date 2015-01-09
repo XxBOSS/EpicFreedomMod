@@ -35,8 +35,8 @@ public class Command_fopm extends TFM_Command
 
             TFM_AdminList.load();
             TFM_PermbanList.load();
-            TFM_PlayerList.getInstance().load();
-            TFM_BanManager.getInstance().load();
+            TFM_PlayerList.load();
+            TFM_BanManager.load();
             TFM_CommandBlocker.load();
 
             final String message = String.format("%s v%s.%s reloaded.",
@@ -49,9 +49,7 @@ public class Command_fopm extends TFM_Command
             return true;
         }
 
-        /* This was not cloned from FreedomOpMod, it was cloned from TotalFreedomMod, therefore,
-        I will say only some content was used.*/
-        playerMsg("Some content of this mod is from the FreedomOpMod", ChatColor.GOLD);
+        playerMsg("Welcome to the FreedomOpMod; our server's main plugin!", ChatColor.GOLD);
         playerMsg("Created by Camzie99", ChatColor.GOLD);
         StringBuilder developers = new StringBuilder();
         developers.append("Later worked on by: CrafterSmith12");
@@ -60,7 +58,7 @@ public class Command_fopm extends TFM_Command
             developers.append(", " + dev);
         }
         playerMsg(developers.toString(), ChatColor.AQUA);
-        playerMsg("Visit " + ChatColor.AQUA + "http://freedomop.boards.net/" + ChatColor.GREEN + " for more information.", ChatColor.GREEN);
+        playerMsg("Visit " + ChatColor.AQUA + "http://freedomop.boards.net/" + ChatColor.GREEN + " to visit our forums and get support!", ChatColor.GREEN);
 
         return true;
     }

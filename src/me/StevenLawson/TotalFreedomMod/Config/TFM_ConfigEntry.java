@@ -1,6 +1,7 @@
 package me.StevenLawson.TotalFreedomMod.Config;
 
 import java.util.List;
+import static me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry.values;
 
 public enum TFM_ConfigEntry
 {
@@ -12,6 +13,8 @@ public enum TFM_ConfigEntry
     ALLOW_LAVA_PLACE(Boolean.class, "allow.lava_place"),
     ALLOW_TNT_MINECARTS(Boolean.class, "allow.tnt_minecarts"),
     ALLOW_WATER_PLACE(Boolean.class, "allow.water_place"),
+    ENABLE_CHAOS(Boolean.class, "enable_chaos"),
+    DESTRUCTIVE_MODE(Boolean.class, "destructive_mode"),
     //
     MOB_LIMITER_ENABLED(Boolean.class, "moblimiter.enabled"),
     MOB_LIMITER_MAX(Integer.class, "moblimiter.max"),
@@ -29,9 +32,9 @@ public enum TFM_ConfigEntry
     SERVER_ADDRESS(String.class, "server.address"),
     SERVER_MOTD(String.class, "server.motd"),
     SERVER_OWNERS(List.class, "server.owners"),
+    DEVELOPERS(List.class, "server.developers"),
     SERVER_BAN_URL(String.class, "server.ban_url"),
     SERVER_PERMBAN_URL(String.class, "server.permban_url"),
-    VERIFY_PASSWORD(String.class, "verify.password"),
     //
     TWITTERBOT_ENABLED(Boolean.class, "twitterbot.enabled"),
     TWITTERBOT_SECRET(String.class, "twitterbot.secret"),
@@ -42,6 +45,7 @@ public enum TFM_ConfigEntry
     //
     ENABLE_PREPROCESS_LOG(Boolean.class, "preprocess_log"),
     ENABLE_PET_PROTECT(Boolean.class, "petprotect.enabled"),
+    ENABLE_ADMINWORLD(Boolean.class, "adminworld_enabled"),
     //
     LANDMINES_ENABLED(Boolean.class, "landmines_enabled"),
     TOSSMOB_ENABLED(Boolean.class, "tossmob_enabled"),
@@ -77,6 +81,7 @@ public enum TFM_ConfigEntry
     BLOCKED_COMMANDS(List.class, "blocked_commands"),
     HOST_SENDER_NAMES(List.class, "host_sender_names"),
     UNBANNABLE_USERNAMES(List.class, "unbannable_usernames"),
+    NOADMIN_IPS(List.class, "noadmin_ips"),
     ADMIN_ONLY_MODE(Boolean.class, "admin_only_mode"),
     TRAINING_SESSION(Boolean.class, "training_mode"),
     AUTO_ENTITY_WIPE(Boolean.class, "auto_wipe"),
@@ -103,51 +108,51 @@ public enum TFM_ConfigEntry
 
     public String getString()
     {
-        return TFM_MainConfig.getInstance().getString(this);
+        return TFM_MainConfig.getString(this);
     }
 
     public String setString(String value)
     {
-        TFM_MainConfig.getInstance().setString(this, value);
+        TFM_MainConfig.setString(this, value);
         return value;
     }
 
     public Double getDouble()
     {
-        return TFM_MainConfig.getInstance().getDouble(this);
+        return TFM_MainConfig.getDouble(this);
     }
 
     public Double setDouble(Double value)
     {
-        TFM_MainConfig.getInstance().setDouble(this, value);
+        TFM_MainConfig.setDouble(this, value);
         return value;
     }
 
     public Boolean getBoolean()
     {
-        return TFM_MainConfig.getInstance().getBoolean(this);
+        return TFM_MainConfig.getBoolean(this);
     }
 
     public Boolean setBoolean(Boolean value)
     {
-        TFM_MainConfig.getInstance().setBoolean(this, value);
+        TFM_MainConfig.setBoolean(this, value);
         return value;
     }
 
     public Integer getInteger()
     {
-        return TFM_MainConfig.getInstance().getInteger(this);
+        return TFM_MainConfig.getInteger(this);
     }
 
     public Integer setInteger(Integer value)
     {
-        TFM_MainConfig.getInstance().setInteger(this, value);
+        TFM_MainConfig.setInteger(this, value);
         return value;
     }
 
     public List<?> getList()
     {
-        return TFM_MainConfig.getInstance().getList(this);
+        return TFM_MainConfig.getList(this);
     }
 
     public static TFM_ConfigEntry findConfigEntry(String name)
