@@ -117,6 +117,7 @@ public class TotalFreedomMod extends JavaPlugin
         // Playerlist and bans
         TFM_PlayerList.load();
         TFM_BanManager.load();
+        TFM_Announcer.load();
 
         TFM_Util.deleteFolder(new File("./_deleteme"));
 
