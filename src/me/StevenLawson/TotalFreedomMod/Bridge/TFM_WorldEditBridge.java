@@ -137,7 +137,7 @@ public class TFM_WorldEditBridge
                 return;
             }
 
-            final LocalWorld selectionWorld = (LocalWorld) session.getSelectionWorld();
+            final LocalWorld selectionWorld = session.getSelectionWorld();
             final Region selection = session.getSelection(selectionWorld);
 
             if (TFM_ProtectedArea.isInProtectedArea(

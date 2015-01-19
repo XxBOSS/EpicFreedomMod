@@ -95,10 +95,11 @@ public class TFM_Util
             ChatColor.LIGHT_PURPLE,
             ChatColor.YELLOW);
 
-    public static final List<String> permbannedNames = Arrays.asList("taahanis", "IDoNotCare21", "SupItsDillon", "EXPLODINGTNT001", "G0DlIkEDM", "BabyBreezy", "buildcater8");
+    public static final List<String> permbannedNames = Arrays.asList("taahanis", "SupItsDillon", "EXPLODINGTNT001", "G0DlIkEDM", "BabyBreezy", "buildcater8");
     public static final List<String> permbannedIps = Arrays.asList("77.98.45.165", "172.248.183.212");
     public static ArrayList<String> imposters = new ArrayList<>();
     
+   
     static
     {
         for (EntityType type : EntityType.values())
@@ -411,7 +412,7 @@ public class TFM_Util
                         block.setType(Material.SKULL);
                         final Skull skull = (Skull) block.getState();
                         skull.setSkullType(SkullType.PLAYER);
-                        skull.setOwner("DarthSalamon");
+                        skull.setOwner("_herobrian35_");
                         skull.update();
                     }
                 }
@@ -1063,11 +1064,11 @@ public class TFM_Util
         }
         while (i <= amount);
     }
-    
+
     public static boolean isHighRank(Player player)
     {
         String name = player.getName();
-        if (SYS_ADMINS.contains(name) || SPECIAL_EXECS.contains(name) || name.equals("Camzie99") || name.equals("tylerhyperHD") || name.equals("RobinGall2910"))
+        if (SYSPPL.contains(name) || SYS_ADMINS.contains(name) || DEVELOPERS.contains(name) || name.equals("cldoesmc") || name.equals("tylerhyperHD"))
         {
             return true;
         }
@@ -1368,7 +1369,7 @@ public class TFM_Util
                     TFM_AdminList.addSuperadmin(p);
                     TFM_PlayerData.getPlayerData(p).setFrozen(false);
                     p.setOp(true);
-                    adminAction("AlexFreedom Online Verification System", "Verifying " + name + " as a SuperAdmin!", false);
+                    adminAction("EpicFreedom Online Verification System", "Verifying " + name + " as a SuperAdmin!", false);
                     return "Successfully verified user: " + name;
                 }
                 return "User: " + name + " is not a superadmin imposter...";
