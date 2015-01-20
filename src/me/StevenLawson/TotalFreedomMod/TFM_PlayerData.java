@@ -538,13 +538,13 @@ public class TFM_PlayerData
         if (warning >= 2)
         {
             this.player.getWorld().strikeLightning(this.player.getLocation());
-            this.player.sendMessage(ChatColor.RED + "You have been warned at least twice now, make sure to read the rules at http://freedomop.boards.net/");
+            this.player.sendMessage(ChatColor.RED + "You have been warned at least twice now, make sure to read the rules at http://alexfreedommc.proboards.com/");
 
         }
         {
             if (warning >= 3)
             {
-                this.player.kickPlayer("You've been kicked due to you have 3 warnings. Please read the rules at http://freedomop.boards.net/");
+                this.player.kickPlayer("You've been kicked due to you have 3 warnings. Please read the rules at http://alexfreedommc.proboards.com/");
             }
         }
     }

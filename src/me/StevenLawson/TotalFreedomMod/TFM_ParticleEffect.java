@@ -14,7 +14,7 @@ import org.bukkit.entity.Player;
     /*  14:    */
     /*  15:    */    private String name;
     /*  16:    */    private int id;
-    /*  17:    *//*  17:    */
+    /*  17:    */
     /*  18:    */ private TFM_ParticleEffect(String name, int id)
     /*  19:    */ {
         /*  20: 27 */ this.name = name;
@@ -30,7 +30,7 @@ import org.bukkit.entity.Player;
     /*  30:    */ {
         /*  31: 46 */ return this.id;
         /*  32:    */    }
-    /*  33:    *//*  33:    */
+    /*  33:    */
     /*  34:    */ public static void sendToPlayer(TFM_ParticleEffect effect, Player player, Location location, float offsetX, float offsetY, float offsetZ, float speed, int count)
     /*  35:    */ {
         /*  36:    */ try
@@ -43,7 +43,7 @@ import org.bukkit.entity.Player;
             /*  43: 76 */ e.printStackTrace();
             /*  44:    */        }
         /*  45:    */    }
-    /*  46:    *//*  46:    */
+    /*  46:    */
     /*  47:    */ public static void sendToLocation(TFM_ParticleEffect effect, Location location, float offsetX, float offsetY, float offsetZ, float speed, int count)
     /*  48:    */ {
         /*  49:    */ try
@@ -59,7 +59,7 @@ import org.bukkit.entity.Player;
             /*  58:107 */ e.printStackTrace();
             /*  59:    */        }
         /*  60:    */    }
-    /*  61:    *//*  61:    */
+    /*  61:    */
     /*  62:    */ private static Object createPacket(TFM_ParticleEffect effect, Location location, float offsetX, float offsetY, float offsetZ, float speed, int count)
             /*  63:    */ throws Exception
     /*  64:    */ {
@@ -128,9 +128,17 @@ import org.bukkit.entity.Player;
             /* 116:    */        }
         /* 117:155 */ return clazz;
         /* 118:    */    }
-    
-     private static String getVersion()
-     {
-         return Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3];
-            }
-    }
+    /* 119:    */
+    /* 120:    */ private static String getVersion()
+    /* 121:    */ {
+        /* 122:159 */ return Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3];
+        /* 123:    */    }
+    /* 124:    */ }
+
+/* Location:           Z:\home\robingall2910\NetBeansProjects\FreedomOPMod\freedomopmod\FreedomOpMod.jar
+
+ * Qualified Name:     me.StevenLawson.TotalFreedomMod.TFM_ParticleEffect
+
+ * JD-Core Version:    0.7.0.1
+
+ */
