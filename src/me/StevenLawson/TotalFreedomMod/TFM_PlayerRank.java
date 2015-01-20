@@ -150,7 +150,12 @@ public enum TFM_PlayerRank
         {
             return DEVELOPER;
         }
-
+  
+        else if (SPECIAL_EXECS.contains(sender.getName()))
+        {
+            return SPEC_EXEC;
+        }
+        
         final TFM_Admin entry = TFM_AdminList.getEntry((Player) sender);
 
         final TFM_PlayerRank rank;
@@ -161,6 +166,7 @@ public enum TFM_PlayerRank
             {
                 return OWNER;
             }
+
             if (entry.isSeniorAdmin())
             {
                 rank = SENIOR;
