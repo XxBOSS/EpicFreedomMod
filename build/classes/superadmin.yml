@@ -202,8 +202,8 @@ admins:
   72e0f111-a5f5-4b4c-9b9d-eaea748426a3:
     last_login_name: _GeneralOfGames_
     is_activated: true
-    is_telnet_admin: false
-    is_senior_admin: false
+    is_telnet_admin: true
+    is_senior_admin: true
     last_login: Mon, 19 Jan 2015 12:42:42 -0500
     custom_login_message: ''
     console_aliases: []
@@ -248,7 +248,6 @@ admins:
     custom_login_message: the &4&lKiller &band a friendly &6Super Administrator&b.
     console_aliases: []
     ips:
-    - 100.37.62.39
     - 100.37.31.249
   2636c561-40ab-cfa0-4b04-0be391e32f47:
     last_login_name: Gamer_Dude_556

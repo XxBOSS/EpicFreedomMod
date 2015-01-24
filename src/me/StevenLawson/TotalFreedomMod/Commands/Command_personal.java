@@ -189,20 +189,6 @@ public class Command_personal extends TFM_Command
                     }
                 }
             break;
-            case "_GeneralOfGames_":
-                TFM_Util.adminAction(sender_p.getName(), "Pies for all!", false);
-                for(Player player : Bukkit.getOnlinePlayers())
-                {
-                    PlayerInventory inv = player.getInventory();
-                    ItemStack pie = new ItemStack(Material.PUMPKIN_PIE, 1);
-                    ItemMeta meta = pie.getItemMeta();
-                    meta.setDisplayName(ChatColor.LIGHT_PURPLE + "FREE PIE");
-                    meta.addEnchant(Enchantment.FIRE_ASPECT, 25, true);
-                    meta.addEnchant(Enchantment.KNOCKBACK, 10, true);
-                    pie.setItemMeta(meta);
-                    inv.addItem(pie);
-                }
-            break;
                 case "myd":
                 TFM_Util.adminAction(sender_p.getName(), "And we gonna let it burn burn burn burn!", true);
                 for(Player player : Bukkit.getOnlinePlayers())
