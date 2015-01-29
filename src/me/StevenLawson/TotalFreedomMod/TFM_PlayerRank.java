@@ -38,7 +38,7 @@ public enum TFM_PlayerRank
     LYNX("the " + ChatColor.BLUE + "FreedomOP Owner", ChatColor.BLUE + "[FOP Owner]"),
     CRAFTER("the " + ChatColor.BLUE + "Retired FreedomOP Owner", ChatColor.BLUE + "[RTRD FOP Owner]"),
     CONSOLE("the " + ChatColor.DARK_PURPLE + "Console", ChatColor.DARK_PURPLE + "[Console]");
-      
+    
     private String loginMessage;
     private String prefix;
 

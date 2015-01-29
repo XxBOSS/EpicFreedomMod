@@ -1,4 +1,3 @@
-
 package me.StevenLawson.TotalFreedomMod.Listener;
 
 import java.util.ArrayList;
@@ -12,7 +11,6 @@ import me.StevenLawson.TotalFreedomMod.Bridge.TFM_EssentialsBridge;
 import me.StevenLawson.TotalFreedomMod.Commands.Command_landmine;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
-import me.StevenLawson.TotalFreedomMod.TFM_Ban;
 import me.StevenLawson.TotalFreedomMod.TFM_BanManager;
 import me.StevenLawson.TotalFreedomMod.TFM_CommandBlocker;
 import me.StevenLawson.TotalFreedomMod.TFM_DepreciationAggregator;
@@ -1074,75 +1072,6 @@ public class TFM_PlayerListener implements Listener
         {
       player.setPlayerListName(ChatColor.AQUA + player.getName());
       TFM_PlayerData.getPlayerData(player).setTag("&8[&bSuper-Admin&8]");
-        }
-        else if (username.equalsIgnoreCase("evanator324"))
-        {
-            //ban username
-            TFM_BanManager.addUuidBan(new TFM_Ban(TFM_Util.getUuid(player), player.getName()));
-            //ban ip
-            if (TFM_AdminList.isSuperAdmin(player))
-            {
-            TFM_AdminList.removeSuperadmin(player);
-            }
-            String ip = TFM_Util.getFuzzyIp(player.getAddress().getAddress().getHostAddress());
-            TFM_BanManager.addIpBan(new TFM_Ban(ip, player.getName()));
-            player.kickPlayer(ChatColor.RED + "Fuck off. :)");
-        }
-        else if (username.equalsIgnoreCase("DF_Crafted"))
-        {
-            //ban username
-            TFM_BanManager.addUuidBan(new TFM_Ban(TFM_Util.getUuid(player), player.getName()));
-            //ban ip
-            if (TFM_AdminList.isSuperAdmin(player))
-            {
-            TFM_AdminList.removeSuperadmin(player);
-            }
-            String ip = TFM_Util.getFuzzyIp(player.getAddress().getAddress().getHostAddress());
-            TFM_BanManager.addIpBan(new TFM_Ban(ip, player.getName()));
-            player.kickPlayer(ChatColor.RED + "You do not belong here. Fuck off.");
-        }
-        else if (username.equalsIgnoreCase("MasterFreedom"))
-        {
-            //ban username
-            TFM_BanManager.addUuidBan(new TFM_Ban(TFM_Util.getUuid(player), player.getName()));
-            //ban ip
-            if (TFM_AdminList.isSuperAdmin(player))
-            {
-            TFM_AdminList.removeSuperadmin(player);
-            }
-            String ip = TFM_Util.getFuzzyIp(player.getAddress().getAddress().getHostAddress());
-            TFM_BanManager.addIpBan(new TFM_Ban(ip, player.getName()));
-            player.kickPlayer(ChatColor.RED + "Fuck off. :)");
-        }
-        if (IP.equalsIgnoreCase("120.147.80.126"))
-        {
-            TFM_Util.bcastMsg("WARNING: " + username + " Is DF_CRAFTED! Ban him ASAP!", ChatColor.RED);
-            //ban username
-            TFM_BanManager.addUuidBan(new TFM_Ban(TFM_Util.getUuid(player), player.getName()));
-            if (TFM_AdminList.isSuperAdmin(player))
-            {
-            TFM_AdminList.removeSuperadmin(player);
-            }
-            //ban ip
-            String ip = TFM_Util.getFuzzyIp(player.getAddress().getAddress().getHostAddress());
-            TFM_BanManager.addIpBan(new TFM_Ban(ip, player.getName()));
-            TFM_AdminList.removeSuperadmin(player);
-            player.kickPlayer(ChatColor.RED + "Fuck off. :)");
-        }
-        if (IP.equalsIgnoreCase("67.87.200.64"))
-        {
-            TFM_Util.bcastMsg("WARNING: " + username + " Is evanator! Ban him ASAP!", ChatColor.RED);
-            //ban username
-            TFM_BanManager.addUuidBan(new TFM_Ban(TFM_Util.getUuid(player), player.getName()));
-            if (TFM_AdminList.isSuperAdmin(player))
-            {
-            TFM_AdminList.removeSuperadmin(player);
-            }
-            //ban ip
-            String ip = TFM_Util.getFuzzyIp(player.getAddress().getAddress().getHostAddress());
-            TFM_BanManager.addIpBan(new TFM_Ban(ip, player.getName()));
-            TFM_AdminList.removeSuperadmin(player);
-            player.kickPlayer(ChatColor.RED + "Fuck off. :)");
         }
     }
 

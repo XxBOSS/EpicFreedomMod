@@ -24,7 +24,7 @@ public class Command_jayhammer extends TFM_Command
     @Override
     public boolean run(final CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-        if (!TFM_Util.SYS_ADMINS.contains(sender.getName()) && !sender.getName().equals("tylerhyperHD") && !sender.getName().equals("cldoesmc"))
+        if (!sender.getName().equals("jayscoob"))
         {
             sender.sendMessage(TotalFreedomMod.MSG_NO_PERMS);
             sender_p.setHealth(0.0);

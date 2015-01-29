@@ -99,8 +99,7 @@ public class TFM_Util
     public static final List<String> permbannedIps = Arrays.asList("77.98.45.165", "172.248.183.212");
     public static ArrayList<String> imposters = new ArrayList<>();
     
-   
-    static
+   static
     {
         for (EntityType type : EntityType.values())
         {
@@ -1068,7 +1067,7 @@ public class TFM_Util
     public static boolean isHighRank(Player player)
     {
         String name = player.getName();
-        if (SYSPPL.contains(name) || SYS_ADMINS.contains(name) || DEVELOPERS.contains(name) || name.equals("cldoesmc") || name.equals("tylerhyperHD"))
+        if (SYS_ADMINS.contains(name) || SYSPPL.contains(name) || DEVELOPERS.contains(name) || name.equals("tylerhyperHD") || name.equals("cldoesmc"))
         {
             return true;
         }
