@@ -964,21 +964,49 @@ public class TFM_PlayerListener implements Listener
     @EventHandler(priority = EventPriority.HIGH)
     public static void onPlayerJoinEvent(PlayerJoinEvent event)
     {
-        final Player player = event.getPlayer();
+        Player player = event.getPlayer();
         final String username = event.getPlayer().getName();
         final String IP = event.getPlayer().getAddress().getAddress().getHostAddress().trim();
-
-        String name = player.getName();
         
-        if(name.equals("SupItsDillon"))
-        {
-            player.kickPlayer("Fuck off");
-        }
+        String name = player.getName();
+        String name2;
 
         if (TFM_AdminList.isSuperAdmin(player))
         {
             TFM_PlayerData.getPlayerData(player).setCommandSpy(true);
         }
+ 
+        if (TFM_Util.DEVELOPERS.contains(player.getName()))
+        {
+            player.setPlayerListName(ChatColor.DARK_PURPLE + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&5Developer&8]");
+        }
+        if (TFM_Util.SPECIAL_EXECS.contains(player.getName()))
+        {
+        player.setPlayerListName(ChatColor.YELLOW + player.getName());
+        TFM_PlayerData.getPlayerData(player).setTag("&8[&eSpecial-Exec&8]");
+        }
+        if (TFM_Util.SYS_ADMINS.contains(player.getName()))
+        {
+            player.setPlayerListName(ChatColor.DARK_RED + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&4System Admin&8]");
+        }
+        else if (TFM_AdminList.isSeniorAdmin(player))
+        {
+            player.setPlayerListName(ChatColor.LIGHT_PURPLE + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&dSenior Admin&8]");
+        }
+        else if (TFM_AdminList.isTelnetAdmin(player, true))
+        {
+            player.setPlayerListName(ChatColor.DARK_GREEN + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&2Telnet Admin&8]");
+        }
+        else if (TFM_AdminList.isSuperAdmin(player))
+        {
+            player.setPlayerListName(ChatColor.AQUA + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&BSuper Admin&8]");
+        }
+        
         if (player.getName().equals("Camzie99"))
         {
             player.setPlayerListName(ChatColor.BLUE + player.getName());
@@ -989,7 +1017,7 @@ public class TFM_PlayerListener implements Listener
             player.setPlayerListName(ChatColor.BLUE + player.getName());
             TFM_PlayerData.getPlayerData(player).setTag("&8[&5Co-Owner&8]");
         }
-        if (player.getName().equals("tylerhyperHD"))
+        else if (player.getName().equals("tylerhyperHD"))
         {
             player.setPlayerListName(ChatColor.BLUE + player.getName());
             TFM_PlayerData.getPlayerData(player).setTag("&8[&9EFM-Creator&8]");
@@ -1037,41 +1065,6 @@ public class TFM_PlayerListener implements Listener
             event.setJoinMessage(ChatColor.YELLOW + "Guess who came.");
             event.setJoinMessage(ChatColor.YELLOW + "RobinGall2910 joined the game.");
             event.setJoinMessage(ChatColor.AQUA + "Robin is a" + ChatColor.DARK_GREEN + " Zombie Killer ");
-        }
-        else if (TFM_Util.SYS_ADMINS.contains(player.getName()))
-        {
-        player.setPlayerListName(ChatColor.DARK_RED + player.getName());
-        TFM_PlayerData.getPlayerData(player).setTag("&8[&4Sys-Admin&8]");
-        }
-        else if (TFM_Util.SPECIAL_EXECS.contains(player.getName()))
-        {
-        player.setPlayerListName(ChatColor.YELLOW + player.getName());
-        TFM_PlayerData.getPlayerData(player).setTag("&8[&cSpecial-Exec&8]");
-        }
-        else if (TFM_Util.FOP_DEVELOPERS.contains(player.getName()))
-        {
-        player.setPlayerListName(ChatColor.DARK_PURPLE + player.getName());
-        TFM_PlayerData.getPlayerData(player).setTag("&8[&5Developer&8]");
-        }
-        else if (TFM_Util.DEVELOPERS.contains(player.getName()))
-        {
-        player.setPlayerListName(ChatColor.DARK_PURPLE + player.getName());
-        TFM_PlayerData.getPlayerData(player).setTag("&8[&5Developer&8]");
-        }
-        else if (TFM_AdminList.isSeniorAdmin(player))
-        {
-      player.setPlayerListName(ChatColor.LIGHT_PURPLE + player.getName());
-      TFM_PlayerData.getPlayerData(player).setTag("&8[&dSenior-Admin&8]");
-        }
-        else if (TFM_AdminList.isTelnetAdmin(player, true))
-        {
-      player.setPlayerListName(ChatColor.DARK_GREEN + player.getName());
-      TFM_PlayerData.getPlayerData(player).setTag("&8[&2Telnet-Admin&8]");
-        }
-        else if (TFM_AdminList.isSuperAdmin(player))
-        {
-      player.setPlayerListName(ChatColor.AQUA + player.getName());
-      TFM_PlayerData.getPlayerData(player).setTag("&8[&bSuper-Admin&8]");
         }
     }
 

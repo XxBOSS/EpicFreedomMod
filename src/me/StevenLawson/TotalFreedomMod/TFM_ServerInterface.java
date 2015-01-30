@@ -108,7 +108,7 @@ public class TFM_ServerInterface
                 final TFM_Ban ban = TFM_BanManager.getByUuid(uuid);
 
                 String kickMessage = ChatColor.RED + "You are temporarily banned from this server."
-                        + "\nAppeal at " + ChatColor.GOLD + "http://www.alexfreedommc.proboards.com";
+                        + "\nAppeal at " + ChatColor.GOLD + "http://3p1cfreedomcraft.boards.net";
 
                 if (!ban.getReason().equals("none"))
                 {
@@ -129,7 +129,7 @@ public class TFM_ServerInterface
                 final TFM_Ban ban = TFM_BanManager.getByIp(ip);
 
                 String kickMessage = ChatColor.RED + "Your IP address is temporarily banned from this server."
-                        + "\nAppeal at " + ChatColor.GOLD + "http://www.alexfreedommc.proboards.com";
+                        + "\nAppeal at " + ChatColor.GOLD + "http://3p1cfreedomcraft.boards.net";
 
                 if (!ban.getReason().equals("none"))
                 {
@@ -152,7 +152,7 @@ public class TFM_ServerInterface
                 {
                     event.disallow(Result.KICK_OTHER,
                             ChatColor.RED + "Your IP address is permanently banned from this server.\nRelease procedures are available at\n"
-                            + ChatColor.GOLD + "http://www.alexfreedommc.proboards.com");
+                            + ChatColor.GOLD + "http://3p1cfreedomcraft.boards.net");
                     return;
                 }
             }
@@ -187,7 +187,7 @@ public class TFM_ServerInterface
                 {
                     event.disallow(Result.KICK_OTHER,
                             ChatColor.RED + "Your username is permanently banned from this server.\nRelease procedures are available at\n"
-                            + ChatColor.GOLD + "http://www.alexfreedommc.proboards.com");
+                            + ChatColor.GOLD + "http://3p1cfreedomcraft.boards.net");
                     return;
                 }
             }

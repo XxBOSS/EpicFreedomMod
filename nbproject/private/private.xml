@@ -12,9 +12,13 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/TFM_PlayerRank.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/superadmin.yml</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/HTTPD/Module_list.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/permban.yml</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/Listener/TFM_ServerListener.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/config.yml</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/TFM_ServerInterface.java</file>
             <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/TFM_Util.java</file>
-            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/TFM_UuidManager.java</file>
         </group>
     </open-files>
 </project-private>
