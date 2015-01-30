@@ -1,7 +1,6 @@
 package me.StevenLawson.TotalFreedomMod.Config;
 
 import java.util.List;
-import static me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry.values;
 
 public enum TFM_ConfigEntry
 {

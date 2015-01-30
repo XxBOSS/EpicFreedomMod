@@ -5,13 +5,15 @@ import java.util.List;
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import net.minecraft.util.org.apache.commons.lang3.StringUtils;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 @CommandPermissions(level = AdminLevel.SUPER, source = SourceType.BOTH)
-@CommandParameters(description = "Shows (optionally smites) invisisible players", usage = "/<command> (smite)")
+@CommandParameters(description = "Shows (optionally smites) invisisible players", usage = "/<command> (smite) [on/off]")
 public class Command_invis extends TFM_Command
 {
     @Override
@@ -61,7 +63,28 @@ public class Command_invis extends TFM_Command
         {
             TFM_Util.playerMsg(sender, "Invisble players (" + players.size() + "): " + StringUtils.join(players, ", "));
         }
-
+        if (TFM_AdminList.isSeniorAdmin(sender))
+        {
+            Player player = (Player) sender;
+            if (args[0].equals("on"))
+            {
+                PotionEffect invis = PotionEffectType.INVISIBILITY.createEffect(1000000000, 255);
+                ((Player)sender).addPotionEffect(invis, true);
+                player.hidePlayer(player);
+                sender_p.sendMessage(ChatColor.GOLD + "You are now invisible to other players.");
+            }
+            if (args[0].equals("off"))
+            {
+              PotionEffect noinvis = PotionEffectType.INVISIBILITY.createEffect(1, 0);
+              ((Player)sender).addPotionEffect(noinvis, true);
+              player.hidePlayer(player);
+              sender_p.sendMessage(ChatColor.GOLD + "You are now visible to other players.");
+              for (PotionEffect potion_effect : sender_p.getActivePotionEffects())
+                    {
+                        sender_p.removePotionEffect(potion_effect.getType());
+                    }
+            }
+        }
         return true;
     }
 }

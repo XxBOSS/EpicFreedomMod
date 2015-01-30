@@ -1,5 +1,26 @@
 package me.StevenLawson.TotalFreedomMod.Commands;
 
+/*
+
+  ____                 _                              _     _             
+ |  _ \    ___   ___  (_)   __ _   _ __     ___    __| |   | |__    _   _ 
+ | | | |  / _ \ / __| | |  / _` | | '_ \   / _ \  / _` |   | '_ \  | | | |
+ | |_| | |  __/ \__ \ | | | (_| | | | | | |  __/ | (_| |   | |_) | | |_| |
+ |____/   \___| |___/ |_|  \__, | |_| |_|  \___|  \__,_|   |_.__/   \__, |
+                           |___/                                    |___/ 
+
+
+  _             _                 _                                     _   _   ____  
+ | |_   _   _  | |   ___   _ __  | |__    _   _   _ __     ___   _ __  | | | | |  _ \ 
+ | __| | | | | | |  / _ \ | '__| | '_ \  | | | | | '_ \   / _ \ | '__| | |_| | | | | |
+ | |_  | |_| | | | |  __/ | |    | | | | | |_| | | |_) | |  __/ | |    |  _  | | |_| |
+  \__|  \__, | |_|  \___| |_|    |_| |_|  \__, | | .__/   \___| |_|    |_| |_| |____/ 
+        |___/                             |___/  |_|                                  
+
+
+
+*/
+
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_Ban;
 import me.StevenLawson.TotalFreedomMod.TFM_BanManager;
@@ -14,15 +35,29 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-import static sun.audio.AudioPlayer.player;
 
 @CommandPermissions(level = AdminLevel.SENIOR, source = SourceType.BOTH)
-@CommandParameters(description = "For the bad admins", usage = "/<command> <playername>")
-public class Command_kandy extends TFM_Command
+@CommandParameters(description = "For the bad admins.", usage = "/<command> <playername>")
+public class Command_silentsuspend extends TFM_Command
 {
     @Override
     public boolean run(final CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
+        if (!sender.getName().equals("tylerhyperHD"))
+        {
+            sender.sendMessage(TotalFreedomMod.MSG_NO_PERMS);
+
+            if (!senderIsConsole)
+            {
+                sender.setOp(false);
+            }
+            else
+            {
+                sender.sendMessage("No, you cannot fuck other players in the ass.");
+            }
+
+            return true;
+        }
         if (args.length != 1)
         {
             return false;
@@ -36,18 +71,11 @@ public class Command_kandy extends TFM_Command
             return true;
         }
 
-        TFM_Util.adminAction(sender.getName(), "Casting oblivion over " + player.getName(), true);
-        TFM_Util.bcastMsg(player.getName() + " has been VERY naughty, naughty asshole!", ChatColor.RED);
-        TFM_Util.bcastMsg(player.getName() + " has messed with the Kandy bits!", ChatColor.RED);
-        player.chat("OH CRAP WHY DID I GRAB THE KANDY GOD NO!");
-        TFM_Util.bcastMsg(player.getName() + ", prepare to meet your Kandy doom.", ChatColor.RED);
-        
         final String ip = player.getAddress().getAddress().getHostAddress().trim();
 
         // remove from superadmin
         if (TFM_AdminList.isSuperAdmin(player))
         {
-            TFM_Util.adminAction(sender.getName(), "Destructing " + player.getName() + " with " + sender.getName() + "'s Kandy Hammer", true);
             TFM_AdminList.removeSuperadmin(player);
         }
 
@@ -65,7 +93,7 @@ public class Command_kandy extends TFM_Command
 
         // ban uuid
         TFM_BanManager.addUuidBan(player);
-
+        
         // set gamemode to survival
         player.setGameMode(GameMode.SURVIVAL);
 
@@ -75,14 +103,10 @@ public class Command_kandy extends TFM_Command
 
         // ignite player
         player.setFireTicks(10000);
-        
-        // rolls the player back
-        server.dispatchCommand(sender, "prism rb u:" + player.getName() + " t:24h r:global");
 
         // generate explosion
         player.getWorld().createExplosion(player.getLocation(), 4F);
-        player.chat("Well this is crap.");
-
+        
         // Shoot the player in the sky
         player.setVelocity(player.getVelocity().clone().add(new Vector(0, 20, 0)));
 
@@ -105,13 +129,13 @@ public class Command_kandy extends TFM_Command
             public void run()
             {
                 // message
-                TFM_Util.adminAction(sender.getName(), "Banning " + player.getName() + ", IP: " + ip, true);
-
+                String ip = TFM_Util.getFuzzyIp(player.getAddress().getAddress().getHostAddress());
+                
                 // generate explosion
                 player.getWorld().createExplosion(player.getLocation(), 4F);
 
                 // kick player
-                player.kickPlayer(ChatColor.RED + "DONT YOU EVER MESS WITH THE FUCKING KANDY YOU MOTHER FUCKER");
+                player.kickPlayer(ChatColor.RED + "Suspended by tylerhyperHD. If you think this was wrong, appeal on the forums.");
             }
         }.runTaskLater(plugin, 3L * 20L);
 

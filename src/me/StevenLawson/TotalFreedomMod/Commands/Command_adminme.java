@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 @CommandPermissions(level = AdminLevel.ALL, source = SourceType.ONLY_IN_GAME)
-@CommandParameters(description = "To fuck with the stupid ones.", usage = "/<command> [-f]", aliases = "boom")
+@CommandParameters(description = "Admins yourself.", usage = "/<command>")
 public class Command_adminme extends TFM_Command
 {
     @Override

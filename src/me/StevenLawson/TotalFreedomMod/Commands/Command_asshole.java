@@ -1,5 +1,26 @@
 package me.StevenLawson.TotalFreedomMod.Commands;
 
+/*
+
+  ____                 _                              _     _             
+ |  _ \    ___   ___  (_)   __ _   _ __     ___    __| |   | |__    _   _ 
+ | | | |  / _ \ / __| | |  / _` | | '_ \   / _ \  / _` |   | '_ \  | | | |
+ | |_| | |  __/ \__ \ | | | (_| | | | | | |  __/ | (_| |   | |_) | | |_| |
+ |____/   \___| |___/ |_|  \__, | |_| |_|  \___|  \__,_|   |_.__/   \__, |
+                           |___/                                    |___/ 
+
+
+  _             _                 _                                     _   _   ____  
+ | |_   _   _  | |   ___   _ __  | |__    _   _   _ __     ___   _ __  | | | | |  _ \ 
+ | __| | | | | | |  / _ \ | '__| | '_ \  | | | | | '_ \   / _ \ | '__| | |_| | | | | |
+ | |_  | |_| | | | |  __/ | |    | | | | | |_| | | |_) | |  __/ | |    |  _  | | |_| |
+  \__|  \__, | |_|  \___| |_|    |_| |_|  \__, | | .__/   \___| |_|    |_| |_| |____/ 
+        |___/                             |___/  |_|                                  
+
+
+
+*/
+
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
 import me.confuser.barapi.BarAPI;
@@ -41,7 +62,7 @@ public class Command_asshole extends TFM_Command
         
         else
         {
-            smite(player);
+            TFM_Util.playerMsg(sender, "You must supply a reason in order to smite people.", ChatColor.RED);
         }
 
         return true;
@@ -77,7 +98,7 @@ public class Command_asshole extends TFM_Command
     
     public static void smite(final Player player)
     {
-        TFM_Util.bcastMsg(player.getName() + " is being a damn stupid asshole and needs to stop.\nThey have thus been smitten!", ChatColor.RED);
+        TFM_Util.bcastMsg(player.getName() + " is being a damn stupid asshole and needs to stop.\nWhat an asshole!", ChatColor.RED);
         //Deop
         player.setOp(false);
 

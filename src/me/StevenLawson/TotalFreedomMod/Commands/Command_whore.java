@@ -11,7 +11,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-@CommandPermissions(level = AdminLevel.ALL, source = SourceType.ONLY_IN_GAME)
+@CommandPermissions(level = AdminLevel.SUPER, source = SourceType.ONLY_IN_GAME)
 @CommandParameters(description = "You whore.", usage = "/<command>")
 public class Command_whore extends TFM_Command
 {

@@ -32,13 +32,10 @@ public class Command_personal extends TFM_Command
         String which;
         if (args.length >= 1)
         {
-            if (!senderIsConsole)
+            if (!TFM_Util.isHighRank(sender))
             {
-                if (!TFM_Util.isHighRank(sender_p))
-                {
-                    TFM_Util.playerMsg(sender, TotalFreedomMod.MSG_NO_PERMS, ChatColor.RED);
-                    return true;
-                }
+                TFM_Util.playerMsg(sender, TotalFreedomMod.MSG_NO_PERMS, ChatColor.RED);
+                return true;
             }
             which = args[0];
         }
@@ -187,6 +184,20 @@ public class Command_personal extends TFM_Command
                             }.runTaskLater(plugin, Math.round(20.0 * percent * 2.0));
                         }
                     }
+                }
+            break;
+            case "_GeneralOfGames_":
+                TFM_Util.adminAction(sender_p.getName(), "Pies for all!", false);
+                for(Player player : Bukkit.getOnlinePlayers())
+                {
+                    PlayerInventory inv = player.getInventory();
+                    ItemStack pie = new ItemStack(Material.PUMPKIN_PIE, 1);
+                    ItemMeta meta = pie.getItemMeta();
+                    meta.setDisplayName(ChatColor.LIGHT_PURPLE + "FREE PIE");
+                    meta.addEnchant(Enchantment.FIRE_ASPECT, 25, true);
+                    meta.addEnchant(Enchantment.KNOCKBACK, 10, true);
+                    pie.setItemMeta(meta);
+                    inv.addItem(pie);
                 }
             break;
                 case "myd":
