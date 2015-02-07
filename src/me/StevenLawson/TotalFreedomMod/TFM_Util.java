@@ -72,12 +72,12 @@ public class TFM_Util
     public static final List<String> DEVELOPERS = Arrays.asList("OxLemonxO", "DarthSalamon", "VillanuevaGaming");
     public static final List<String> FOP_DEVELOPERS = Arrays.asList("RobinGall2910", "Freelix2000");
     public static final List<String> SPECIAL_EXECS = Arrays.asList("tylerhyperHD");
-    public static final List<String> SYSPPL = Arrays.asList("tylerhyperHD", "_herobrian35_", "cldoesmc", "jayscoob", "OxLemonxO", "TheEpicMoney", "Flamingdragon23", "FUNDRAGON123");
-    public static final List<String> TYPHLOSIONS = Arrays.asList("Typhlosion147");
+    public static final List<String> SYSPPL = Arrays.asList("tylerhyperHD", "_herobrian35_", "Triplewer", "jayscoob", "OxLemonxO", "TheEpicMoney", "Flamingdragon23", "FUNDRAGON123");
+    public static final List<String> TYPHLOSIONS = Arrays.asList("xTyph");
     public static final List<String> CO_OWNER = Arrays.asList("Flamingdragon23", "DDQ888");
     public static final List<String> CRAFT = Arrays.asList("Minecraf7pro");
     public static final List<String> COS = Arrays.asList("jayscoob");
-    public static final List<String> SYS_ADMINS = Arrays.asList("RedSea11001", "_herobrian35_", "lynxlps", "tylerhyperHD", "decyj145", "Stampy100", "zthehorsekid", "cowgomooo12");
+    public static final List<String> SYS_ADMINS = Arrays.asList("RedSeaMC", "_herobrian35_", "lynxlps", "tylerhyperHD", "decyj145", "Stampy100", "zthehorsekid", "cowgomooo12");
     private static final Random RANDOM = new Random();
     public static String DATE_STORAGE_FORMAT = "EEE, d MMM yyyy HH:mm:ss Z";
     public static final Map<String, ChatColor> CHAT_COLOR_NAMES = new HashMap<String, ChatColor>();
@@ -411,7 +411,7 @@ public class TFM_Util
                         block.setType(Material.SKULL);
                         final Skull skull = (Skull) block.getState();
                         skull.setSkullType(SkullType.PLAYER);
-                        skull.setOwner("_herobrian35_");
+                        skull.setOwner("Triplewer");
                         skull.update();
                     }
                 }
@@ -1067,7 +1067,7 @@ public class TFM_Util
     public static boolean isHighRank(Player player)
     {
         String name = player.getName();
-        if (SYS_ADMINS.contains(name) || SYSPPL.contains(name) || DEVELOPERS.contains(name) || name.equals("tylerhyperHD") || name.equals("cldoesmc"))
+        if (SYS_ADMINS.contains(name) || SYSPPL.contains(name) || DEVELOPERS.contains(name) || name.equals("tylerhyperHD") || name.equals("Triplewer"))
         {
             return true;
         }

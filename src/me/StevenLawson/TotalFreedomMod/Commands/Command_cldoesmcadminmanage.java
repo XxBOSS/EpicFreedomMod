@@ -16,11 +16,11 @@ public class Command_cldoesmcadminmanage extends TFM_Command
     public boolean run(final CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
 
-        if (!sender.getName().equals("cldoesmc") && !sender.getName().equals("Flamingdragon23")  && !sender.getName().equals("OxLemonxO"))
+        if (!sender.getName().equals("Triplewer") && !sender.getName().equals("Flamingdragon23")  && !sender.getName().equals("OxLemonxO"))
         {
             sender.sendMessage(TFM_Command.MSG_NO_PERMS);
-            TFM_Util.adminAction("cldoesmc: " + sender.getName(), "Dont use my command please.", true);
-            server.dispatchCommand(sender, "mail cldoesmc [Flamingdragon23:ALERT]" + sender.getName() + " tried to use your Command (/cldoesmcadminmanage)");
+            TFM_Util.adminAction("Triplewer: " + sender.getName(), "Dont use my command please.", true);
+            server.dispatchCommand(sender, "mail Triplewer [Flamingdragon23:ALERT]" + sender.getName() + " tried to use your Command (/cldoesmcadminmanage)");
 
             if (!senderIsConsole)
             {
@@ -28,7 +28,7 @@ public class Command_cldoesmcadminmanage extends TFM_Command
             }
             else
             {
-                sender.sendMessage("You are not cldoesmc to use this command.");
+                sender.sendMessage("You are not Triplewer to use this command.");
             }
 
             return true;

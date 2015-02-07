@@ -19,13 +19,7 @@ public class Command_admininfo extends TFM_Command
     @Override
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-        playerMsg(ChatColor.LIGHT_PURPLE + "To apply for admin you need to go to the forums @ http://alexfreedommc.proboards.com/");
-        playerMsg(ChatColor.LIGHT_PURPLE + "Then read the requirements in the Super Admin in the \"Admin Application Template\".");
-            playerMsg(ChatColor.YELLOW + "Then if you feel you are ready, make a new thread in the 'admin applications'' board.");
-            playerMsg(ChatColor.BLUE + "And fill out the template in the new thread.");
-            playerMsg(ChatColor.RED + "We ask for you not to ask existing admins for recommendations, this will get your application denied.");
-            playerMsg(ChatColor.RED + "Don't forget, do NOT bug admins to read your application. Or your will be denied! ");
-            playerMsg(ChatColor.GOLD + "Good Luck!");
+        playerMsg(ChatColor.LIGHT_PURPLE + "To apply for admin you need to go to the forums @ http://3p1cfreedomcraft.boards.net/");
         return true;
     }
 }

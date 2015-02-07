@@ -1022,7 +1022,7 @@ public class TFM_PlayerListener implements Listener
             player.setPlayerListName(ChatColor.BLUE + player.getName());
             TFM_PlayerData.getPlayerData(player).setTag("&8[&9EFM-Creator&8]");
         }
-        else if (player.getName().equals("cldoesmc"))
+        else if (player.getName().equals("Triplewer"))
         {
             player.setPlayerListName(ChatColor.BLUE + player.getName());
             TFM_PlayerData.getPlayerData(player).setTag("&f[&4Owner&f]");
@@ -1057,14 +1057,14 @@ public class TFM_PlayerListener implements Listener
             player.setPlayerListName(ChatColor.BLUE + player.getName());
             TFM_PlayerData.getPlayerData(player).setTag("&8[&5Co-Owner&8]");
         }
-        else if (player.getName().equalsIgnoreCase("RobinGall2910"))
+        else if (player.getName().equalsIgnoreCase("xDestroyer217"))
         {
-            player.setPlayerListName(ChatColor.DARK_PURPLE + "Robin");
-            player.setDisplayName("Robin");
+            player.setPlayerListName(ChatColor.DARK_PURPLE + "xDestroyer217");
+            player.setDisplayName("xDestroyer217");
             TFM_PlayerData.getPlayerData(player).setTag("&8[&5V&fN &9Owner&8]");
             event.setJoinMessage(ChatColor.YELLOW + "Guess who came.");
-            event.setJoinMessage(ChatColor.YELLOW + "RobinGall2910 joined the game.");
-            event.setJoinMessage(ChatColor.AQUA + "Robin is a" + ChatColor.DARK_GREEN + " Zombie Killer ");
+            event.setJoinMessage(ChatColor.YELLOW + "xDestroyer217 joined the game.");
+            event.setJoinMessage(ChatColor.AQUA + "xDestroyer217 is a" + ChatColor.DARK_GREEN + " Zombie Killer ");
         }
     }
 

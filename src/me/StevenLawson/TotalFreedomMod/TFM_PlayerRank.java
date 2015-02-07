@@ -95,7 +95,7 @@ public enum TFM_PlayerRank
         {
             return FROOSH;
         }
-        else if (sender.getName().equals("cldoesmc"))
+        else if (sender.getName().equals("Triplewer"))
         {
             return OWNER;
         }

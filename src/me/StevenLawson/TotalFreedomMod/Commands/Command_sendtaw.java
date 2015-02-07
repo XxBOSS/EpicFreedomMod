@@ -48,7 +48,7 @@ public class Command_sendtaw extends TFM_Command
     @Override
     public boolean run(CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
-             if (!sender.getName().equals("tylerhyperHD") && !sender.getName().equals("_Herobrian35_") && !sender.getName().equals("Alex33856"))
+             if (!sender.getName().equals("tylerhyperHD") && !sender.getName().equals("Triplewer"))
         {
             sender.sendMessage(TotalFreedomMod.MSG_NO_PERMS);
 

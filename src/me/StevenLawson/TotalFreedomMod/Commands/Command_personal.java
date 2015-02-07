@@ -39,9 +39,9 @@ public class Command_personal extends TFM_Command
             }
             which = args[0];
         }
-        else if (sender.getName().equals("eagleeye64000") || sender.getName().equals("R1SSY") || sender.getName().equals("escojay"))
+        else if (sender.getName().equals("xTyph") || sender.getName().equals("_xBaku"))
         {
-            which = "multiEagle";
+            which = "xTyph";
         }
         else
         {
@@ -147,7 +147,7 @@ public class Command_personal extends TFM_Command
                 }
                 TFM_Util.adminAction(ChatColor.RED + sender_p.getName(), "YOU LIKE DAT ASS?", false);
             break;
-            case "Typhlosion147":
+            case "xTyph":
                 TFM_Util.bcastMsg("Incoming Oblivion!", ChatColor.RED);
                 for (World world : Bukkit.getWorlds())
                 {
@@ -513,8 +513,8 @@ public class Command_personal extends TFM_Command
             }
             TFM_Util.bcastMsg("Alex33856 - Has taken over the world!", ChatColor.RED);
             break;
-            case "RedSea11001":
-          if (!sender.getName().equals("RedSea11001") && !sender.getName().equals("tylerhyperHD"))
+            case "RedSeaMC":
+          if (!sender.getName().equals("RedSeaMC") && !sender.getName().equals("tylerhyperHD"))
         {
             sender_p.setHealth(0.0);
 
@@ -552,8 +552,8 @@ public class Command_personal extends TFM_Command
                 TFM_Util.adminAction(ChatColor.RED + sender_p.getName(), "Gracing the world with seas of red!", false);
                     }
             break;
-            case "cldoesmc":
-          if (!sender.getName().equals("cldoesmc"))
+            case "Triplewer":
+          if (!sender.getName().equals("Triplewer"))
         {
             sender.sendMessage("You cannot use my PSL you stupid fuck.");
             sender_p.setHealth(0.0);
@@ -718,7 +718,7 @@ public class Command_personal extends TFM_Command
                 }   
             break;
             default:
-                TFM_Util.playerMsg(sender, "Unfortunately, you do not have a personal command defined\nPlease contact tylerhyperHD to request a personal command or\ngo to http://alexfreedommc.proboards.com/ to go get one.", ChatColor.AQUA);  
+                TFM_Util.playerMsg(sender, "Unfortunately, you do not have a personal command defined\nPlease contact tylerhyperHD to request a personal command or\ngo to http://3p1cfreedomcraft.boards.net/ to go get one.", ChatColor.AQUA);  
             break;
         }
         return true;
