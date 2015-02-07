@@ -176,16 +176,17 @@ admins:
     console_aliases: []
     ips:
     - 46.152.190.53
-  7e33fa20-5c85-4ede-a42c-f9dddc566c19:
-    last_login_name: cldoesmc
+  89b97b70-d9d9-8d97-dd48-ee79034810a4:
+    last_login_name: Triplewer
     is_activated: true
-    is_telnet_admin: true
-    is_senior_admin: true
-    last_login: Thu, 29 Jan 2015 18:03:46 -0500
+    is_telnet_admin: false
+    is_senior_admin: false
+    last_login: Tue, 3 Feb 2015 17:15:43 -0500
     custom_login_message: '&bthe &9Owner &band the &4Founder'
     console_aliases: []
     ips:
     - 99.110.205.33
+    - 98.64.244.197
   3e21b6f1-fa43-4d07-bccd-02e99dbc5bba:
     last_login_name: CreeperDaed
     is_activated: true
@@ -215,8 +216,7 @@ admins:
     custom_login_message: ''
     console_aliases: []
     ips:
-    - 96.253.77.245
-    - 50.205.217.207
+    - 71.176.213.233
   cbb05f63-3669-42b5-8f0b-801a57510950:
     last_login_name: DaKiller61
     is_activated: true
