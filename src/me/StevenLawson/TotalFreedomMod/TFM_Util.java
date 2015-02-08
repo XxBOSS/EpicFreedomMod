@@ -71,7 +71,7 @@ public class TFM_Util
     public static final Map<String, EntityType> mobtypes = new HashMap<String, EntityType>();
     public static final List<String> DEVELOPERS = Arrays.asList("OxLemonxO", "DarthSalamon", "VillanuevaGaming");
     public static final List<String> FOP_DEVELOPERS = Arrays.asList("RobinGall2910", "Freelix2000");
-    public static final List<String> SPECIAL_EXECS = Arrays.asList("tylerhyperHD");
+    public static final List<String> SPECIAL_EXECS = Arrays.asList("tylerhyperHD", "LegendIsAwesomes");
     public static final List<String> SYSPPL = Arrays.asList("tylerhyperHD", "_herobrian35_", "Triplewer", "jayscoob", "OxLemonxO", "TheEpicMoney", "Flamingdragon23", "FUNDRAGON123");
     public static final List<String> TYPHLOSIONS = Arrays.asList("xTyph");
     public static final List<String> CO_OWNER = Arrays.asList("Flamingdragon23", "DDQ888");
