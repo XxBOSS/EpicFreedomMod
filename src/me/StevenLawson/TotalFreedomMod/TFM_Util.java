@@ -72,7 +72,7 @@ public class TFM_Util
     public static final List<String> DEVELOPERS = Arrays.asList("OxLemonxO", "DarthSalamon", "VillanuevaGaming");
     public static final List<String> FOP_DEVELOPERS = Arrays.asList("RobinGall2910", "Freelix2000");
     public static final List<String> SPECIAL_EXECS = Arrays.asList("tylerhyperHD", "LegendIsAwesomes");
-    public static final List<String> SYSPPL = Arrays.asList("tylerhyperHD", "_herobrian35_", "Triplewer", "jayscoob", "OxLemonxO", "TheEpicMoney", "Flamingdragon23", "FUNDRAGON123");
+    public static final List<String> SYSPPL = Arrays.asList("tylerhyperHD", "_herobrian35_", "Triplewer", "jayscoob", "OxLemonxO", "TheEpicMoney", "Flamingdragon23", "FUNDRAGON123", "MrPerson660");
     public static final List<String> TYPHLOSIONS = Arrays.asList("xTyph");
     public static final List<String> CO_OWNER = Arrays.asList("Flamingdragon23", "DDQ888");
     public static final List<String> CRAFT = Arrays.asList("Minecraf7pro");
@@ -95,7 +95,7 @@ public class TFM_Util
             ChatColor.LIGHT_PURPLE,
             ChatColor.YELLOW);
 
-    public static final List<String> permbannedNames = Arrays.asList("taahanis", "SupItsDillon", "EXPLODINGTNT001", "G0DlIkEDM", "BabyBreezy", "buildcater8");
+    public static final List<String> permbannedNames = Arrays.asList("taahanis", "SupItsDillon", "EXPLODINGTNT001", "G0DlIkEDM", "BabyBreezy", "buildcarter8");
     public static final List<String> permbannedIps = Arrays.asList("77.98.45.165", "172.248.183.212");
     public static ArrayList<String> imposters = new ArrayList<>();
     
