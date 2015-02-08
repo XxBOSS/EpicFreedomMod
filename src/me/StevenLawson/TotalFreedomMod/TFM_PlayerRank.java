@@ -25,6 +25,7 @@ public enum TFM_PlayerRank
     COS("the " + ChatColor.YELLOW + "Chief of Security", ChatColor.YELLOW + "[COS]"),
     JAY("the " + ChatColor.YELLOW + "Chief of Security",  ChatColor.YELLOW + "[COS]"),
     LFD("a " + ChatColor.BLUE + "Lead Forum Developer", ChatColor.BLUE + "[LFD]"),
+    EAO("the " + ChatColor.RED + "Executive Admin Officer", ChatColor.DARK_RED + "[EAO]")
     IMPOSTOR("an " + ChatColor.GRAY + ChatColor.UNDERLINE + "Impostor", ChatColor.GRAY.toString() + ChatColor.UNDERLINE + "[IMP]"),
     NON_OP("a " + ChatColor.GREEN + "Non-OP", ChatColor.GREEN.toString()),
     OP("an " + ChatColor.RED + "OP", ChatColor.RED + "[OP]"),
@@ -85,6 +86,11 @@ public enum TFM_PlayerRank
         if (TFM_AdminList.isAdminImpostor((Player) sender))
         {
             return IMPOSTOR;
+        }
+        
+        else if (sender.getName().equals("MrPerson660")}
+        {
+            return EAO;
         }
 
         else if (sender.getName().equals("jayscoob"))
