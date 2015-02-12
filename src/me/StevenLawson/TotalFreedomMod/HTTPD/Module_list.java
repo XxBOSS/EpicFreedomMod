@@ -66,6 +66,6 @@ public class Module_list extends TFM_HTTPD_Module
     @Override
     public String getTitle()
     {
-        return "AlexFreedom - Online Users";
+        return "EpicFreedom - Online Users";
     }
 }
