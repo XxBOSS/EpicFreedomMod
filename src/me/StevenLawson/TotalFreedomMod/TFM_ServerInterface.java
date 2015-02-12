@@ -162,19 +162,9 @@ public class TFM_ServerInterface
             {
                 if (testPlayer.equalsIgnoreCase(username))
                 {
-                    if (TFM_AdminList.isSuperAdmin(player))
-                    {
                     TFM_AdminList.removeSuperadmin(player);
-                    }
-                    new BukkitRunnable()
-                    {
-                    @Override
-                    public void run()
-                    {
                     TFM_PlayerData.getPlayerData(player).setTag("&8[&7Suspended&8]");
                     player.sendMessage(ChatColor.RED + "You have been suspended. Please read the forums on what you are suspended for.");
-                    }
-                    }.runTaskLater(plugin, 2L * 2L);
                     return;
                 }
             }

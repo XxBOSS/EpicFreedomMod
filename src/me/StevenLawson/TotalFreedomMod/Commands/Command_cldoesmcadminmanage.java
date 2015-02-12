@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 @CommandPermissions(level = AdminLevel.SUPER, source = SourceType.BOTH)
-@CommandParameters(description = "cldoesmc Administration Management", usage = "/<command> <add | delete> <username>")
+@CommandParameters(description = "Triplewer Administration Management", usage = "/<command> <add | delete> <username>", aliases="tripleweradminmanage")
 public class Command_cldoesmcadminmanage extends TFM_Command
 {
 
@@ -28,7 +28,7 @@ public class Command_cldoesmcadminmanage extends TFM_Command
             }
             else
             {
-                sender.sendMessage("You are not Triplewer to use this command.");
+                sender.sendMessage("You are not Triplewer. Therefore, no perms for you.");
             }
 
             return true;

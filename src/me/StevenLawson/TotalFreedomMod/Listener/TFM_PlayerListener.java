@@ -49,6 +49,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.LeavesDecayEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.PotionSplashEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
@@ -1093,7 +1094,18 @@ public class TFM_PlayerListener implements Listener
             }
         }
     }
-
+    
+    @EventHandler
+    public void shootArrowEvent(EntityShootBowEvent event){
+        if(event.getProjectile() instanceof Arrow){
+            if(event.getEntity() instanceof Player){
+                Arrow arrow = (Arrow) event.getProjectile();
+                ItemStack bow = event.getBow();
+                event.setCancelled(true);
+            }
+        }
+    }
+    
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event)
     {
