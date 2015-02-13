@@ -1,5 +1,6 @@
 package me.StevenLawson.TotalFreedomMod;
 
+import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -11,7 +12,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
-import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -216,7 +216,7 @@ public class TFM_ProtectedArea
     {
         try
         {
-            FileOutputStream fos = new FileOutputStream(new File(TotalFreedomMod.plugin.getDataFolder(), TotalFreedomMod.PROTECTED_AREA_FILENAME));
+            FileOutputStream fos = new FileOutputStream(new File(TotalFreedomMod.plugin.getDataFolder(), TotalFreedomMod.PROTECTED_AREA_FILE));
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(TFM_ProtectedArea.PROTECTED_AREAS);
             oos.close();
@@ -231,7 +231,7 @@ public class TFM_ProtectedArea
     @SuppressWarnings("unchecked")
     public static void loadProtectedAreas()
     {
-        File input = new File(TotalFreedomMod.plugin.getDataFolder(), TotalFreedomMod.PROTECTED_AREA_FILENAME);
+        File input = new File(TotalFreedomMod.plugin.getDataFolder(), TotalFreedomMod.PROTECTED_AREA_FILE);
         try
         {
             if (input.exists())

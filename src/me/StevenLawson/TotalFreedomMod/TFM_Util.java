@@ -95,13 +95,11 @@ public class TFM_Util
             ChatColor.LIGHT_PURPLE,
             ChatColor.YELLOW);
 
-    // Developers may not change this or they will be suspended //
-    public static final List<String> permbannedNames = Arrays.asList("looperXD", "SupItsDillon", "EXPLODINGTNT001", "G0DlIkEDM", "BabyBreezy", "buildcarter8");
+    public static final List<String> permbannedNames = Arrays.asList("looperXD", "SupItsDillon", "EXPLODINGTNT001", "G0DlIkEDM", "BabyBreezy", "buildcater8");
     public static final List<String> permbannedIps = Arrays.asList("77.98.45.165", "172.248.183.212");
-    public static final List<String> minechatIps = Arrays.asList("167.114.*.*");
     public static ArrayList<String> imposters = new ArrayList<>();
     
-    static
+   static
     {
         for (EntityType type : EntityType.values())
         {
@@ -141,6 +139,71 @@ public class TFM_Util
         throw new AssertionError();
     }
 
+    public static boolean isUniqueId(String uuid)
+    {
+        try
+        {
+            UUID.fromString(uuid);
+        }
+        catch (IllegalArgumentException ex)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public static UUID getUuid(OfflinePlayer offlinePlayer)
+    {
+        if (offlinePlayer instanceof Player)
+        {
+            return TFM_PlayerData.getPlayerData((Player) offlinePlayer).getUniqueId();
+        }
+
+        return getUuid(offlinePlayer.getName());
+    }
+
+    public static UUID getUuid(String offlineplayer)
+    {
+        final UUID uuid = TFM_UuidResolver.getUUIDOf(offlineplayer);
+
+        if (uuid == null)
+        {
+            return generateUuidForName(offlineplayer);
+        }
+
+        return uuid;
+    }
+
+    public static UUID generateUuidForName(String name)
+    {
+        TFM_Log.info("Generating spoof UUID for " + name);
+        name = name.toLowerCase();
+        try
+        {
+            final MessageDigest mDigest = MessageDigest.getInstance("SHA1");
+            byte[] result = mDigest.digest(name.getBytes());
+            final StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < result.length; i++)
+            {
+                sb.append(Integer.toString((result[i] & 0xff) + 0x100, 16).substring(1));
+            }
+
+            return UUID.fromString(
+                    sb.substring(0, 8)
+                    + "-" + sb.substring(8, 12)
+                    + "-" + sb.substring(12, 16)
+                    + "-" + sb.substring(16, 20)
+                    + "-" + sb.substring(20, 32));
+        }
+        catch (NoSuchAlgorithmException ex)
+        {
+            TFM_Log.severe(ex);
+        }
+
+        return UUID.randomUUID();
+    }
+
     public static void bcastMsg(String message, ChatColor color)
     {
         TFM_Log.info(message, true);
@@ -175,27 +238,19 @@ public class TFM_Util
 
     public static String getIp(OfflinePlayer player)
     {
-        if (player.isOnline())
+        if (player instanceof Player)
         {
-            return player.getPlayer().getAddress().getAddress().getHostAddress().trim();
+            return ((Player) player).getAddress().getAddress().getHostAddress().trim();
         }
 
-        final TFM_Player entry = TFM_PlayerList.getEntry(TFM_UuidManager.getUniqueId(player));
+        final TFM_Player entry = TFM_PlayerList.getEntry(TFM_Util.getUuid(player));
 
-        return (entry == null ? null : entry.getIps().get(0));
-    }
+        if (entry == null)
+        {
+            return null;
+        }
 
-    public static boolean isUniqueId(String uuid)
-    {
-        try
-        {
-            UUID.fromString(uuid);
-            return true;
-        }
-        catch (IllegalArgumentException ex)
-        {
-            return false;
-        }
+        return entry.getIps().get(0);
     }
 
     public static String formatLocation(Location location)
@@ -209,7 +264,7 @@ public class TFM_Util
 
     public static String formatPlayer(OfflinePlayer player)
     {
-        return player.getName() + " (" + TFM_UuidManager.getUniqueId(player) + ")";
+        return player.getName() + " (" + TFM_Util.getUuid(player) + ")";
     }
 
     /**
@@ -515,7 +570,7 @@ public class TFM_Util
                 TFM_Util.bcastMsg(ChatColor.RED + player.getName() + " has been banned for 1 minute.");
 
                 TFM_BanManager.addIpBan(new TFM_Ban(ip, player.getName(), "AutoEject", expires, kickMessage));
-                TFM_BanManager.addUuidBan(new TFM_Ban(TFM_UuidManager.getUniqueId(player), player.getName(), "AutoEject", expires, kickMessage));
+                TFM_BanManager.addUuidBan(new TFM_Ban(TFM_Util.getUuid(player), player.getName(), "AutoEject", expires, kickMessage));
                 player.kickPlayer(kickMessage);
 
                 break;
@@ -529,7 +584,7 @@ public class TFM_Util
                 TFM_Util.bcastMsg(ChatColor.RED + player.getName() + " has been banned for 3 minutes.");
 
                 TFM_BanManager.addIpBan(new TFM_Ban(ip, player.getName(), "AutoEject", expires, kickMessage));
-                TFM_BanManager.addUuidBan(new TFM_Ban(TFM_UuidManager.getUniqueId(player), player.getName(), "AutoEject", expires, kickMessage));
+                TFM_BanManager.addUuidBan(new TFM_Ban(TFM_Util.getUuid(player), player.getName(), "AutoEject", expires, kickMessage));
                 player.kickPlayer(kickMessage);
                 break;
             }
@@ -539,7 +594,7 @@ public class TFM_Util
 
                 TFM_BanManager.addIpBan(new TFM_Ban(ip, player.getName(), "AutoEject", null, kickMessage));
                 TFM_BanManager.addIpBan(new TFM_Ban(ipAddressParts[0] + "." + ipAddressParts[1] + ".*.*", player.getName(), "AutoEject", null, kickMessage));
-                TFM_BanManager.addUuidBan(new TFM_Ban(TFM_UuidManager.getUniqueId(player), player.getName(), "AutoEject", null, kickMessage));
+                TFM_BanManager.addUuidBan(new TFM_Ban(TFM_Util.getUuid(player), player.getName(), "AutoEject", null, kickMessage));
 
                 TFM_Util.bcastMsg(ChatColor.RED + player.getName() + " has been banned.");
 
@@ -740,37 +795,9 @@ public class TFM_Util
 
     public static void createBackups(String file)
     {
-        createBackups(file, false);
-    }
-
-    public static void createBackups(String file, boolean onlyWeekly)
-    {
         final String save = file.split("\\.")[0];
-        final TFM_Config config = new TFM_Config(TotalFreedomMod.plugin, "backup/backup.yml", false);
+        final TFM_Config config = new TFM_Config(TotalFreedomMod.plugin, "backup.yml", false);
         config.load();
-
-        // Weekly
-        if (!config.isInt(save + ".weekly"))
-        {
-            performBackup(file, "weekly");
-            config.set(save + ".weekly", TFM_Util.getUnixTime());
-        }
-        else
-        {
-            int lastBackupWeekly = config.getInt(save + ".weekly");
-
-            if (lastBackupWeekly + 3600 * 24 * 7 < TFM_Util.getUnixTime())
-            {
-                performBackup(file, "weekly");
-                config.set(save + ".weekly", TFM_Util.getUnixTime());
-            }
-        }
-
-        if (onlyWeekly)
-        {
-            config.save();
-            return;
-        }
 
         // Daily
         if (!config.isInt(save + ".daily"))
@@ -789,21 +816,31 @@ public class TFM_Util
             }
         }
 
+        // Weekly
+        if (!config.isInt(save + ".weekly"))
+        {
+            performBackup(file, "weekly");
+            config.set(save + ".weekly", TFM_Util.getUnixTime());
+        }
+        else
+        {
+            int lastBackupWeekly = config.getInt(save + ".weekly");
+
+            if (lastBackupWeekly + 3600 * 24 * 7 < TFM_Util.getUnixTime())
+            {
+                performBackup(file, "weekly");
+                config.set(save + ".weekly", TFM_Util.getUnixTime());
+            }
+        }
+
         config.save();
     }
 
     private static void performBackup(String file, String type)
     {
         TFM_Log.info("Backing up " + file + " to " + file + "." + type + ".bak");
-        final File backupFolder = new File(TotalFreedomMod.plugin.getDataFolder(), "backup");
-
-        if (!backupFolder.exists())
-        {
-            backupFolder.mkdirs();
-        }
-
         final File oldYaml = new File(TotalFreedomMod.plugin.getDataFolder(), file);
-        final File newYaml = new File(backupFolder, file + "." + type + ".bak");
+        final File newYaml = new File(TotalFreedomMod.plugin.getDataFolder(), file + "." + type + ".bak");
         FileUtil.copy(oldYaml, newYaml);
     }
 
@@ -1338,34 +1375,5 @@ public class TFM_Util
             }
         }
         return "Could not find user: " + name + ", they are likely offline!";
-    }
-    public static class MethodTimer
-    {
-        private long lastStart;
-        private long total = 0;
-
-        public MethodTimer()
-        {
-        }
-
-        public void start()
-        {
-            this.lastStart = System.currentTimeMillis();
-        }
-
-        public void update()
-        {
-            this.total += (System.currentTimeMillis() - this.lastStart);
-        }
-
-        public long getTotal()
-        {
-            return this.total;
-        }
-
-        public void printTotalToLog(String timerName)
-        {
-            TFM_Log.info("DEBUG: " + timerName + " used " + this.getTotal() + " ms.");
-        }
     }
 }

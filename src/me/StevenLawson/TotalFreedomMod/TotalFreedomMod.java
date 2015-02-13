@@ -36,15 +36,12 @@ public class TotalFreedomMod extends JavaPlugin
 {
     public static final long HEARTBEAT_RATE = 5L; // Seconds
     public static final long SERVICE_CHECKER_RATE = 120L;
-    public static final int MAX_USERNAME_LENGTH = 20;
     //
-    public static final String CONFIG_FILENAME = "config.yml";
-    public static final String SUPERADMIN_FILENAME = "superadmin.yml";
-    public static final String PERMBAN_FILENAME = "permban.yml";
+    public static final String SUPERADMIN_FILE = "superadmin.yml";
+    public static final String PERMBAN_FILE = "permban.yml";
     public static final String SUSPENSION_FILE = "suspensions.yml";
     public static final String EXPLODING_FILE = "exploding.yml";
-    public static final String UUID_FILENAME = "uuids.db";
-    public static final String PROTECTED_AREA_FILENAME = "protectedareas.dat";
+    public static final String PROTECTED_AREA_FILE = "protectedareas.dat";
     public static final String SAVED_FLAGS_FILE = "savedflags.dat";
     //
     public static final String MSG_NO_PERMS = ChatColor.YELLOW + "You do not have permission to use this command.";
@@ -98,8 +95,6 @@ public class TotalFreedomMod extends JavaPlugin
         TFM_Log.info("");
         TFM_Log.info("/***********************/");
 
-        final TFM_Util.MethodTimer timer = new TFM_Util.MethodTimer();
-        timer.start();
         
         if (!TFM_ServerInterface.COMPILE_NMS_VERSION.equals(TFM_Util.getNmsVersion()))
         {
@@ -112,12 +107,10 @@ public class TotalFreedomMod extends JavaPlugin
         TFM_Util.deleteFolder(new File("./_deleteme"));
 
         // Create backups
-        TFM_Util.createBackups(CONFIG_FILENAME, true);
-        TFM_Util.createBackups(SUPERADMIN_FILENAME);
-        TFM_Util.createBackups(PERMBAN_FILENAME);
+        TFM_Util.createBackups(SUPERADMIN_FILE);
+        TFM_Util.createBackups(PERMBAN_FILE);
 
         // Load services
-        TFM_UuidManager.load();
         TFM_AdminList.load();
         TFM_PermbanList.load();
         TFM_SuspensionList.load();
@@ -185,10 +178,9 @@ public class TotalFreedomMod extends JavaPlugin
         new TFM_Heartbeat(plugin).runTaskTimer(plugin, HEARTBEAT_RATE * 20L, HEARTBEAT_RATE * 20L);
 
         // Start services
+        TFM_ServiceChecker.start();
         TFM_HTTPD_Manager.start();
         
-        timer.update();
-
         TFM_Log.info("Version " + pluginVersion + " for " + TFM_ServerInterface.COMPILE_NMS_VERSION + " enabled");
 
         // Metrics @ http://mcstats.org/plugin/TotalFreedomMod
@@ -224,11 +216,10 @@ public class TotalFreedomMod extends JavaPlugin
     @Override
     public void onDisable()
     {
+        server.getScheduler().cancelTasks(plugin);
+
         TFM_HTTPD_Manager.stop();
         TFM_BanManager.save();
-        TFM_UuidManager.close();
-        
-        server.getScheduler().cancelTasks(plugin);
 
         TFM_Log.info("Plugin disabled");
     }

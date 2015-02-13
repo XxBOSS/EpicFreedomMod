@@ -39,6 +39,7 @@ public enum TFM_PlayerRank
     LYNX("the " + ChatColor.BLUE + "FreedomOP Owner", ChatColor.BLUE + "[FOP Owner]"),
     CRAFTER("the " + ChatColor.BLUE + "Retired FreedomOP Owner", ChatColor.BLUE + "[RTRD FOP Owner]"),
     CONSOLE("the " + ChatColor.DARK_PURPLE + "Console", ChatColor.DARK_PURPLE + "[Console]");
+    
     private String loginMessage;
     private String prefix;
 
@@ -74,7 +75,7 @@ public enum TFM_PlayerRank
 
         return ChatColor.translateAlternateColorCodes('&', loginMessage);
     }
-    
+
     public static TFM_PlayerRank fromSender(CommandSender sender)
     {
         if (!(sender instanceof Player))
@@ -161,7 +162,6 @@ public enum TFM_PlayerRank
             return SPEC_EXEC;
         }
         
-
         final TFM_Admin entry = TFM_AdminList.getEntry((Player) sender);
 
         final TFM_PlayerRank rank;

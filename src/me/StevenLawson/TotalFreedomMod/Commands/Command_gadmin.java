@@ -5,7 +5,6 @@ import java.util.Iterator;
 import me.StevenLawson.TotalFreedomMod.TFM_BanManager;
 import me.StevenLawson.TotalFreedomMod.TFM_PlayerData;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
-import me.StevenLawson.TotalFreedomMod.TFM_UuidManager;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -79,7 +78,7 @@ public class Command_gadmin extends TFM_Command
             while (it.hasNext())
             {
                 final Player player = it.next();
-                final String hash = TFM_UuidManager.getUniqueId(player).toString().substring(0, 4);
+                final String hash = TFM_Util.getUuid(player).toString().substring(0, 4);
                 sender.sendMessage(ChatColor.GRAY + String.format("[ %s ] : [ %s ] - %s",
                         player.getName(),
                         ChatColor.stripColor(player.getDisplayName()),
@@ -98,7 +97,7 @@ public class Command_gadmin extends TFM_Command
         while (it.hasNext() && target == null)
         {
             final Player player = it.next();
-            final String hash = TFM_UuidManager.getUniqueId(player).toString().substring(0, 4);
+            final String hash = TFM_Util.getUuid(player).toString().substring(0, 4);
 
             if (hash.equalsIgnoreCase(args[1]))
             {
