@@ -71,7 +71,7 @@ public class Command_dicklist extends TFM_Command
 
                 targetName = getPlayer(targetName).getName();
 
-                if (!TFM_AdminList.getLowercaseSuperNames().contains(targetName.toLowerCase()))
+                if (!TFM_AdminList.getLowerSuperNames().contains(targetName.toLowerCase()))
                 {
                     playerMsg("Super gay admin not found: " + targetName);
                     return true;

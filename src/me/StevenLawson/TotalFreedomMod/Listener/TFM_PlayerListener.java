@@ -26,7 +26,6 @@ import me.StevenLawson.TotalFreedomMod.TFM_RollbackManager.RollbackEntry;
 import me.StevenLawson.TotalFreedomMod.TFM_ServerInterface;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import static me.StevenLawson.TotalFreedomMod.TFM_Util.playerMsg;
-import me.StevenLawson.TotalFreedomMod.TFM_UuidManager;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
 import me.StevenLawson.TotalFreedomMod.World.TFM_AdminWorld;
 import net.minecraft.util.org.apache.commons.lang3.StringUtils;
@@ -892,7 +891,7 @@ public class TFM_PlayerListener implements Listener
         {
             TFM_BanManager.unbanIp(ip);
             TFM_BanManager.unbanIp(TFM_Util.getFuzzyIp(ip));
-            TFM_BanManager.unbanUuid(TFM_UuidManager.getUniqueId(player));
+            TFM_BanManager.unbanUuid(TFM_Util.getUuid(player));
             player.setOp(true);
 
             if (!TFM_AdminList.isIdentityMatched(player))
@@ -1059,10 +1058,10 @@ public class TFM_PlayerListener implements Listener
             player.setPlayerListName(ChatColor.BLUE + player.getName());
             TFM_PlayerData.getPlayerData(player).setTag("&8[&5Co-Owner&8]");
         }
-        else if (player.getName().equals("MrPerson660"))
+        else if (player.getName.equals("MrPerson660")
         {
             player.setPlayerListName(ChatColor.DARK_RED + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("8[&4Exec-Admin Officer&8]");
+            TFM_PlayerData.getPlayerData(player).setTag("8[&4Exec-Admin Officer&8]")
         }
         else if (player.getName().equalsIgnoreCase("xDestroyer217"))
         {
