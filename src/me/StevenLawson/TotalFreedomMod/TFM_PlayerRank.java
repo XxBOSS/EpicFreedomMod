@@ -25,7 +25,7 @@ public enum TFM_PlayerRank
     COS("the " + ChatColor.YELLOW + "Chief of Security", ChatColor.YELLOW + "[COS]"),
     JAY("the " + ChatColor.YELLOW + "Chief of Security",  ChatColor.YELLOW + "[COS]"),
     LFD("a " + ChatColor.BLUE + "Lead Forum Developer", ChatColor.BLUE + "[LFD]"),
-    EAO("the " + ChatColor.RED + "Executive Admin Officer", ChatColor.DARK_RED + "[EAO]")
+    EAO("the " + ChatColor.RED + "Executive Admin Officer", ChatColor.DARK_RED + "[EAO]"),
     IMPOSTOR("an " + ChatColor.GRAY + ChatColor.UNDERLINE + "Impostor", ChatColor.GRAY.toString() + ChatColor.UNDERLINE + "[IMP]"),
     NON_OP("a " + ChatColor.GREEN + "Non-OP", ChatColor.GREEN.toString()),
     OP("an " + ChatColor.RED + "OP", ChatColor.RED + "[OP]"),
@@ -39,7 +39,6 @@ public enum TFM_PlayerRank
     LYNX("the " + ChatColor.BLUE + "FreedomOP Owner", ChatColor.BLUE + "[FOP Owner]"),
     CRAFTER("the " + ChatColor.BLUE + "Retired FreedomOP Owner", ChatColor.BLUE + "[RTRD FOP Owner]"),
     CONSOLE("the " + ChatColor.DARK_PURPLE + "Console", ChatColor.DARK_PURPLE + "[Console]");
-    
     private String loginMessage;
     private String prefix;
 
@@ -75,7 +74,7 @@ public enum TFM_PlayerRank
 
         return ChatColor.translateAlternateColorCodes('&', loginMessage);
     }
-
+    
     public static TFM_PlayerRank fromSender(CommandSender sender)
     {
         if (!(sender instanceof Player))
@@ -88,7 +87,7 @@ public enum TFM_PlayerRank
             return IMPOSTOR;
         }
         
-        else if (sender.getName().equals("MrPerson660")}
+        else if (sender.getName().equals("MrPerson660"))
         {
             return EAO;
         }
@@ -162,6 +161,7 @@ public enum TFM_PlayerRank
             return SPEC_EXEC;
         }
         
+
         final TFM_Admin entry = TFM_AdminList.getEntry((Player) sender);
 
         final TFM_PlayerRank rank;

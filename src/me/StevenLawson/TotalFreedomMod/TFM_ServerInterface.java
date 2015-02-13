@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.regex.Pattern;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
-import static me.StevenLawson.TotalFreedomMod.TotalFreedomMod.plugin;
 import net.minecraft.server.v1_7_R4.MinecraftServer;
 import net.minecraft.server.v1_7_R4.PropertyManager;
 import org.bukkit.ChatColor;
@@ -14,7 +13,6 @@ import org.bukkit.Server;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
-import org.bukkit.scheduler.BukkitRunnable;
 
 public class TFM_ServerInterface
 {
@@ -72,10 +70,10 @@ public class TFM_ServerInterface
         final Player player = event.getPlayer();
 
         final String username = player.getName();
-        final UUID uuid = TFM_Util.getUuid(username);
         final String ip = event.getAddress().getHostAddress().trim();
-
-        if (username.length() < 3 || username.length() > 20)
+        final UUID uuid = TFM_UuidManager.newPlayer(player, ip);
+        
+        if (username.length() < 3 || username.length() > TotalFreedomMod.MAX_USERNAME_LENGTH)
         {
             event.disallow(Result.KICK_OTHER, "Your username is an invalid length (must be between 3 and 20 characters long).");
             return;
@@ -87,17 +85,8 @@ public class TFM_ServerInterface
             return;
         }
 
-        // not safe to use TFM_Util.isSuperAdmin for player logging in because player.getAddress() will return a null until after player login.
-        final boolean isAdmin;
-        if (server.getOnlineMode())
-        {
-            isAdmin = TFM_AdminList.getSuperUUIDs().contains(uuid);
-        }
-        else
-        {
-            final TFM_Admin admin = TFM_AdminList.getEntryByIp(ip);
-            isAdmin = admin != null && admin.isActivated();
-        }
+        // Not safe to use TFM_Util.isSuperAdmin(player) because player.getAddress() will return a null until after player login.
+        final boolean isAdmin = TFM_AdminList.isSuperAdminSafe(uuid, ip);
 
         // Validation below this point
         if (!isAdmin) // If the player is not an admin
@@ -108,7 +97,7 @@ public class TFM_ServerInterface
                 final TFM_Ban ban = TFM_BanManager.getByUuid(uuid);
 
                 String kickMessage = ChatColor.RED + "You are temporarily banned from this server."
-                        + "\nAppeal at " + ChatColor.GOLD + "http://3p1cfreedomcraft.boards.net";
+                        + "\nAppeal at " + ChatColor.GOLD + TFM_ConfigEntry.SERVER_BAN_URL.getString();
 
                 if (!ban.getReason().equals("none"))
                 {
@@ -129,7 +118,7 @@ public class TFM_ServerInterface
                 final TFM_Ban ban = TFM_BanManager.getByIp(ip);
 
                 String kickMessage = ChatColor.RED + "Your IP address is temporarily banned from this server."
-                        + "\nAppeal at " + ChatColor.GOLD + "http://3p1cfreedomcraft.boards.net";
+                        + "\nAppeal at " + ChatColor.GOLD + TFM_ConfigEntry.SERVER_BAN_URL.getString();
 
                 if (!ban.getReason().equals("none"))
                 {
@@ -152,24 +141,11 @@ public class TFM_ServerInterface
                 {
                     event.disallow(Result.KICK_OTHER,
                             ChatColor.RED + "Your IP address is permanently banned from this server.\nRelease procedures are available at\n"
-                            + ChatColor.GOLD + "http://3p1cfreedomcraft.boards.net");
+                            + ChatColor.GOLD + TFM_ConfigEntry.SERVER_PERMBAN_URL.getString());
                     return;
                 }
             }
-            
-            // Suspended admins
-            for (String testPlayer : TFM_SuspensionList.getSuspendedPlayers())
-            {
-                if (testPlayer.equalsIgnoreCase(username))
-                {
-                    TFM_AdminList.removeSuperadmin(player);
-                    TFM_PlayerData.getPlayerData(player).setTag("&8[&7Suspended&8]");
-                    player.sendMessage(ChatColor.RED + "You have been suspended. Please read the forums on what you are suspended for.");
-                    return;
-                }
-            }
-            
-            
+
             // Permbanned names
             for (String testPlayer : TFM_PermbanList.getPermbannedPlayers())
             {
@@ -177,11 +153,11 @@ public class TFM_ServerInterface
                 {
                     event.disallow(Result.KICK_OTHER,
                             ChatColor.RED + "Your username is permanently banned from this server.\nRelease procedures are available at\n"
-                            + ChatColor.GOLD + "http://3p1cfreedomcraft.boards.net");
+                            + ChatColor.GOLD + TFM_ConfigEntry.SERVER_PERMBAN_URL.getString());
                     return;
                 }
             }
-                        
+            
             //Hardcoded Permbanned Users
             for(String testPlayer : TFM_Util.permbannedNames)
             {
@@ -193,12 +169,24 @@ public class TFM_ServerInterface
                 }
             }
             
+            
             for(String testIp : TFM_Util.permbannedIps)
             {
                 if(TFM_Util.fuzzyIpMatch(testIp, ip, 4))
                 {
                     event.disallow(Result.KICK_OTHER,
                             ChatColor.RED + "You have been hardcoded to a permban list, fuck off you twat.");
+                    return;
+                }
+            }
+
+            
+            for(String testIp : TFM_Util.minechatIps)
+            {
+                if(TFM_Util.fuzzyIpMatch(testIp, ip, 4))
+                {
+                    event.disallow(Result.KICK_OTHER,
+                            ChatColor.RED + "Minechat is not allowed on this server.");
                     return;
                 }
             }

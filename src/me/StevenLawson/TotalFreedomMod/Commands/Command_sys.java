@@ -4,6 +4,7 @@ import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_Ban;
 import me.StevenLawson.TotalFreedomMod.TFM_BanManager;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
+import me.StevenLawson.TotalFreedomMod.TFM_UuidManager;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
 import net.minecraft.util.org.apache.commons.lang3.ArrayUtils;
 import net.minecraft.util.org.apache.commons.lang3.StringUtils;
@@ -79,7 +80,7 @@ public class Command_sys extends TFM_Command
 
                 targetName = getPlayer(targetName).getName();
 
-                if (!TFM_AdminList.getLowerSuperNames().contains(targetName.toLowerCase()))
+                if (!TFM_AdminList.getLowercaseSuperNames().contains(targetName.toLowerCase()))
                 {
                     playerMsg("Superadmin not found: " + targetName);
                     return true;
@@ -135,7 +136,7 @@ public class Command_sys extends TFM_Command
         String ip = TFM_Util.getFuzzyIp(player.getAddress().getAddress().getHostAddress());
         TFM_Util.bcastMsg(String.format("Banning: %s, IP: %s ", player.getName(), ip) + (reason != null ? ("- Reason: " + ChatColor.YELLOW + reason) : ""), ChatColor.RED);
         TFM_BanManager.addIpBan(new TFM_Ban(ip, player.getName(), sender.getName(), null, reason));
-        TFM_BanManager.addUuidBan(new TFM_Ban(TFM_Util.getUuid(player), player.getName(), sender.getName(), null, reason));
+        TFM_BanManager.addUuidBan(new TFM_Ban(TFM_UuidManager.getUniqueId(player), player.getName(), sender.getName(), null, reason));
         player.kickPlayer(ChatColor.RED + "Get The Fuck Out" + (reason != null ? ("\nReason: " + ChatColor.YELLOW + reason) : ""));
             return true;
         }

@@ -3,6 +3,7 @@ package me.StevenLawson.TotalFreedomMod.Commands;
 import me.StevenLawson.TotalFreedomMod.TFM_Ban;
 import me.StevenLawson.TotalFreedomMod.TFM_BanManager;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
+import me.StevenLawson.TotalFreedomMod.TFM_UuidManager;
 import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -44,7 +45,7 @@ public class Command_fierykick extends TFM_Command
 
         TFM_Util.bcastMsg(sender.getName() + " is kicking " + player.getName() + " with a FIERY boot!", ChatColor.RED);
                 TFM_BanManager.addUuidBan(
-                new TFM_Ban(TFM_Util.getUuid(player), player.getName(), sender.getName(), TFM_Util.parseDateOffset("5m"), ChatColor.RED + "You're temporarily paralyzed for 5 minutes while we heal up that kick mark.."));
+                new TFM_Ban(TFM_UuidManager.getUniqueId(player), player.getName(), sender.getName(), TFM_Util.parseDateOffset("5m"), ChatColor.RED + "You're temporarily paralyzed for 5 minutes while we heal up that kick mark.."));
         player.kickPlayer(ChatColor.RED + sender.getName() + "'s boot hit ya' in the face..");
        
 
