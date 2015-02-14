@@ -925,7 +925,7 @@ public class TFM_PlayerListener implements Listener
             }
             TFM_PlayerData.getPlayerData(player).setFrozen(true);
         }
-        else if (TFM_AdminList.isSuperAdmin(player) || TFM_Util.DEVELOPERS.contains(player.getName()))
+        else if (TFM_AdminList.isSuperAdmin(player) || TFM_Util.SYSPPL.contains(player.getName()))
         {
             TFM_Util.bcastMsg(ChatColor.AQUA + player.getName() + " is " + TFM_PlayerRank.getLoginMessage(player));
         }
@@ -977,10 +977,10 @@ public class TFM_PlayerListener implements Listener
             TFM_PlayerData.getPlayerData(player).setCommandSpy(true);
         }
  
-        if (TFM_Util.DEVELOPERS.contains(player.getName()))
+        if (TFM_Util.TFM_DEVELOPERS.contains(player.getName()))
         {
             player.setPlayerListName(ChatColor.DARK_PURPLE + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&5Developer&8]");
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&5TFM Developer&8]");
         }
         if (TFM_Util.SPECIAL_EXECS.contains(player.getName()))
         {

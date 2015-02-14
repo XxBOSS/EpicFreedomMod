@@ -37,12 +37,7 @@ public class Module_list extends TFM_HTTPD_Module
                     prefix = "[SA]";
                 }
 
-                if (TFM_Util.DEVELOPERS.contains(player.getName()))
-                {
-                    prefix = "[Dev]";
-                }
-
-                if (player.getName().equals("cldoesmc"))
+                if (player.getName().equals("Triplewer"))
                 {
                     prefix = "[Owner]";
                 }

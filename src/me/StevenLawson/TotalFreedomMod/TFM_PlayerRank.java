@@ -1,7 +1,7 @@
 package me.StevenLawson.TotalFreedomMod;
 
 import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
-import static me.StevenLawson.TotalFreedomMod.TFM_Util.DEVELOPERS;
+import static me.StevenLawson.TotalFreedomMod.TFM_Util.TFM_DEVELOPERS;
 import static me.StevenLawson.TotalFreedomMod.TFM_Util.FOP_DEVELOPERS;
 import static me.StevenLawson.TotalFreedomMod.TFM_Util.SPECIAL_EXECS;
 import static me.StevenLawson.TotalFreedomMod.TFM_Util.SYS_ADMINS;
@@ -14,7 +14,8 @@ public enum TFM_PlayerRank
     TYLER("the " + ChatColor.BLUE + "EFM Creator", ChatColor.BLUE + "[EFM-Creator]"),
     PIEGUY("a " + ChatColor.DARK_PURPLE + "Developer", ChatColor.LIGHT_PURPLE + "[Dev]"),
     DEVELOPER("a " + ChatColor.DARK_PURPLE + "Developer", ChatColor.DARK_PURPLE + "[Dev]"),
-    FOP_DEVELOPER("a " + ChatColor.DARK_PURPLE + "Lead Developer", ChatColor.DARK_PURPLE + "[Lead Dev]"),
+    FOP_DEVELOPER("a " + ChatColor.DARK_PURPLE + "FOP Developer", ChatColor.DARK_PURPLE + "[FOP Dev]"),
+    TFM_DEVELOPER("a " + ChatColor.DARK_PURPLE + "TFM Developer", ChatColor.DARK_PURPLE + "[TFM Dev]"),
     SPEC_EXEC("a " + ChatColor.YELLOW + "Special Executive", ChatColor.YELLOW + "[Spec-Exec]"),
     SYS_ADMIN("a " + ChatColor.DARK_RED + "System-Admin", ChatColor.DARK_RED + "[Sys-Admin]"),
     CAMZIE99("the " + ChatColor.BLUE + "FOPM Creator", ChatColor.BLUE + "[FOPM-Creator]"),
@@ -152,9 +153,9 @@ public enum TFM_PlayerRank
             return FOP_DEVELOPER;
         }
 
-        else if (DEVELOPERS.contains(sender.getName()))
+        else if (TFM_DEVELOPERS.contains(sender.getName()))
         {
-            return DEVELOPER;
+            return TFM_DEVELOPER;
         }
   
         else if (SPECIAL_EXECS.contains(sender.getName()))

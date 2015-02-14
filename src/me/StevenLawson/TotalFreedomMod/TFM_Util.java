@@ -69,7 +69,7 @@ public class TFM_Util
 {
     private static final Map<String, Integer> ejectTracker = new HashMap<String, Integer>();
     public static final Map<String, EntityType> mobtypes = new HashMap<String, EntityType>();
-    public static final List<String> DEVELOPERS = Arrays.asList("OxLemonxO", "DarthSalamon", "VillanuevaGaming");
+    public static final List<String> TFM_DEVELOPERS = Arrays.asList("Madgeek1450", "Prozza", "DarthSalmon", "AcidicCyanide", "Wild1145", "WickedGamingUK");
     public static final List<String> FOP_DEVELOPERS = Arrays.asList("RobinGall2910", "Freelix2000");
     public static final List<String> SPECIAL_EXECS = Arrays.asList("tylerhyperHD", "LegendIsAwesomes");
     public static final List<String> SYSPPL = Arrays.asList("tylerhyperHD", "_herobrian35_", "Triplewer", "jayscoob", "OxLemonxO", "TheEpicMoney", "Flamingdragon23", "FUNDRAGON123", "MrPerson660");
@@ -1067,7 +1067,7 @@ public class TFM_Util
     public static boolean isHighRank(Player player)
     {
         String name = player.getName();
-        if (SYS_ADMINS.contains(name) || SYSPPL.contains(name) || DEVELOPERS.contains(name) || name.equals("tylerhyperHD") || name.equals("Triplewer"))
+        if (SYS_ADMINS.contains(name) || SYSPPL.contains(name) || name.equals("tylerhyperHD") || name.equals("Triplewer"))
         {
             return true;
         }
