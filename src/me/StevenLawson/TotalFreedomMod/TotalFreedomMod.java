@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import me.RoboSystems.DonationSystem.FOM_DonatorList;
 import me.StevenLawson.TotalFreedomMod.Commands.TFM_CommandHandler;
 import me.StevenLawson.TotalFreedomMod.Commands.TFM_CommandLoader;
 import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
@@ -117,6 +118,7 @@ public class TotalFreedomMod extends JavaPlugin
         TFM_PlayerList.load();
         TFM_BanManager.load();
         TFM_Announcer.load();
+        FOM_DonatorList.loadDonatorList();
 
         // Protect area
         // TODO: Refractor to single .load() method

@@ -183,7 +183,7 @@ public class Command_stampy extends TFM_Command
                 player.getWorld().createExplosion(player.getLocation(), 4F);
 
                 // kick player
-                player.kickPlayer(ChatColor.RED + "Stampy is very angry with you! NEVER GET ME ANGRY AGAIN OR THIS WILL HAPPNE DUMBASS!!");
+                player.kickPlayer(ChatColor.RED + "Stampy is very angry with you! NEVER GET ME ANGRY AGAIN OR THIS WILL HAPPEN DUMBASS!!");
                 server.dispatchCommand(sender, "co rb u:" + player.getName() + " t:24h r:global");
             }
         }.runTaskLater(plugin, 3L * 20L);

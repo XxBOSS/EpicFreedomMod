@@ -92,7 +92,7 @@ public class Command_ro extends TFM_Command
         int affected = 0;
         if (targetPlayer == null)
         {
-            TFM_Util.adminAction(sender.getName(), "Removing all " + names + " within " + radius + " blocks of all players... Brace for lag!", false);
+            TFM_Util.adminAction(sender.getName(), "Removing all " + names + " within " + radius + " blocks of all players... BRACE FOR LAGG!", false);
 
             for (final Player player : server.getOnlinePlayers())
             {

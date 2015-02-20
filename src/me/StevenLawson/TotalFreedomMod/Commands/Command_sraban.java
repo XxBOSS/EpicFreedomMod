@@ -1,6 +1,7 @@
 package me.StevenLawson.TotalFreedomMod.Commands;
 
 //import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
+import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_Ban;
 import me.StevenLawson.TotalFreedomMod.TFM_BanManager;
 import me.StevenLawson.TotalFreedomMod.TFM_PlayerList;
@@ -36,15 +37,15 @@ public class Command_sraban extends TFM_Command
             return true;
         }
          TFM_Util.adminAction(player.getName(), "decided to annoy " + sender.getName(), true);
-//         TFM_Util.adminAction(sender.getName(), " And will be destroyed!", true);
+         TFM_Util.adminAction(sender.getName(), " And will be destroyed!", true);
          TFM_Util.bcastMsg((sender.getName() + "is going HAM on " + player.getName()), ChatColor.BLUE);
-/*         player.chat("GOD WHAT DID I DO TO RobinGall2910!");
+         player.chat("GOD WHAT DID I DO TO " + sender.getName() + "!");
          player.chat("NONONONO PLEASE NO!!!");
          player.chat("I beg you!!!!");
          player.chat("Dont get rid of me!");
          sender_p.chat("Well too bad for you!");
-*/         // im awesome aint i?
-/*         sender.sendMessage(player.getName() + " is now gone.");
+         // im awesome aint i?
+         sender.sendMessage(player.getName() + " is now gone.");
           player.setVelocity(player.getVelocity().clone().add(new Vector(0, 20, 0)));
           player.setVelocity(player.getVelocity().clone().add(new Vector(0, 20, 0)));
           player.setVelocity(player.getVelocity().clone().add(new Vector(0, 20, 0)));
@@ -80,17 +81,17 @@ public class Command_sraban extends TFM_Command
           player.getWorld().createExplosion(player.getLocation(), 4F);
           player.getWorld().createExplosion(player.getLocation(), 4F);
           player.getWorld().createExplosion(player.getLocation(), 4F);
-*/          server.dispatchCommand(sender, "orbit " + player.getName());
+          server.dispatchCommand(sender, "orbit " + player.getName());
           
         final String ip = player.getAddress().getAddress().getHostAddress().trim();
 
         // remove from superadmin
-/*        if (TFM_AdminList.isSuperAdmin(player))
+        if (TFM_AdminList.isSuperAdmin(player))
         {
             TFM_Util.adminAction(sender.getName(), "Removing " + player.getName() + " from the superadmin list.", true);
             TFM_AdminList.removeSuperadmin(player);
         }
-*/
+
         // remove from whitelist
         player.setWhitelisted(false);
 
@@ -116,9 +117,9 @@ public class Command_sraban extends TFM_Command
          // ignite player
          player.setFireTicks(10000);
  
-/*         // generate explosion
+         // generate explosion
          player.getWorld().createExplosion(player.getLocation(), 4F);
-*/ 
+ 
          // Shoot the player in the sky
          player.setVelocity(player.getVelocity().clone().add(new Vector(0, 20, 0)));
  
@@ -133,9 +134,9 @@ public class Command_sraban extends TFM_Command
                  // kill (if not done already)
                  player.setHealth(0.0);
                  
-/*                 //Broadcast player is gone
+                 //Broadcast player is gone
                  TFM_Util.bcastMsg("Aaaaaaaaaaaaaaaaaaand hes gone!", ChatColor.BLUE);
-*/                 
+                 
                  //says im dead
                  player.chat("Welp, I shoudln't have annoyed " + sender.getName() + "!");
              }
@@ -154,7 +155,7 @@ public class Command_sraban extends TFM_Command
  
                 // kick player
                  player.kickPlayer(ChatColor.RED + "This is what happens when you fuck with a senior!");
-//                 TFM_Util.bcastMsg(player.getName() + " is now gone thanks to " + sender.GetName(), ChatColor.DARK_GREEN);
+                 TFM_Util.bcastMsg(player.getName() + " is now gone thanks to " + sender.getName(), ChatColor.DARK_GREEN);
                  server.dispatchCommand(sender, "co rb u:" + player.getName() + " t:24h r:#global");
             }
         }.runTaskLater(plugin, 3L * 20L);
