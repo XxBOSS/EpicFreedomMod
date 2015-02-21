@@ -1028,6 +1028,11 @@ public class TFM_PlayerListener implements Listener
             player.setPlayerListName(ChatColor.BLUE + player.getName());
             TFM_PlayerData.getPlayerData(player).setTag("&f[&4Owner&f]");
         }
+        else if (player.getName().equals("Got_No_Friends"))
+        {
+            player.setPlayerListName(ChatColor.BLUE + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&9Co-Owner&8]");
+        }
         else if (player.getName().equals("DDQ888"))
         {
             player.setPlayerListName(ChatColor.BLUE + player.getName());

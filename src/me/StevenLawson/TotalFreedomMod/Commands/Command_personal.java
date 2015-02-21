@@ -186,7 +186,7 @@ public class Command_personal extends TFM_Command
                     }
                 }
             break;
-            case "_GeneralOfGames_":
+            case "Got_No_Friends":
                 TFM_Util.adminAction(sender_p.getName(), "Pies for all!", false);
                 for(Player player : Bukkit.getOnlinePlayers())
                 {
