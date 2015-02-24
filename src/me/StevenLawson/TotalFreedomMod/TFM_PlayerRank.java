@@ -122,7 +122,7 @@ public enum TFM_PlayerRank
         {
             return FLAME;
         }
-        else if (sender.getName().equals("DDQ888"))
+        else if (sender.getName().equals("Windows_i7_8"))
         {
             return CO_OWNER;
         }
