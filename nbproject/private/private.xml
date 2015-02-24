@@ -14,10 +14,12 @@
         <group>
             <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/Commands/Command_devchat.java</file>
             <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/superadmin.yml</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/Commands/Command_gtfo.java</file>
             <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/TotalFreedomMod.java</file>
             <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/TFM_PlayerRank.java</file>
             <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/RoboSystems/DonationSystem/FOM_DonatorList.java</file>
             <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/Listener/TFM_PlayerListener.java</file>
+            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/Commands/Command_personal.java</file>
             <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/TFM_Util.java</file>
         </group>
     </open-files>

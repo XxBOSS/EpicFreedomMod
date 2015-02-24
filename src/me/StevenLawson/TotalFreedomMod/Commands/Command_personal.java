@@ -70,7 +70,7 @@ public class Command_personal extends TFM_Command
                 }
                 TFM_Util.adminAction(sender_p.getName(), "Gracing the world with Purple!", false);
             break;
-                case "brickblock12":
+                case "ItsBricks":
                 for(Player player : Bukkit.getOnlinePlayers())
                 {
                     PlayerInventory inv = player.getInventory();
