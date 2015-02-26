@@ -52,14 +52,20 @@ public class Command_v extends TFM_Command
             {
                 PotionEffect invis = PotionEffectType.INVISIBILITY.createEffect(1000000000, 255);
                 ((Player)sender).addPotionEffect(invis, true);
-                player.hidePlayer(player);
-                sender_p.sendMessage(ChatColor.GOLD + "You are now invisible to other players.");
+              for (Player pl : server.getOnlinePlayers())
+              {
+                  pl.hidePlayer(player);
+              }
+              sender_p.sendMessage(ChatColor.GOLD + "You are now invisible to other players.");
             }
             if (args[0].equals("off"))
             {
               PotionEffect noinvis = PotionEffectType.INVISIBILITY.createEffect(1, 0);
               ((Player)sender).addPotionEffect(noinvis, true);
-              player.hidePlayer(player);
+              for (Player pl : server.getOnlinePlayers())
+              {
+                  pl.showPlayer(player);
+              }
               sender_p.sendMessage(ChatColor.GOLD + "You are now visible to other players.");
               for (PotionEffect potion_effect : sender_p.getActivePotionEffects())
                     {
@@ -74,10 +80,6 @@ public class Command_v extends TFM_Command
         sender_p.sendMessage(ChatColor.RED + sender.getName() +  String.format(", no invis please."));
         sender_p.setGameMode(GameMode.SURVIVAL);
         sender_p.getWorld().createExplosion(sender_p.getLocation().getBlockX(), sender_p.getLocation().getBlockY(), sender_p.getLocation().getBlockZ(), 0, false, false);
-        if(args.length == 1 && TFM_Util.isHighRank(sender_p))
-        {
-            Bukkit.dispatchCommand(sender_p, "fireball");
-        }
         sender_p.setHealth(0);
         }
         }
