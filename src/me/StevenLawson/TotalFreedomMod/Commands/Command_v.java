@@ -25,12 +25,15 @@ import me.StevenLawson.TotalFreedomMod.TFM_Admin;
 import me.StevenLawson.TotalFreedomMod.TFM_AdminList;
 import me.StevenLawson.TotalFreedomMod.TFM_Util;
 import com.earth2me.essentials.commands.Commandvanish;
+import me.StevenLawson.TotalFreedomMod.Listener.TFM_PlayerListener;
+import me.StevenLawson.TotalFreedomMod.TotalFreedomMod;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -52,10 +55,12 @@ public class Command_v extends TFM_Command
             {
                 PotionEffect invis = PotionEffectType.INVISIBILITY.createEffect(1000000000, 255);
                 ((Player)sender).addPotionEffect(invis, true);
+              
               for (Player pl : server.getOnlinePlayers())
               {
                   pl.hidePlayer(player);
               }
+              player.setPlayerListName("");
               sender_p.sendMessage(ChatColor.GOLD + "You are now invisible to other players.");
             }
             if (args[0].equals("off"))
@@ -71,6 +76,7 @@ public class Command_v extends TFM_Command
                     {
                         sender_p.removePotionEffect(potion_effect.getType());
                     }
+                     TFM_PlayerListener.getPlayerName(player);
             }
         }
         else

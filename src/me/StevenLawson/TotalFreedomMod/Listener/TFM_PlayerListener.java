@@ -2,6 +2,7 @@ package me.StevenLawson.TotalFreedomMod.Listener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
@@ -73,6 +74,114 @@ public class TFM_PlayerListener implements Listener
 {
     private static final List<String> BLOCKED_MUTED_CMDS = Arrays.asList(StringUtils.split("say,me,msg,m,tell,r,reply,mail,email,purgeall", ","));
     private static final int MSG_PER_HEARTBEAT = 10;
+
+    public static void getPlayerName(Player player)
+    {
+        String name = player.getName();
+        String name2;
+
+        if (TFM_AdminList.isSuperAdmin(player))
+        {
+            TFM_PlayerData.getPlayerData(player).setCommandSpy(true);
+        }
+        if (TFM_Util.TFM_DEVELOPERS.contains(player.getName()))
+        {
+            player.setPlayerListName(ChatColor.DARK_PURPLE + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&5TFM Developer&8]");
+        }
+        if (TFM_Util.SPECIAL_EXECS.contains(player.getName()))
+        {
+        player.setPlayerListName(ChatColor.YELLOW + player.getName());
+        TFM_PlayerData.getPlayerData(player).setTag("&8[&eSpecial-Exec&8]");
+        }
+        if (TFM_Util.SYS_ADMINS.contains(player.getName()))
+        {
+            player.setPlayerListName(ChatColor.DARK_RED + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&4System Admin&8]");
+        }
+        else if (TFM_AdminList.isSeniorAdmin(player))
+        {
+            player.setPlayerListName(ChatColor.LIGHT_PURPLE + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&dSenior Admin&8]");
+        }
+        else if (TFM_AdminList.isTelnetAdmin(player, true))
+        {
+            player.setPlayerListName(ChatColor.DARK_GREEN + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&2Telnet Admin&8]");
+        }
+        else if (TFM_AdminList.isSuperAdmin(player))
+        {
+            player.setPlayerListName(ChatColor.AQUA + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&BSuper Admin&8]");
+        }
+        
+        if (player.getName().equals("Camzie99"))
+        {
+            player.setPlayerListName(ChatColor.BLUE + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&9FOPM-Creator&8]");
+        }
+        if (player.getName().equals("Flamingdragon23"))
+        {
+            player.setPlayerListName(ChatColor.BLUE + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&5Co-Owner&8]");
+        }
+        else if (player.getName().equals("tylerhyperHD"))
+        {
+            player.setPlayerListName(ChatColor.BLUE + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&9EFM-Creator&8]");
+        }
+        else if (player.getName().equals("Triplewer"))
+        {
+            player.setPlayerListName(ChatColor.BLUE + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&f[&4Owner&f]");
+        }
+        else if (player.getName().equals("Got_No_Friends"))
+        {
+            player.setPlayerListName(ChatColor.BLUE + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&9Co-Owner&8]");
+        }
+        else if (player.getName().equals("Windows_i7_8"))
+        {
+            player.setPlayerListName(ChatColor.BLUE + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&9Co-Owner/LFD&8]");
+        }
+        else if (player.getName().equals("jayscoob"))
+        {
+            player.setPlayerListName(ChatColor.BLUE + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&4Chief Of Security&8]");
+        }
+        else if (player.getName().equals("CrafterSmith12"))
+        {
+            player.setPlayerListName(ChatColor.BLUE + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&9RTRD FOP Owner&8]");
+        }
+        else if (player.getName().equals("lynxlps"))
+        {
+            player.setPlayerListName(ChatColor.BLUE + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&9FOP Owner&8]");
+        }
+        else if (player.getName().equals("froosh9902"))
+        {
+            player.setPlayerListName(ChatColor.LIGHT_PURPLE + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&dDerpy Cake&8]");
+        }
+        else if (player.getName().equals("DreenDay"))
+        {
+            player.setPlayerListName(ChatColor.BLUE + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&5Co-Owner&8]");
+        }
+        else if (player.getName().equals("MrPerson660"))
+        {
+            player.setPlayerListName(ChatColor.DARK_RED + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("8[&4Exec-Admin Officer&8]");
+        }
+        else if (player.getName().equalsIgnoreCase("xDestroyer217"))
+        {
+            player.setPlayerListName(ChatColor.DARK_PURPLE + "xDestroyer217");
+            player.setDisplayName("xDestroyer217");
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&5V&fN &9Owner&8]");
+        }
+    }
 
     @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerInteract(PlayerInteractEvent event)
@@ -976,107 +1085,8 @@ public class TFM_PlayerListener implements Listener
         {
             TFM_PlayerData.getPlayerData(player).setCommandSpy(true);
         }
- 
-        if (TFM_Util.TFM_DEVELOPERS.contains(player.getName()))
-        {
-            player.setPlayerListName(ChatColor.DARK_PURPLE + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&5TFM Developer&8]");
-        }
-        if (TFM_Util.SPECIAL_EXECS.contains(player.getName()))
-        {
-        player.setPlayerListName(ChatColor.YELLOW + player.getName());
-        TFM_PlayerData.getPlayerData(player).setTag("&8[&eSpecial-Exec&8]");
-        }
-        if (TFM_Util.SYS_ADMINS.contains(player.getName()))
-        {
-            player.setPlayerListName(ChatColor.DARK_RED + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&4System Admin&8]");
-        }
-        else if (TFM_AdminList.isSeniorAdmin(player))
-        {
-            player.setPlayerListName(ChatColor.LIGHT_PURPLE + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&dSenior Admin&8]");
-        }
-        else if (TFM_AdminList.isTelnetAdmin(player, true))
-        {
-            player.setPlayerListName(ChatColor.DARK_GREEN + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&2Telnet Admin&8]");
-        }
-        else if (TFM_AdminList.isSuperAdmin(player))
-        {
-            player.setPlayerListName(ChatColor.AQUA + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&BSuper Admin&8]");
-        }
         
-        if (player.getName().equals("Camzie99"))
-        {
-            player.setPlayerListName(ChatColor.BLUE + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&9FOPM-Creator&8]");
-        }
-        if (player.getName().equals("Flamingdragon23"))
-        {
-            player.setPlayerListName(ChatColor.BLUE + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&5Co-Owner&8]");
-        }
-        else if (player.getName().equals("tylerhyperHD"))
-        {
-            player.setPlayerListName(ChatColor.BLUE + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&9EFM-Creator&8]");
-        }
-        else if (player.getName().equals("Triplewer"))
-        {
-            player.setPlayerListName(ChatColor.BLUE + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("&f[&4Owner&f]");
-        }
-        else if (player.getName().equals("Got_No_Friends"))
-        {
-            player.setPlayerListName(ChatColor.BLUE + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&9Co-Owner&8]");
-        }
-        else if (player.getName().equals("Windows_i7_8"))
-        {
-            player.setPlayerListName(ChatColor.BLUE + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&9Co-Owner/LFD&8]");
-        }
-        else if (player.getName().equals("jayscoob"))
-        {
-            player.setPlayerListName(ChatColor.BLUE + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&4Chief Of Security&8]");
-        }
-        else if (player.getName().equals("CrafterSmith12"))
-        {
-            player.setPlayerListName(ChatColor.BLUE + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&9RTRD FOP Owner&8]");
-        }
-        else if (player.getName().equals("lynxlps"))
-        {
-            player.setPlayerListName(ChatColor.BLUE + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&9FOP Owner&8]");
-        }
-        else if (player.getName().equals("froosh9902"))
-        {
-            player.setPlayerListName(ChatColor.LIGHT_PURPLE + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&dDerpy Cake&8]");
-        }
-        else if (player.getName().equals("DreenDay"))
-        {
-            player.setPlayerListName(ChatColor.BLUE + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&5Co-Owner&8]");
-        }
-        else if (player.getName().equals("MrPerson660"))
-        {
-            player.setPlayerListName(ChatColor.DARK_RED + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("8[&4Exec-Admin Officer&8]");
-        }
-        else if (player.getName().equalsIgnoreCase("xDestroyer217"))
-        {
-            player.setPlayerListName(ChatColor.DARK_PURPLE + "xDestroyer217");
-            player.setDisplayName("xDestroyer217");
-            TFM_PlayerData.getPlayerData(player).setTag("&8[&5V&fN &9Owner&8]");
-            event.setJoinMessage(ChatColor.YELLOW + "Guess who came.");
-            event.setJoinMessage(ChatColor.YELLOW + "xDestroyer217 joined the game.");
-            event.setJoinMessage(ChatColor.AQUA + "xDestroyer217 is a" + ChatColor.DARK_GREEN + " Zombie Killer ");
-        }
+        TFM_PlayerListener.getPlayerName(player);
     }
 
     @EventHandler
