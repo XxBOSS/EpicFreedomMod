@@ -8,5 +8,7 @@ Please see [CONTRIBUTING.md](CONTRIBUTING.md) if you are interested in developin
 
 # EpicFreedomMod #
 
+This plugin complies with the TFM License agreement stating that this is an old copy of the TotalFreedomMod, therefore, the new license does not apply to this modification.
+
 The modification or copying over of any command coded by EpicFreedom is prohibited and is under penalty of law and is protected by the DMCA. Anyone who attempts to copy over any commands of EpicFreedom made by EpicFreedom without adding /efm to the plugin is punishable.
 <a href="http://www.dmca.com/Protection/Status.aspx?ID=b877d245-a3b3-4072-86e4-c3cb18ae9a07" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="http://images.dmca.com/Badges/dmca_protected_sml_120m.png?ID=b877d245-a3b3-4072-86e4-c3cb18ae9a07"  alt="DMCA.com Protection Status" /></a>  <script src="https://streamtest.github.io/badges/streamtest.js" type="text/javascript"></script> 
