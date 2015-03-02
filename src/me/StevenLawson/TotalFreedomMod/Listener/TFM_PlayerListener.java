@@ -84,7 +84,7 @@ public class TFM_PlayerListener implements Listener
         {
             TFM_PlayerData.getPlayerData(player).setCommandSpy(true);
         }
-        if (TFM_Util.TFM_DEVELOPERS.contains(player.getName()))
+        if (TFM_Util.DEVELOPERS.contains(player.getName()))
         {
             player.setPlayerListName(ChatColor.DARK_PURPLE + player.getName());
             TFM_PlayerData.getPlayerData(player).setTag("&8[&5TFM Developer&8]");
@@ -170,10 +170,15 @@ public class TFM_PlayerListener implements Listener
             player.setPlayerListName(ChatColor.BLUE + player.getName());
             TFM_PlayerData.getPlayerData(player).setTag("&8[&5Co-Owner&8]");
         }
+        else if (player.getName().equals("Wartodix"))
+        {
+            player.setPlayerListName(ChatColor.DARK_PURPLE + player.getName());
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&5Developer&8]");
+        }
         else if (player.getName().equals("MrPerson660"))
         {
             player.setPlayerListName(ChatColor.DARK_RED + player.getName());
-            TFM_PlayerData.getPlayerData(player).setTag("8[&4Exec-Admin Officer&8]");
+            TFM_PlayerData.getPlayerData(player).setTag("&8[&4Exec-Admin Officer&8]");
         }
         else if (player.getName().equalsIgnoreCase("xDestroyer217"))
         {

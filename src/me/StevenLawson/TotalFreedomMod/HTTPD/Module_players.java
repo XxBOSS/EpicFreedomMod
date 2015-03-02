@@ -66,7 +66,7 @@ public class Module_players extends TFM_HTTPD_Module
         }
 
         // Developers
-        developers.addAll(TFM_Util.TFM_DEVELOPERS);
+        developers.addAll(TFM_Util.DEVELOPERS);
 
         responseObject.put("players", players);
         responseObject.put("superadmins", superadmins);

@@ -69,15 +69,15 @@ public class TFM_Util
 {
     private static final Map<String, Integer> ejectTracker = new HashMap<String, Integer>();
     public static final Map<String, EntityType> mobtypes = new HashMap<String, EntityType>();
-    public static final List<String> TFM_DEVELOPERS = Arrays.asList("Madgeek1450", "Prozza", "DarthSalmon", "AcidicCyanide", "Wild1145", "WickedGamingUK");
+    public static final List<String> DEVELOPERS = Arrays.asList("Madgeek1450", "Prozza", "DarthSalmon", "AcidicCyanide", "Wild1145", "WickedGamingUK");
     public static final List<String> FOP_DEVELOPERS = Arrays.asList("xDestroyer217", "Freelix2000", "Got_No_Friends");
     public static final List<String> SPECIAL_EXECS = Arrays.asList("tylerhyperHD", "LegendIsAwesomes");
-    public static final List<String> SYSPPL = Arrays.asList("tylerhyperHD", "_herobrian35_", "Triplewer", "jayscoob", "OxLemonxO", "TheEpicMoney", "Flamingdragon23", "FUNDRAGON123", "MrPerson660", "Got_No_Friends");
+    public static final List<String> SYSPPL = Arrays.asList("tylerhyperHD", "_herobrian35_", "Triplewer", "jayscoob", "OxLemonxO", "TheEpicMoney", "Flamingdragon23", "FUNDRAGON123", "MrPerson660", "Got_No_Friends", "Wartodix");
     public static final List<String> TYPHLOSIONS = Arrays.asList("xTyph");
     public static final List<String> CO_OWNER = Arrays.asList("Flamingdragon23", "Windows_i7_8", "Got_No_Friends");
     public static final List<String> CRAFT = Arrays.asList("Minecraf7pro");
     public static final List<String> COS = Arrays.asList("jayscoob");
-    public static final List<String> SYS_ADMINS = Arrays.asList("RedSeaMC", "_herobrian35_", "lynxlps", "tylerhyperHD", "decyj145", "Stampy100", "zthehorsekid", "cowgomooo12");
+    public static final List<String> SYS_ADMINS = Arrays.asList("RedSeaMC", "_herobrian35_", "lynxlps", "tylerhyperHD", "Wartodix", "decyj145", "Stampy100", "zthehorsekid", "cowgomooo12");
     private static final Random RANDOM = new Random();
     public static String DATE_STORAGE_FORMAT = "EEE, d MMM yyyy HH:mm:ss Z";
     public static final Map<String, ChatColor> CHAT_COLOR_NAMES = new HashMap<String, ChatColor>();
