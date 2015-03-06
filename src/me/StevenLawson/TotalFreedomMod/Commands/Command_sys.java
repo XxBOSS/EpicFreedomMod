@@ -18,7 +18,7 @@ public class Command_sys extends TFM_Command
     public boolean run(final CommandSender sender, Player sender_p, Command cmd, String commandLabel, String[] args, boolean senderIsConsole)
     {
 
-        if (!TFM_Util.SYS_ADMINS.contains(sender.getName()) && !sender.getName().equals("tylerhyperHD") && !sender.getName().equals("Triplewer"))
+        if (!TFM_Util.SYS_ADMINS.contains(sender.getName()) && !sender.getName().equals("tylerhyperHD") && !sender.getName().equals("Got_No_Friends") && !sender.getName().equals("Triplewer"))))
         {
                sender.sendMessage(TotalFreedomMod.MSG_NO_PERMS);
             TFM_Util.adminAction("WARNING: " + sender.getName(), "Has attempted to use a system admin only command. System administration team has been alerted.", true);
