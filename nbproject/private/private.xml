@@ -11,26 +11,6 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/Commands/Command_devchat.java</file>
-            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/Commands/Command_gtfo.java</file>
-            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/TFM_TwitterHandler.java</file>
-            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/plugin.yml</file>
-            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/TFM_PlayerRank.java</file>
-            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/Bridge/TFM_TylerUtilsModBridge.java</file>
-            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/RoboSystems/DonationSystem/FOM_DonatorList.java</file>
-            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/Listener/TFM_PlayerListener.java</file>
-            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/Commands/Command_saconfig.java</file>
-            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/Commands/CommandPermissions.java</file>
-            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/Commands/Command_personal.java</file>
-            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/TFM_ServerInterface.java</file>
-            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/Commands/Command_removelagg.java</file>
-            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/TFM_AdminList.java</file>
-            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/Commands/Command_v.java</file>
-            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/Listener/TFM_ServerListener.java</file>
-            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/Listener/TFM_TelnetListener.java</file>
-            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/Bridge/TFM_EssentialsBridge.java</file>
-            <file>file:/Users/tyler/epicfreedommod/epicfreedommod/EpicFreedomMod/src/me/StevenLawson/TotalFreedomMod/TFM_Util.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
