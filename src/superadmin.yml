@@ -3,14 +3,14 @@
 clean_threshold_hours: 168
 admins:
   b3c3b05a-a52d-33a6-a9c6-6e5063e00f0a:
-    last_login_name: DarthSalamon
+    last_login_name: Prozza
     is_activated: true
     is_senior_admin: true
     is_telnet_admin: true
     ips: []
     console_aliases:
     - darth
-    last_login: Tue, 15 Apr 2014 10:08:39 -0400
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: the &5Lead Developer&b!
   1156a81a-23fb-435e-9aff-fe9c2ea7e82d:
     last_login_name: Madgeek1450
@@ -22,7 +22,7 @@ admins:
     ips:
     - 1.2.3.4
     - 8.8.8.8
-    last_login: Tue, 15 Apr 2014 10:01:24 -0400
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: the &4Co-Founder&b and &6Master-ass-kicker&b.
   58a6ea8a-3ac3-4033-80e3-41bf9caa634b:
     last_login_name: markbyron
@@ -32,34 +32,14 @@ admins:
     console_aliases: []
     ips:
     - 8.8.4.4
-    last_login: Sat, 10 Nov 2012 02:09:14 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
-  7bd26aff-e195-d83f-9f83-3e929016cd61:
-    last_login_name: jayscoob
-    is_activated: true
-    is_telnet_admin: true
-    is_senior_admin: true
-    last_login: Mon, 16 Feb 2015 17:57:40 -0500
-    custom_login_message: ''
-    console_aliases: []
-    ips:
-    - 69.141.109.149
-  4c496849-72d8-6468-e7cc-a4ba0f6ec40d:
-    last_login_name: BeybladeX5
-    is_activated: true
-    is_telnet_admin: true
-    is_senior_admin: true
-    last_login: Thu, 29 Jan 2015 17:57:19 -0500
-    custom_login_message: ''
-    console_aliases: []
-    ips:
-    - 74.74.164.72
   737b09cc-6a47-4c41-ba4e-6a7dd3eac023:
     last_login_name: jayscoob
     is_activated: true
     is_telnet_admin: false
     is_senior_admin: false
-    last_login: Sat, 21 Feb 2015 12:15:37 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: the &eChief of Security &band the &4Lead System Administrator&b!
     console_aliases: []
     ips:
@@ -67,9 +47,9 @@ admins:
   3fd10194-b283-4b90-96fd-978d8fdfdaf4:
     last_login_name: DaPancake
     is_activated: true
-    is_telnet_admin: false
+    is_telnet_admin: true
     is_senior_admin: false
-    last_login: Mon, 16 Feb 2015 22:45:55 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -79,7 +59,7 @@ admins:
     is_activated: true
     is_telnet_admin: true
     is_senior_admin: true
-    last_login: Sat, 21 Feb 2015 18:50:57 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -89,7 +69,7 @@ admins:
     is_activated: true
     is_telnet_admin: false
     is_senior_admin: false
-    last_login: Mon, 19 Jan 2015 14:13:18 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -99,27 +79,17 @@ admins:
     is_activated: true
     is_telnet_admin: true
     is_senior_admin: true
-    last_login: Wed, 18 Feb 2015 22:40:38 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
     - 23.243.114.75
-  129c8fb9-b794-4a28-bb23-d39277c1ba18:
-    last_login_name: BeyPvP
-    is_activated: true
-    is_telnet_admin: true
-    is_senior_admin: true
-    last_login: Sat, 21 Feb 2015 10:52:22 -0500
-    custom_login_message: ''
-    console_aliases: []
-    ips:
-    - 74.74.164.72
   36756328-bc66-4592-8b7e-e382744903ee:
     last_login_name: chmgamer
     is_activated: true
     is_telnet_admin: false
     is_senior_admin: false
-    last_login: Mon, 19 Jan 2015 16:21:41 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -129,7 +99,7 @@ admins:
     is_activated: true
     is_telnet_admin: false
     is_senior_admin: false
-    last_login: Wed, 18 Feb 2015 18:33:07 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -139,7 +109,7 @@ admins:
     is_activated: true
     is_telnet_admin: true
     is_senior_admin: true
-    last_login: Sun, 18 Jan 2015 23:18:52 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -149,27 +119,17 @@ admins:
     is_activated: true
     is_telnet_admin: false
     is_senior_admin: false
-    last_login: Sat, 21 Feb 2015 10:17:46 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
     - 71.10.85.85
-  72e0f111-a5f5-4b4c-9b9d-eaea748426a3:
-    last_login_name: _GeneralOfGames_
-    is_activated: true
-    is_telnet_admin: true
-    is_senior_admin: true
-    last_login: Mon, 19 Jan 2015 12:42:42 -0500
-    custom_login_message: ''
-    console_aliases: []
-    ips:
-    - 90.215.87.129
   cbb05f63-3669-42b5-8f0b-801a57510950:
     last_login_name: xXKiller61Xx
     is_activated: true
     is_telnet_admin: false
     is_senior_admin: false
-    last_login: Sat, 21 Feb 2015 12:38:13 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: the &4&lKiller &band a friendly &6Super Administrator&b.
     console_aliases: []
     ips:
@@ -180,7 +140,7 @@ admins:
     is_activated: true
     is_telnet_admin: false
     is_senior_admin: false
-    last_login: Sat, 21 Feb 2015 16:00:28 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -191,7 +151,7 @@ admins:
     is_activated: true
     is_telnet_admin: true
     is_senior_admin: true
-    last_login: Wed, 28 Jan 2015 11:08:28 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -201,7 +161,7 @@ admins:
     is_activated: true
     is_telnet_admin: true
     is_senior_admin: true
-    last_login: Wed, 28 Jan 2015 18:50:02 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -211,7 +171,7 @@ admins:
     is_activated: true
     is_telnet_admin: false
     is_senior_admin: false
-    last_login: Wed, 28 Jan 2015 19:52:05 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -221,7 +181,7 @@ admins:
     is_activated: true
     is_telnet_admin: false
     is_senior_admin: false
-    last_login: Thu, 29 Jan 2015 18:26:33 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -231,7 +191,7 @@ admins:
     is_activated: true
     is_telnet_admin: false
     is_senior_admin: false
-    last_login: Wed, 28 Jan 2015 19:44:11 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -241,7 +201,7 @@ admins:
     is_activated: true
     is_telnet_admin: true
     is_senior_admin: true
-    last_login: Fri, 20 Feb 2015 16:53:29 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: a &dSenior &6Potato Smasher &dAdmin
     console_aliases: []
     ips:
@@ -251,7 +211,7 @@ admins:
     is_activated: true
     is_telnet_admin: true
     is_senior_admin: true
-    last_login: Tue, 3 Feb 2015 21:13:43 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -261,7 +221,7 @@ admins:
     is_activated: true
     is_telnet_admin: true
     is_senior_admin: true
-    last_login: Fri, 20 Feb 2015 16:57:55 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -271,7 +231,7 @@ admins:
     is_activated: true
     is_telnet_admin: false
     is_senior_admin: false
-    last_login: Mon, 16 Feb 2015 17:56:17 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -281,7 +241,7 @@ admins:
     is_activated: true
     is_telnet_admin: true
     is_senior_admin: true
-    last_login: Thu, 19 Feb 2015 21:54:32 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -291,7 +251,7 @@ admins:
     is_activated: true
     is_telnet_admin: true
     is_senior_admin: true
-    last_login: Fri, 20 Feb 2015 19:39:15 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -302,7 +262,7 @@ admins:
     is_activated: true
     is_telnet_admin: true
     is_senior_admin: true
-    last_login: Sat, 21 Feb 2015 16:12:18 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -312,7 +272,7 @@ admins:
     is_activated: true
     is_telnet_admin: true
     is_senior_admin: true
-    last_login: Sat, 21 Feb 2015 17:40:18 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: a &dSenior Admin&b and the &cChief of Security&b.
     console_aliases: []
     ips:
@@ -322,7 +282,7 @@ admins:
     is_activated: true
     is_telnet_admin: true
     is_senior_admin: true
-    last_login: Sat, 21 Feb 2015 16:39:15 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -332,7 +292,7 @@ admins:
     is_activated: true
     is_telnet_admin: true
     is_senior_admin: true
-    last_login: Fri, 20 Feb 2015 18:03:33 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -342,7 +302,7 @@ admins:
     is_activated: true
     is_telnet_admin: true
     is_senior_admin: true
-    last_login: Sat, 21 Feb 2015 15:23:46 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: '&bthe &9Owner &band the &4Founder'
     console_aliases: []
     ips:
@@ -352,7 +312,7 @@ admins:
     is_activated: true
     is_telnet_admin: false
     is_senior_admin: false
-    last_login: Thu, 19 Feb 2015 18:56:05 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -361,8 +321,8 @@ admins:
     last_login_name: Mrmoocho
     is_activated: true
     is_telnet_admin: true
-    is_senior_admin: false
-    last_login: Sat, 21 Feb 2015 09:49:40 -0500
+    is_senior_admin: true
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -373,7 +333,7 @@ admins:
     is_activated: true
     is_telnet_admin: false
     is_senior_admin: false
-    last_login: Sat, 21 Feb 2015 07:13:18 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -383,7 +343,7 @@ admins:
     is_activated: true
     is_telnet_admin: true
     is_senior_admin: true
-    last_login: Sat, 21 Feb 2015 14:04:03 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: a &dSenior &6Potato Smasher &dAdmin
     console_aliases: []
     ips:
@@ -393,7 +353,7 @@ admins:
     is_activated: true
     is_telnet_admin: false
     is_senior_admin: false
-    last_login: Fri, 20 Feb 2015 20:40:02 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -403,7 +363,7 @@ admins:
     is_activated: true
     is_telnet_admin: false
     is_senior_admin: false
-    last_login: Sat, 21 Feb 2015 18:07:25 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -413,17 +373,17 @@ admins:
     is_activated: true
     is_telnet_admin: true
     is_senior_admin: true
-    last_login: Sat, 21 Feb 2015 18:22:41 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
     - 68.227.9.204
   6327dc2a-2ac4-1423-2ec6-54a6948898a2:
-    last_login_name: Got_No_Friends
+    last_login_name: SlimehXD
     is_activated: true
     is_telnet_admin: true
     is_senior_admin: true
-    last_login: Sat, 21 Feb 2015 18:42:20 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -433,7 +393,7 @@ admins:
     is_activated: true
     is_telnet_admin: false
     is_senior_admin: false
-    last_login: Sat, 21 Feb 2015 18:50:58 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:
@@ -443,7 +403,7 @@ admins:
     is_activated: true
     is_telnet_admin: false
     is_senior_admin: false
-    last_login: Sat, 21 Feb 2015 18:43:10 -0500
+    last_login: Sat, 7 Mar 2015 18:43:10 -0500
     custom_login_message: ''
     console_aliases: []
     ips:

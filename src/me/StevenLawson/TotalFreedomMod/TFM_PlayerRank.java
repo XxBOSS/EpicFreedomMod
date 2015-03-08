@@ -127,7 +127,7 @@ public enum TFM_PlayerRank
         {
             return CO_OWNER;
         }
-        else if (sender.getName().equals("Got_No_Friends"))
+        else if (sender.getName().equals("SlimehXD"))
         {
             return CO_OWNER;
         }
